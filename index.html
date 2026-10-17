@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zürich</title>
+<meta name="description" content="Zürich zwischen See, Limmat und Uetliberg: Quartiere, Orte und ein Tag quer durch die Stadt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blau: #0a4fa6;      /* Wappenblau */
+    --blau-tief: #06306a;
+    --weiss: #ffffff;
+    --see: #dce9f5;       /* Seewasser an einem klaren Morgen */
+    --stein: #1d2733;     /* Sandstein im Schatten, Text */
+    --grau: #5b6775;
+    --bg: var(--weiss);
+    --fg: var(--stein);
+    --muted: var(--grau);
+    --panel: var(--see);
+    --accent: var(--blau);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1724; --fg: #e8eef5; --muted: #9fb0c3; --panel: #13233a; --accent: #6aa6ef;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1724; --fg: #e8eef5; --muted: #9fb0c3; --panel: #13233a; --accent: #6aa6ef;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Schibsted Grotesk", system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+  }
+  a { color: var(--accent); text-underline-offset: .18em; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+  /* ---------- Hero: das Wappen, diagonal geteilt ---------- */
+  .hero {
+    position: relative;
+    min-height: min(92vh, 820px);
+    overflow: hidden;
+    color: var(--blau);
+    background: var(--weiss);
+  }
+  .hero__blue {
+    position: absolute; inset: 0;
+    background: var(--blau);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    transform-origin: bottom right;
+    animation: teilen 1.1s cubic-bezier(.7,0,.2,1) .15s both;
+  }
+  @keyframes teilen { from { clip-path: polygon(100% 100%, 100% 100%, 100% 100%); } }
+  .hero__word {
+    position: absolute; left: 0; right: 0; top: 50%;
+    transform: translateY(-58%);
+    margin: 0;
+    font-weight: 900;
+    font-size: clamp(5rem, 24vw, 22rem);
+    line-height: .8;
+    letter-spacing: -.055em;
+    text-align: center;
+    white-space: nowrap;
+    user-select: none;
+  }
+  /* zweite Kopie in Weiss, nur im blauen Dreieck sichtbar */
+  .hero__word--white { color: var(--weiss); }
+  .hero__layer { position: absolute; inset: 0; }
+  .hero__layer--white { clip-path: polygon(100% 0, 100% 100%, 0 100%); animation: teilen 1.1s cubic-bezier(.7,0,.2,1) .15s both; }
+  .hero__intro {
+    position: absolute; left: 16px; top: 20px;
+    max-width: 22ch;
+    margin: 0;
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
+    font-weight: 500;
+    color: var(--blau-tief);
+  }
+  .hero__coords {
+    position: absolute; right: 16px; bottom: 20px;
+    margin: 0; text-align: right;
+    color: var(--weiss);
+    font-size: .95rem;
+  }
+  @media (min-width: 720px) {
+    .hero__intro { left: 40px; top: 36px; }
+    .hero__coords { right: 40px; bottom: 36px; }
+  }
+
+  /* ---------- Layout ---------- */
+  main { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 720px) { main { padding: 0 40px; } }
+  section { padding: clamp(56px, 9vw, 112px) 0 0; }
+  section:last-of-type { padding-bottom: clamp(56px, 9vw, 112px); }
+  h2 {
+    margin: 0 0 .4em;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -.03em;
+    color: var(--accent);
+  }
+  .lead { max-width: 60ch; margin: 0 0 2rem; color: var(--muted); font-size: 1.15rem; }
+  h3 { margin: 0 0 .3em; font-size: 1.3rem; font-weight: 700; letter-spacing: -.01em; }
+  p { margin: 0 0 1em; max-width: 65ch; }
+
+  /* ---------- Quartiere ---------- */
+  .quartiere { display: grid; gap: 0; grid-template-columns: 1fr; border-top: 2px solid var(--accent); }
+  .quartier { padding: 22px 0 24px; border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
+  .quartier p { margin: 0; color: var(--muted); }
+  .quartier__kreis { color: var(--accent); font-weight: 500; font-size: .95rem; margin-bottom: .2rem; display: block; }
+  @media (min-width: 720px) {
+    .quartiere { grid-template-columns: 1fr 1fr; column-gap: 48px; }
+  }
+
+  /* ---------- Tagesroute als Tramlinie ---------- */
+  .route { list-style: none; margin: 0; padding: 0; position: relative; }
+  .route::before {
+    content: ""; position: absolute; left: 13px; top: 8px; bottom: 8px;
+    width: 6px; border-radius: 3px; background: var(--accent);
+  }
+  .halt { position: relative; padding: 0 0 34px 56px; }
+  .halt:last-child { padding-bottom: 0; }
+  .halt::before {
+    content: ""; position: absolute; left: 4px; top: 4px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--bg); border: 6px solid var(--accent);
+  }
+  .halt__zeit { display: block; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .halt h3 { margin-top: .1em; }
+  .halt p { color: var(--muted); margin: 0; }
+
+  /* ---------- See-Panel ---------- */
+  .see {
+    background: var(--panel);
+    margin: 0 -16px;
+    padding: clamp(40px, 7vw, 80px) 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 720px) { .see { margin: 0 -40px; padding-left: 40px; padding-right: 40px; } }
+  .see__grid { display: grid; gap: 28px; }
+  @media (min-width: 720px) { .see__grid { grid-template-columns: 1fr 1fr 1fr; } }
+  .see__wellen { position: absolute; left: 0; right: 0; bottom: 0; height: 40px; color: var(--accent); opacity: .25; }
+  .see .see__item p { color: var(--muted); }
+
+  /* ---------- Fakten ---------- */
+  .fakten { display: grid; grid-template-columns: 1fr; gap: 0; margin: 0; }
+  .fakten div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid color-mix(in srgb, var(--fg) 15%, transparent); }
+  .fakten dt { color: var(--muted); }
+  .fakten dd { margin: 0; font-weight: 700; text-align: right; white-space: nowrap; }
+  @media (min-width: 720px) { .fakten { grid-template-columns: 1fr 1fr; column-gap: 48px; } }
+
+  footer { border-top: 2px solid var(--accent); padding: 24px 0 40px; color: var(--muted); font-size: .95rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__blue, .hero__layer--white { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero" aria-label="Zürich">
+  <div class="hero__blue" aria-hidden="true"></div>
+  <div class="hero__layer" aria-hidden="true">
+    <p class="hero__word">Zürich</p>
+  </div>
+  <div class="hero__layer hero__layer--white" aria-hidden="true">
+    <p class="hero__word hero__word--white">Zürich</p>
+  </div>
+  <h1 class="hero__intro">Zürich – zwischen See, Limmat und Uetliberg.</h1>
+  <p class="hero__coords">47.37° N, 8.54° O<br>408 m ü. M.</p>
+</header>
+
+<main>
+
+  <section id="quartiere" aria-labelledby="h-quartiere">
+    <h2 id="h-quartiere">Quartiere</h2>
+    <p class="lead">Die Stadt ist in zwölf Kreise geteilt. Wer die Kreisnummer kennt, weiss meist schon, was einen dort erwartet.</p>
+    <div class="quartiere">
+      <article class="quartier">
+        <span class="quartier__kreis">Kreis 1</span>
+        <h3>Altstadt</h3>
+        <p>Enge Gassen im Niederdorf, Zunfthäuser an der Limmat und vom Lindenhof der Blick über die Dächer.</p>
+      </article>
+      <article class="quartier">
+        <span class="quartier__kreis">Kreis 4 und 5</span>
+        <h3>Aussersihl und Industriequartier</h3>
+        <p>Langstrasse, Viaduktbögen, Bars und Ateliers in alten Fabrikhallen. Hier ist Zürich am lautesten.</p>
+      </article>
+      <article class="quartier">
+        <span class="quartier__kreis">Kreis 8</span>
+        <h3>Seefeld</h3>
+        <p>Villen, Seepromenade und das Zürichhorn mit dem Pavillon Le Corbusier.</p>
+      </article>
+      <article class="quartier">
+        <span class="quartier__kreis">Kreis 3</span>
+        <h3>Wiedikon</h3>
+        <p>Wohnquartier mit Quartierbeizen, Märkten und dem Fussweg hinauf zum Uetliberg.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="tag" aria-labelledby="h-tag">
+    <h2 id="h-tag">Ein Tag in Zürich</h2>
+    <p class="lead">Eine Route zu Fuss und mit dem Tram, vom Morgen am Hauptbahnhof bis zum Abend über der Stadt.</p>
+    <ol class="route">
+      <li class="halt">
+        <span class="halt__zeit">08:30</span>
+        <h3>Hauptbahnhof und Bahnhofstrasse</h3>
+        <p>Kaffee in der Halle, dann unter den Linden der Bahnhofstrasse Richtung See schlendern.</p>
+      </li>
+      <li class="halt">
+        <span class="halt__zeit">10:00</span>
+        <h3>Lindenhof</h3>
+        <p>Ein kurzer Aufstieg mit Aussicht auf Limmat, Grossmünster und Universität.</p>
+      </li>
+      <li class="halt">
+        <span class="halt__zeit">11:00</span>
+        <h3>Fraumünster und Grossmünster</h3>
+        <p>Die Chagall-Fenster im Fraumünster, danach über die Münsterbrücke und die Türme des Grossmünsters hinauf.</p>
+      </li>
+      <li class="halt">
+        <span class="halt__zeit">13:00</span>
+        <h3>Niederdorf</h3>
+        <p>Mittagessen in der Altstadt, danach durch die Gassen zum Central.</p>
+      </li>
+      <li class="halt">
+        <span class="halt__zeit">15:00</span>
+        <h3>Kunsthaus</h3>
+        <p>Am Heimplatz, mit dem Erweiterungsbau von David Chipperfield.</p>
+      </li>
+      <li class="halt">
+        <span class="halt__zeit">18:00</span>
+        <h3>Uetliberg</h3>
+        <p>Mit der S10 auf den Hausberg. Bei klarem Wetter reicht der Blick bis zu den Alpen.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="h-see">
+    <div class="see">
+      <h2 id="h-see">Am Wasser</h2>
+      <p class="lead">Im Sommer wird Zürich zur Badestadt. See und Limmat sind so sauber, dass man mitten in der Stadt schwimmt.</p>
+      <div class="see__grid">
+        <div class="see__item">
+          <h3>Seebad Utoquai</h3>
+          <p>Holzbad aus dem 19. Jahrhundert direkt vor der Altstadt.</p>
+        </div>
+        <div class="see__item">
+          <h3>Flussbad Oberer Letten</h3>
+          <p>Treffpunkt an der Limmat: sich treiben lassen, aussteigen, wieder hinauf.</p>
+        </div>
+        <div class="see__item">
+          <h3>Schifffahrt</h3>
+          <p>Ab Bürkliplatz mit dem Kursschiff dem Ufer entlang bis Rapperswil.</p>
+        </div>
+      </div>
+      <svg class="see__wellen" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 20 Q 50 0 100 20 T 200 20 T 300 20 T 400 20 T 500 20 T 600 20 T 700 20 T 800 20 T 900 20 T 1000 20 T 1100 20 T 1200 20 V40 H0 Z" fill="currentColor"/>
+      </svg>
+    </div>
+  </section>
+
+  <section id="fakten" aria-labelledby="h-fakten">
+    <h2 id="h-fakten">Kurz und knapp</h2>
+    <dl class="fakten">
+      <div><dt>Kanton</dt><dd>Zürich</dd></div>
+      <div><dt>Einwohnerinnen und Einwohner</dt><dd>rund 440 000</dd></div>
+      <div><dt>Fluss</dt><dd>Limmat und Sihl</dd></div>
+      <div><dt>Hausberg</dt><dd>Uetliberg, 871 m</dd></div>
+      <div><dt>Stadtteile</dt><dd>12 Kreise</dd></div>
+      <div><dt>Wappenfarben</dt><dd>Blau und Weiss</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    Eine Seite über Zürich.
+  </footer>
+</main>
+
+</body>
+</html>
