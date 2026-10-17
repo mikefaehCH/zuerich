@@ -27,7 +27,7 @@ const SZU_NOTE = 'Hasta el 12 de diciembre de 2026 la S10 y la S4 no salen de Z�
    open: [inicio, fin] y closed: días cerrados (0=dom … 6=sáb) para el calendario de Navidad */
 const PLACES = [
   /* ---------- NAVIDAD ---------- */
-  { id:'illuminarium', name:'Illuminarium', cat:'navidad', prio:'top', casco:false,
+  { id:'illuminarium', close:[23,23,23,23,23,23,23], name:'Illuminarium', cat:'navidad', prio:'top', casco:false,
     desc:'El patio del Museo Nacional se convierte en un festival de luz: proyecciones, música y puestos de comida. Entrar al patio es gratis; los espectáculos de luz son de pago. Ideal para la primera tarde después del trabajo.',
     addr:'Landesmuseum, Museumstrasse 2, 8001 Zürich', ll:[47.3790,8.5406], q:'Illuminarium Landesmuseum Zürich',
     web:'https://illuminarium.ch/', dur:'45–90 min', when:['noche'], rain:false, night:true, free:'mixto', warm:false,
@@ -37,7 +37,7 @@ const PLACES = [
     status:'ok', src:'https://illuminarium.ch/en', img:null,
     open:['2026-11-05','2026-12-30'], closed:[] },
 
-  { id:'bellevuenoel', name:'Bellevue Noël', cat:'navidad', prio:'top', casco:false,
+  { id:'bellevuenoel', close:[20,22,22,22,22,22,22], name:'Bellevue Noël', cat:'navidad', prio:'top', casco:false,
     desc:'El nuevo gran mercado navideño junto a la Ópera, sucesor del antiguo «Wienachtsdorf». Más de cien puestos, un chalet de fondue y una corona de Adviento gigante por la que se puede caminar, con vistas al lago.',
     addr:'Sechseläutenplatz, 8001 Zürich', ll:[47.3663,8.5453], q:'Bellevue Noël Sechseläutenplatz Zürich',
     web:'https://bellevuenoel.ch/', dur:'60–120 min', when:['tarde','noche'], rain:false, night:true, free:true, warm:false,
@@ -46,17 +46,17 @@ const PLACES = [
     price:'Entrada gratuita.', status:'ok', src:'https://bellevuenoel.ch/', img:null,
     open:['2026-11-19','2026-12-23'], closed:[] },
 
-  { id:'polarzauber', name:'Polarzauber – mercado de la estación central', cat:'navidad', prio:'muy', casco:false,
+  { id:'polarzauber', close:[21,21,21,21,22,22,22], name:'Polarzauber – mercado de la estación central', cat:'navidad', prio:'muy', casco:false,
     desc:'El mercado navideño cubierto en el gran vestíbulo de la estación. Hasta 2025 se llamaba Christkindlimarkt; en 2026 lo organiza «Polarzauber». La mejor opción cuando llueve, y está de camino a casi todo.',
     addr:'Bahnhofshalle, Zürich Hauptbahnhof, 8001 Zürich', ll:[47.3779,8.5403], q:'Polarzauber Zürich Hauptbahnhof',
     web:'https://polarzauber.ch/en/', dur:'30–60 min', when:['tarde','noche'], rain:true, night:true, free:true, warm:true,
     ov:'Dentro de Zürich HB',
     hours:'19 nov – 24 dic 2026. Dom–mié 11–21 h, jue–sáb 11–22 h. Los puestos de comida cierran una hora más tarde.',
     price:'Entrada gratuita.', status:'ok', src:'https://polarzauber.ch/en/faq/',
-    img:'Zurich Christmas-market at the train station.jpg', imgCap:'El mercado en el vestíbulo de la estación (foto de archivo)',
+    img:null,
     open:['2026-11-19','2026-12-24'], closed:[] },
 
-  { id:'munsterhof', name:'Mercado navideño del Münsterhof', cat:'navidad', prio:'muy', casco:true,
+  { id:'munsterhof', close:[19.5,21.5,21.5,21.5,21.5,21.5,21.5], name:'Mercado navideño del Münsterhof', cat:'navidad', prio:'muy', casco:true,
     desc:'Un mercado pequeño y con encanto en la plaza más bonita del casco antiguo, a los pies del Fraumünster. Perfecto como parada en un paseo por la ciudad vieja.',
     addr:'Münsterhof, 8001 Zürich', ll:[47.3700,8.5413], q:'Weihnachtsmarkt Münsterhof Zürich',
     web:'https://www.zuerich-weihnachtsmarkt.ch/', dur:'30–60 min', when:['tarde','noche'], rain:false, night:true, free:true, warm:false,
@@ -74,7 +74,7 @@ const PLACES = [
     price:'Se puede escuchar desde la plaza.', status:'pend', src:'https://www.zuerich.com/de/besuchen/shopping/the-singing-christmas-tree', img:null,
     open:['2026-11-19','2026-12-23'], closed:[] },
 
-  { id:'dorfli', name:'Mercado del Dörfli (Niederdorf)', cat:'navidad', prio:'muy', casco:true,
+  { id:'dorfli', close:[20,21,21,21,21,22,22], name:'Mercado del Dörfli (Niederdorf)', cat:'navidad', prio:'muy', casco:true,
     desc:'Puestos navideños a lo largo de las callejuelas del Niederdorf. No es un mercado de plaza, sino una calle entera que huele a vino caliente.',
     addr:'Niederdorfstrasse, 8001 Zürich', ll:[47.3736,8.5441], q:'Niederdorf Weihnachtsmarkt Zürich',
     web:null, dur:'30–45 min', when:['tarde','noche'], rain:false, night:true, free:true, warm:false,
@@ -83,7 +83,7 @@ const PLACES = [
     price:'Entrada gratuita.', status:'sec', src:'https://newinzurich.com/2026/09/best-christmas-markets-in-zurich-and-switzerland-2026/', img:null,
     open:['2026-11-19','2026-12-23'], closed:[] },
 
-  { id:'lucy', name:'Luces «Lucy» de la Bahnhofstrasse', cat:'navidad', prio:'muy', casco:true,
+  { id:'lucy', close:[24,24,24,24,24,24,24], name:'Luces «Lucy» de la Bahnhofstrasse', cat:'navidad', prio:'muy', casco:true,
     desc:'La calle comercial más famosa de Zúrich, iluminada de punta a punta con miles de luces. Recórrela al anochecer desde la estación hasta el lago.',
     addr:'Bahnhofstrasse, 8001 Zürich', ll:[47.3725,8.5389], q:'Bahnhofstrasse Zürich',
     web:null, dur:'20–40 min', when:['noche'], rain:false, night:true, free:true, warm:false,
@@ -101,7 +101,7 @@ const PLACES = [
     price:'Acceso libre; consumiciones aparte.', status:'pend', src:'https://utokulm.ch/winterzauber', img:null,
     open:null, closed:[] },
 
-  { id:'zauberpark', name:'Zauberpark – aeropuerto', cat:'navidad', prio:'si', casco:false,
+  { id:'zauberpark', close:[21.5,null,22.5,22.5,22.5,22.5,22.5], name:'Zauberpark – aeropuerto', cat:'navidad', prio:'si', casco:false,
     desc:'Festival de arte con luz, música y un pueblo gastronómico en el parque detrás de The Circle, en el aeropuerto. Merece la pena si os apetece algo distinto a los mercados.',
     addr:'Flughafenpark, detrás de The Circle, 8058 Zürich-Flughafen', ll:[47.4502,8.5625], q:'Zauberpark Flughafen Zürich',
     web:'https://zauberpark.ch/', dur:'1–2 h', when:['noche'], rain:false, night:true, free:false, warm:false,
@@ -111,7 +111,7 @@ const PLACES = [
     open:['2026-11-18','2026-12-06'], closed:[1] },
 
   /* ---------- IMPRESCINDIBLES / CASCO ANTIGUO ---------- */
-  { id:'lindenhof', name:'Lindenhof', cat:'ver', prio:'top', casco:true,
+  { id:'lindenhof', close:[24,24,24,24,24,24,24], name:'Lindenhof', cat:'ver', prio:'top', poc:true, casco:true,
     desc:'Una colina tranquila bajo los tilos, donde estuvo el fuerte romano. Desde aquí se ve el río, el Grossmünster y los tejados del casco antiguo. Mi rincón favorito para empezar.',
     addr:'Lindenhof, 8001 Zürich', ll:[47.3730,8.5410], q:'Lindenhof Zürich',
     web:null, dur:'20–30 min', when:['manana','tarde'], rain:false, night:true, free:true, warm:false, view:true,
@@ -119,7 +119,7 @@ const PLACES = [
     hours:'Plaza pública, siempre abierta. Lo más bonito: de día o al atardecer.', price:'Gratis.', status:'ok', src:null,
     img:'img/lindenhof-blick', imgCap:'Desde el muro del Lindenhof: el Limmat y las torres del Grossmünster', credit:'Unsplash' },
 
-  { id:'grossmunster', name:'Grossmünster', cat:'ver', prio:'top', casco:true,
+  { id:'grossmunster', close:[17,17,17,17,17,17,17], name:'Grossmünster', cat:'ver', prio:'top', casco:true,
     desc:'Las dos torres son el símbolo de Zúrich. Aquí empezó la Reforma protestante suiza con Zwinglio. Sube los casi 190 escalones de la torre Karlsturm para tener la ciudad entera a tus pies.',
     addr:'Grossmünsterplatz, 8001 Zürich', ll:[47.3700,8.5441], q:'Grossmünster Zürich',
     web:'https://www.grossmuenster.ch/', dur:'30–60 min', when:['manana','tarde'], rain:true, night:false, free:'mixto', warm:true, view:true,
@@ -128,39 +128,39 @@ const PLACES = [
     price:'Iglesia gratis. Torre Karlsturm: CHF 5.', status:'ok', src:'https://www.zuerich.com/de/besuchen/sehenswuerdigkeiten/grossmuenster',
     img:'img/grossmuenster-alpen', imgCap:'Las torres del Grossmünster con los Alpes al fondo', credit:'Unsplash' },
 
-  { id:'fraumunster', name:'Fraumünster', cat:'ver', prio:'muy', casco:true,
+  { id:'fraumunster', close:[17,17,17,17,17,17,17], name:'Fraumünster', cat:'ver', prio:'muy', casco:true,
     desc:'La iglesia de la torre verde y esbelta. Dentro, cinco vidrieras de Marc Chagall que llenan el coro de azul y verde. Impresiona incluso sin ser religioso.',
     addr:'Münsterhof 2, 8001 Zürich', ll:[47.3698,8.5414], q:'Fraumünster Zürich',
     web:'https://www.fraumuenster.ch/', dur:'20–45 min', when:['manana','tarde'], rain:true, night:false, free:false, warm:true,
     ov:'10 minutos a pie desde Zürich HB',
     hours:'Nov–feb: lun–sáb 10–17 h; domingo, después del oficio.', price:'Adultos CHF 5.', status:'ok', src:'https://www.zuerich.com/de/besuchen/sehenswuerdigkeiten/fraumuenster',
-    img:'Bild Fraumuenster.jpg', imgCap:'El Fraumünster' },
+    img:null },
 
-  { id:'niederdorf', name:'Niederdorf', cat:'ver', prio:'top', casco:true,
+  { id:'niederdorf', close:[24,24,24,24,24,24,24], name:'Niederdorf', cat:'ver', prio:'top', casco:true,
     desc:'El barrio más animado del casco antiguo: callejuelas empedradas, casas medievales, bares y restaurantes. En Adviento, con puestos navideños. Perfecto para pasear de noche.',
     addr:'Niederdorfstrasse, 8001 Zürich', ll:[47.3727,8.5440], q:'Niederdorf Zürich',
     web:null, dur:'45–90 min', when:['tarde','noche'], rain:false, night:true, free:true, warm:false,
     ov:'10 minutos a pie desde Zürich HB', hours:'Barrio público, siempre accesible.', price:'Gratis.', status:'ok', src:null, img:null },
 
-  { id:'limmatquai', name:'Limmatquai', cat:'ver', prio:'muy', casco:true,
+  { id:'limmatquai', close:[24,24,24,24,24,24,24], name:'Limmatquai', cat:'ver', prio:'muy', casco:true,
     desc:'El paseo a orillas del río Limmat, con las casas gremiales, los puentes y las torres de las iglesias reflejadas en el agua. Precioso con las luces de la tarde.',
     addr:'Limmatquai, 8001 Zürich', ll:[47.3712,8.5430], q:'Limmatquai Zürich',
     web:null, dur:'30–45 min', when:['manana','tarde','noche'], rain:false, night:true, free:true, warm:false,
     ov:'5 minutos a pie desde Zürich HB', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:null },
 
-  { id:'augustinergasse', name:'Augustinergasse', cat:'ver', prio:'muy', casco:true,
+  { id:'augustinergasse', close:[24,24,24,24,24,24,24], name:'Augustinergasse', cat:'ver', prio:'muy', casco:true,
     desc:'Quizá la calle más fotogénica de Zúrich: fachadas de colores y miradores de madera pintados. Está entre la Bahnhofstrasse y el Lindenhof.',
     addr:'Augustinergasse, 8001 Zürich', ll:[47.3716,8.5395], q:'Augustinergasse Zürich',
     web:null, dur:'10–20 min', when:['manana','tarde','noche'], rain:false, night:true, free:true, warm:false,
     ov:'8 minutos a pie desde Zürich HB', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:null },
 
-  { id:'burkliplatz', name:'Bürkliplatz y el lago', cat:'ver', prio:'top', casco:false,
+  { id:'burkliplatz', close:[24,24,24,24,24,24,24], name:'Bürkliplatz y el lago', cat:'ver', prio:'top', casco:false,
     desc:'Donde la ciudad se abre al lago. Con el cielo despejado se ven los Alpes al fondo. El final natural de cualquier paseo por la Bahnhofstrasse.',
     addr:'Bürkliplatz, 8001 Zürich', ll:[47.3667,8.5408], q:'Bürkliplatz Zürich',
     web:null, dur:'30–60 min', when:['manana','tarde'], rain:false, night:true, free:true, warm:false, view:true,
     ov:'Tranvía hasta Bürkliplatz o 15 min a pie por la Bahnhofstrasse', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:null },
 
-  { id:'polyterrasse', name:'Polyterrasse (ETH)', cat:'ver', prio:'muy', casco:false,
+  { id:'polyterrasse', close:[24,24,24,24,24,24,24], name:'Polyterrasse (ETH)', cat:'ver', prio:'muy', casco:false,
     desc:'La terraza delante del edificio principal de la universidad ETH, una de las mejores vistas sobre los tejados y las torres. De noche, la ciudad iluminada.',
     addr:'Rämistrasse 101, 8092 Zürich', ll:[47.3765,8.5478], q:'Polyterrasse ETH Zürich',
     web:null, dur:'15–30 min', when:['tarde','noche'], rain:false, night:true, free:true, warm:false, view:true,
@@ -178,10 +178,10 @@ const PLACES = [
     web:'https://utokulm.ch/', dur:'2–3 h en total', when:['manana','tarde'], rain:false, night:false, free:true, warm:false, view:true,
     ov:SZU_NOTE,
     hours:'Montaña de acceso libre. Desde la estación, unos 10 minutos de subida a pie hasta la cima.', price:'Gratis; solo el billete de tren.', status:'ok', src:'https://www.szu.ch/de/hb/fahrgaeste-s10/',
-    img:'Blick vom uetliberg uebers nebelmeer zu den alpen.jpg', imgCap:'Vista desde el Uetliberg sobre el mar de niebla hacia los Alpes' },
+    img:null },
 
   /* ---------- CULTURA ---------- */
-  { id:'landesmuseum', name:'Museo Nacional Suizo (Landesmuseum)', cat:'cultura', prio:'top', casco:false,
+  { id:'landesmuseum', close:[17,null,17,17,17,17,17], name:'Museo Nacional Suizo (Landesmuseum)', cat:'cultura', prio:'top', casco:false,
     desc:'Un castillo de cuento junto a la estación que cuenta la historia de Suiza, desde los Alpes hasta hoy. Si solo vais a un museo para entender el país, que sea este.',
     addr:'Museumstrasse 2, 8001 Zürich', ll:[47.3793,8.5402], q:'Landesmuseum Zürich',
     web:'https://www.landesmuseum.ch/', dur:'1,5–3 h', when:['manana','tarde'], rain:true, night:false, free:false, warm:true,
@@ -189,7 +189,7 @@ const PLACES = [
     hours:'Mar–dom 10–17 h, lunes cerrado. Entre semana cierra antes de que salgáis del trabajo: mejor el fin de semana y luego seguir al Illuminarium.',
     price:'Adultos CHF 13.', status:'ok', src:'https://www.zuerich.com/de/besuchen/kultur/landesmuseum-zuerich', img:null },
 
-  { id:'kunsthaus', name:'Kunsthaus Zürich', cat:'cultura', prio:'top', casco:false,
+  { id:'kunsthaus', close:[18,null,18,18,20,18,18], name:'Kunsthaus Zürich', cat:'cultura', prio:'top', poc:true, casco:false,
     desc:'Uno de los museos de arte más importantes de Suiza: Munch, Giacometti, los impresionistas. La ampliación de David Chipperfield ya merece la visita. Los jueves abre hasta las 20 h: plan perfecto después del trabajo.',
     addr:'Heimplatz 1, 8001 Zürich', ll:[47.3703,8.5483], q:'Kunsthaus Zürich',
     web:'https://www.kunsthaus.ch/', dur:'1,5–3 h', when:['manana','tarde','noche'], rain:true, night:true, free:false, warm:true,
@@ -209,7 +209,7 @@ const PLACES = [
     ov:'Tranvía hasta Opernhaus o Bellevue', hours:'Programa y horarios en opernhaus.ch.', price:'Según función.', status:'pend', src:null, img:null },
 
   /* ---------- EXPERIENCIAS ---------- */
-  { id:'gerold', name:'Frau Gerolds Garten (invierno)', cat:'experiencia', prio:'muy', casco:false,
+  { id:'gerold', close:[22,24,24,24,24,24,24], name:'Frau Gerolds Garten (invierno)', cat:'experiencia', prio:'muy', poc:true, casco:false,
     desc:'Un jardín urbano entre vías y contenedores en Zürich-West. En invierno hay hogueras, puestos de comida y una cabaña con chimenea donde se sirve fondue. Muy local, nada turístico.',
     addr:'Geroldstrasse 23, 8005 Zürich', ll:[47.3854,8.5302], q:'Frau Gerolds Garten Zürich',
     web:'https://www.fraugerold.ch/', dur:'45–90 min', when:['noche'], rain:false, night:true, free:true, warm:false,
@@ -223,14 +223,14 @@ const PLACES = [
     web:'https://www.im-viadukt.ch/', dur:'45–90 min', when:['tarde','noche'], rain:true, night:true, free:true, warm:true,
     ov:'Tranvía hasta Dammweg o 10 min a pie desde Hardbrücke', hours:'Cada tienda tiene su horario; pendiente de confirmación.', price:'Entrada libre.', status:'pend', src:null, img:null },
 
-  { id:'lindt', name:'Lindt Home of Chocolate', cat:'experiencia', prio:'top', casco:false,
+  { id:'lindt', close:[19,19,19,19,19,19,19], name:'Lindt Home of Chocolate', cat:'experiencia', prio:'top', casco:false,
     desc:'El museo del chocolate de Lindt en Kilchberg, a orillas del lago: la historia del cacao, una fuente de chocolate enorme y degustación incluida. Muy suizo y muy disfrutable.',
     addr:'Schokoladenplatz 1, 8802 Kilchberg', ll:[47.3195,8.5468], q:'Lindt Home of Chocolate Kilchberg',
     web:'https://www.lindt-home-of-chocolate.com/', dur:'1,5–2 h', when:['manana','tarde'], rain:true, night:false, free:false, warm:true,
     ov:'S-Bahn hasta Kilchberg y unos minutos a pie. Consulta la conexión.',
     hours:'Todos los días 10–19 h.', price:'Adultos CHF 17. Mejor reservar la entrada online.', status:'ok', src:'https://www.zuerich.com/de/besuchen/kultur/lindt-home-of-chocolate', img:null },
 
-  { id:'hurlimann', name:'Hürlimannbad & Spa', cat:'experiencia', prio:'si', casco:false,
+  { id:'hurlimann', close:[22,22,22,22,22,22,22], name:'Hürlimannbad & Spa', cat:'experiencia', prio:'si', casco:false,
     desc:'Baños termales en las bóvedas de una antigua fábrica de cerveza. Lo mejor: la piscina caliente en la azotea con vistas a la ciudad, sobre todo de noche y con frío.',
     addr:'Brandschenkestrasse 150, 8002 Zürich', ll:[47.3640,8.5285], q:'Hürlimannbad Spa Zürich',
     web:'https://www.aqua-spa-resorts.ch/', dur:'2–3 h', when:['tarde','noche'], rain:true, night:true, free:false, warm:true,
@@ -264,7 +264,7 @@ const PLACES = [
     web:null, dur:'1–1,5 h', when:['tarde','noche'], rain:true, night:true, free:false, warm:true,
     ov:'8 minutos a pie desde Zürich HB', hours:'Horario y reservas pendientes de confirmación.', price:'Precio medio.', status:'pend', src:null, img:null },
 
-  { id:'sternengrill', name:'Sternen Grill', cat:'gastro', prio:'muy', casco:false,
+  { id:'sternengrill', close:[23,23,24,24,24,24,24], name:'Sternen Grill', cat:'gastro', prio:'muy', casco:false,
     desc:'Un clásico de Zúrich: salchicha de ternera a la parrilla con una mostaza muy picante, de pie y en un minuto. Justo al lado del Bellevue Noël.',
     addr:'Theaterstrasse 22, 8001 Zürich', ll:[47.3666,8.5461], q:'Sternen Grill Zürich',
     web:'https://www.sternengrill.ch/', dur:'15–30 min', when:['tarde','noche'], rain:false, night:true, free:false, warm:false,
@@ -290,21 +290,21 @@ const PLACES = [
     ov:'8 minutos a pie desde Zürich HB', hours:'Horario pendiente de confirmación.', price:'Precio medio.', status:'pend', src:null, img:null },
 
   /* ---------- MIS RECOMENDACIONES PERSONALES ---------- */
-  { id:'spheres', name:'sphères', cat:'gastro', prio:'muy', casco:false, personal:true, tags:['cafe','almuerzo'],
+  { id:'spheres', close:[19.5,23,23,23,23,23,19.5], name:'sphères', cat:'gastro', prio:'muy', casco:false, poc:true, tags:['cafe','almuerzo'],
     desc:'Un lugar con personalidad en Zúrich-Oeste, ideal para una pausa de café o un almuerzo tranquilo. Es bar, café y librería a la vez, con charlas y actos culturales.',
     addr:'Hardturmstrasse 66, 8005 Zürich', ll:[47.3897,8.5226], q:'sphères Hardturmstrasse 66 Zürich', gmap:'https://maps.app.goo.gl/K9A4VhNEsKX3UGmV6',
     web:null, dur:'45–90 min', when:['manana','tarde','noche'], rain:true, night:true, free:false, warm:true,
     ov:'Tranvía hasta Escher-Wyss-Platz',
     hours:'Lun–vie 8–23 h; sáb 9–19:30 h; dom 10–19:30 h.', price:'Precio medio.', status:'ok', src:'https://www.zuerich.com/de/besuchen/bars-lounges/spheres', img:null },
 
-  { id:'collective', name:'Collective Bakery', cat:'gastro', prio:'muy', casco:false, personal:true, tags:['cafe'],
+  { id:'collective', close:[15,15,15,15,15,15,15], name:'Collective Bakery', cat:'gastro', prio:'muy', casco:false, poc:true, tags:['cafe'],
     desc:'Una panadería moderna, perfecta para disfrutar de un buen café y repostería artesanal. Los cruasanes de doble horneado son famosos; café tostado en casa.',
     addr:'Förrlibuckstrasse 160, 8005 Zürich', ll:[47.3906,8.5137], q:'Collective Bakery Förrlibuckstrasse 160 Zürich', gmap:'https://maps.app.goo.gl/BaAafUa3NPo4ft8r8',
     web:null, dur:'30–60 min', when:['manana'], rain:true, night:false, free:false, warm:true,
     ov:'Tranvía hasta Förrlibuckstrasse',
     hours:'Lun–vie 8–15 h; sáb y dom 9–15 h. Cierra a las 15 h: mejor el fin de semana. El horario puede variar según el local.', price:'Precio medio.', status:'sec', src:'https://www.zuerich.com/de/besuchen/restaurants/collective-bakery', img:null },
 
-  { id:'nude', name:'Nude', cat:'gastro', prio:'muy', casco:false, personal:true, tags:['cafe'],
+  { id:'nude', close:[20,20,20,20,20,20,20], name:'Nude', cat:'gastro', prio:'muy', casco:false, poc:true, tags:['cafe'],
     desc:'Un café con ambiente contemporáneo, una buena opción para descubrir otra faceta de Zúrich. Escondido junto al río Limmat, en Wipkingen, entre el Tanzhaus y la orilla.',
     addr:'Wasserwerkstrasse 127A, 8037 Zürich', ll:[47.3866,8.5341], q:'Nude Café Bar Wasserwerkstrasse 127A Zürich', gmap:'https://maps.app.goo.gl/hYKCwavysZFaE1rQ8',
     web:'https://nude-zurich.com/', dur:'45–60 min', when:['manana','tarde'], rain:true, night:true, free:false, warm:true,
