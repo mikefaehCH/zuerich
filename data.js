@@ -217,7 +217,7 @@ const PLACES = [
     hours:'Temporada de invierno: 9 oct 2026 – 5 mar 2027. Lun–vie 17–24 h, sáb 12–24 h, dom 12–22 h.',
     price:'Entrada libre. Para la fondue en la Winterstübli conviene reservar.', status:'sec', src:'https://www.zuerich.com/de/besuchen/restaurants/winterstube-gerolds-garten', img:null },
 
-  { id:'viadukt', name:'Im Viadukt y la Markthalle', cat:'experiencia', prio:'muy', casco:false,
+  { id:'viadukt', name:'Im Viadukt y la Markthalle', cat:'experiencia', prio:'muy', poc:true, tags:['almuerzo'], tip:'Me gusta mucho, también para comer al mediodía.', casco:false,
     desc:'Bajo los arcos de un viaducto ferroviario de piedra hay tiendas de diseño, cafés y un mercado cubierto con productos locales. Se combina muy bien con Frau Gerolds Garten.',
     addr:'Limmatstrasse 231, 8005 Zürich', ll:[47.3873,8.5280], q:'Markthalle Im Viadukt Zürich',
     web:'https://www.im-viadukt.ch/', dur:'45–90 min', when:['tarde','noche'], rain:true, night:true, free:true, warm:true,
@@ -252,30 +252,11 @@ const PLACES = [
     hours:'Horario del teleférico y posibles revisiones en noviembre pendientes de confirmación.', price:'Teleférico de pago.', status:'pend', src:'https://www.zvv.ch/de/freizeit-und-events/freizeittipps/entdecken-und-erleben/mit-der-luftseilbahn-auf-die-felsenegg.html', img:null },
 
   /* ---------- GASTRONOMÍA ---------- */
-  { id:'swisschuchi', name:'Swiss Chuchi', cat:'gastro', prio:'muy', casco:true,
-    desc:'Fondue y raclette en pleno Niederdorf, en el hotel Adler. Clásico, acogedor y sin pretensiones. Precio medio.',
-    addr:'Rosengasse 10, 8001 Zürich', ll:[47.3730,8.5440], q:'Swiss Chuchi Zürich',
-    web:null, dur:'1,5 h', when:['noche'], rain:true, night:true, free:false, warm:true,
-    ov:'10 minutos a pie desde Zürich HB', hours:'Horario y reservas pendientes de confirmación.', price:'Precio medio.', status:'pend', src:null, img:null },
-
   { id:'zeughauskeller', name:'Zeughauskeller', cat:'gastro', prio:'muy', casco:true,
     desc:'Una antigua armería del siglo XV convertida en cervecería con mesas largas de madera. Aquí se pide el «Zürcher Geschnetzeltes» con rösti. Precio medio.',
     addr:'Bahnhofstrasse 28a, 8001 Zürich', ll:[47.3711,8.5393], q:'Zeughauskeller Zürich',
     web:null, dur:'1–1,5 h', when:['tarde','noche'], rain:true, night:true, free:false, warm:true,
     ov:'8 minutos a pie desde Zürich HB', hours:'Horario y reservas pendientes de confirmación.', price:'Precio medio.', status:'pend', src:null, img:null },
-
-  { id:'sternengrill', close:[23,23,24,24,24,24,24], name:'Sternen Grill', cat:'gastro', prio:'muy', casco:false,
-    desc:'Un clásico de Zúrich: salchicha de ternera a la parrilla con una mostaza muy picante, de pie y en un minuto. Justo al lado del Bellevue Noël.',
-    addr:'Theaterstrasse 22, 8001 Zürich', ll:[47.3666,8.5461], q:'Sternen Grill Zürich',
-    web:'https://www.sternengrill.ch/', dur:'15–30 min', when:['tarde','noche'], rain:false, night:true, free:false, warm:false,
-    ov:'Tranvía hasta Bellevue',
-    hours:'Lun y dom 10:30–23 h; mar–sáb 10:30–24 h.', price:'Económico.', status:'ok', src:'https://www.zuerich.com/de/besuchen/restaurants/sternen-grill', img:null },
-
-  { id:'spruengli', name:'Confiserie Sprüngli (Paradeplatz)', cat:'gastro', prio:'muy', casco:false,
-    desc:'La confitería más famosa de Zúrich, desde 1836. Imprescindible: los «Luxemburgerli», pequeños macarons. Una caja es el mejor regalo para llevar a casa.',
-    addr:'Bahnhofstrasse 21, 8001 Zürich', ll:[47.3696,8.5392], q:'Confiserie Sprüngli Paradeplatz',
-    web:'https://www.spruengli.ch/', dur:'20–45 min', when:['manana','tarde'], rain:true, night:false, free:false, warm:true,
-    ov:'Tranvía hasta Paradeplatz', hours:'Horario pendiente de confirmación (los domingos suele cerrar).', price:'Precio medio-alto.', status:'pend', src:null, img:null },
 
   { id:'zunfthauswaag', name:'Zunfthaus zur Waag', cat:'gastro', prio:'si', casco:true,
     desc:'Cocina zuriquesa tradicional en una casa gremial histórica del Münsterhof. Para una cena especial; algo por encima del precio medio.',
@@ -338,6 +319,20 @@ const PLACES = [
     web:null, dur:'1–3 h', when:['noche'], rain:false, night:true, free:true, warm:false,
     ov:'10 minutos a pie desde Zürich HB',
     hours:'Barrio público; cada local tiene su horario.', price:'Según el local.', status:'ok', src:null, img:null },
+
+  { id:'miro', tip:'Muy buen sitio para un café.', close:[null,17,17,17,17,17,null], name:'miró', cat:'gastro', prio:'muy', poc:true, casco:false, tags:['cafe'],
+    desc:'Tostadero y café de especialidad en el Kreis 4: cafés de origen único y brunch, en un local moderno.',
+    addr:'Brauerstrasse 58, 8004 Zürich', ll:[47.3776,8.5236], q:'miró manufactura de café Brauerstrasse 58 Zürich',
+    web:null, dur:'30–60 min', when:['manana','tarde'], rain:true, night:false, free:false, warm:true,
+    ov:'Tranvía hasta Bäckeranlage o 15 min a pie desde Zürich HB',
+    hours:'Lun–vie 9–17 h. Horario del fin de semana pendiente de confirmación.', price:'Precio medio.', status:'sec', src:'https://www.myswitzerland.com/en-us/experiences/food-wine/restaurant/miro-roastery-cafe-shop', img:null },
+
+  { id:'lasalle', tip:'Muy bien para comer al mediodía.', close:[null,23,23,23,23,23,null], name:'LaSalle', cat:'gastro', prio:'muy', poc:true, casco:false, tags:['almuerzo'],
+    desc:'Cocina centroeuropea de temporada, con toques suizos, italianos y franceses, en una antigua nave industrial acristalada junto al teatro Schiffbau.',
+    addr:'Schiffbaustrasse 4, 8005 Zürich', ll:[47.3885,8.5188], q:'LaSalle Schiffbaustrasse 4 Zürich',
+    web:null, dur:'1–1,5 h', when:['tarde','noche'], rain:true, night:true, free:false, warm:true,
+    ov:'Unos minutos a pie desde la estación Zürich Hardbrücke',
+    hours:'Lun–vie 11:30–14:30 h y 17:30–23 h; sábado y domingo cerrado.', price:'Precio medio-alto.', status:'ok', src:'https://www.zuerich.com/de/besuchen/restaurants/lasalle', img:null },
 
   /* ---------- EXCURSIONES ---------- */
   { id:'luzern', tip:'Si queréis ver otra ciudad, Lucerna. Muy turística, sí, pero con el panorama de los Alpes, el lago y todo lo demás.', name:'Lucerna', cat:'excursion', prio:'muy', poc:true, casco:false, excTop:true,
@@ -412,12 +407,12 @@ const IDEAS = [
     text:'El paseo clásico: de mercado en mercado por las calles más bonitas, cruzando el río hasta el Niederdorf para cenar. Después del trabajo las iglesias ya están cerradas; se ven por fuera, iluminadas.',
     stops:['polarzauber','singingtree','augustinergasse','lindenhof','munsterhof','fraumunster','limmatquai','niederdorf'] },
   { id:'bellevue', title:'Luces de la Bahnhofstrasse y Bellevue', time:'2h', ctx:['trabajo','finde'], dur:'2–3 horas',
-    text:'De la Bahnhofstrasse iluminada al gran mercado junto a la Ópera, con un paseo hasta el lago y una salchicha en el Sternen Grill.',
-    stops:['lucy','burkliplatz','bellevuenoel','opernhaus','sternengrill'] },
+    text:'De la Bahnhofstrasse iluminada hasta el lago y, desde allí, al gran mercado junto a la Ópera para cenar algo en los puestos.',
+    stops:['lucy','burkliplatz','bellevuenoel','opernhaus'] },
   { id:'arte', title:'Arte y fondue', time:'3h', ctx:['trabajo','finde','lluvia'], dur:'3–4 horas',
-    text:'Un par de horas en el Kunsthaus y, a diez minutos a pie, fondue en el Niederdorf. Para hacerlo después del trabajo, el jueves es el día: el Kunsthaus abre hasta las 20 h.',
+    text:'Un par de horas en el Kunsthaus y, a cinco minutos a pie, fondue en el chalet del Bellevue Noël (mejor reservar). Para hacerlo después del trabajo, el jueves es el día: el Kunsthaus abre hasta las 20 h.',
     note:'Kunsthaus: lunes cerrado; jueves hasta las 20 h, el resto de días hasta las 18 h.',
-    stops:['kunsthaus','swisschuchi'] },
+    stops:['kunsthaus','bellevuenoel'] },
   { id:'west', title:'Zürich-West', time:'2h', ctx:['trabajo','finde'], dur:'2–3 horas',
     text:'La cara moderna de la ciudad: antiguas zonas industriales convertidas en barrio de moda. Hoguera y fondue en Frau Gerolds Garten, los arcos del viaducto y una copa entre libros en sphères.',
     stops:['gerold','viadukt','spheres'], startStation:'Zürich Hardbrücke' },
