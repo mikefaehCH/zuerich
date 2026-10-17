@@ -468,7 +468,7 @@ function loadPlan(){
   return out;
 }
 const TABS = [['destacados','Destacados'],['navidad','Navidad'],['favoritos','Favoritos'],['comer','Comer y café'],['excursiones','Excursiones'],['todo','Todo']];
-const SUBS = [['cafe','Café'],['almuerzo','Almuerzo'],['bar','Copas']];
+const SUBS = [['cafe','Café'],['almuerzo','Almuerzo'],['cena','Cena'],['bar','Copas']];
 const TAB_NOTE = { excursiones:'Tiempos de ida aproximados desde Zürich HB; comprobad la conexión del día.' };
 const state = { tab: store.get('zh-tab', 'destacados'), sub:null, near:null, plan: loadPlan(), incoming:null };
 if (!TABS.some(t => t[0] === state.tab)) state.tab = 'destacados';
@@ -482,7 +482,7 @@ function inTab(p){
     case 'destacados': return p.prio === 'top' || isXmasHighlight(p);
     case 'navidad': return p.cat === 'navidad';
     case 'favoritos': return !!p.poc;
-    case 'comer': return p.cat === 'gastro' && (!state.sub || (p.tags || []).includes(state.sub));
+    case 'comer': return state.sub ? (p.tags || []).includes(state.sub) : p.cat === 'gastro';
     case 'excursiones': return p.cat === 'excursion';
     default: return true;
   }
