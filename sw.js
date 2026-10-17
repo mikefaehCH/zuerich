@@ -1,6 +1,6 @@
 /* Zürich – Offline-Cache */
-const CACHE = 'zuerich-v1';
-const CORE = ['./', './index.html', './manifest.webmanifest', './icon.svg',
+const CACHE = 'zuerich-v2';
+const CORE = ['./', './index.html', './data.js', './manifest.webmanifest', './icon.svg',
   './vendor/leaflet/leaflet.js', './vendor/leaflet/leaflet.css',
   './vendor/fonts/fraunces-latin-400-normal.woff2', './vendor/fonts/fraunces-latin-500-normal.woff2',
   './vendor/fonts/fraunces-latin-600-normal.woff2', './vendor/fonts/fraunces-latin-400-italic.woff2',

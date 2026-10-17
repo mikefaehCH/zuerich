@@ -1,7 +1,12 @@
-# Zürich im November
+# Zúrich en Navidad 2026
 
-Tipps für eine Woche in Zürich Ende November – für jeden Tag ein Tipp für Morgen, Mittag und Abend.
-
+Guía personal en español para la visita del 20 al 27 de noviembre de 2026.
 Online: https://mikefaehch.github.io/zuerich/
 
-Die Reisedaten stehen oben im Script in `index.html` (`const START = '2026-11-23'`).
+- `index.html` – página, estilos y lógica (filtros, mapa Leaflet, rutas, favoritos)
+- `data.js` – todos los lugares, rutas y la semana, con prioridad, horarios, fuente y estado de verificación
+- `sw.js` – caché sin conexión
+- `vendor/` – fuentes (OFL) y Leaflet
+
+Actualizar: editar `data.js` (o `index.html`), hacer commit en `main`; GitHub Pages publica solo.
+Al cambiar archivos, subir el número de versión en `sw.js` (`zuerich-vN`).
