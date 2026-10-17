@@ -190,6 +190,9 @@ h3{font-family:var(--serif);font-weight:500;font-size:1.3rem;line-height:1.25;}
 .pc dd a{word-break:break-word;}
 .pc-act{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.8rem;}
 .dist{font-size:.8rem;color:var(--acc);font-weight:600;}
+.mtip{display:flex;gap:.5rem;align-items:flex-start;margin-top:.7rem;padding:.65rem .8rem;border-left:2px solid var(--poc);background:var(--bg2);border-radius:0 8px 8px 0;font-size:.92rem;font-style:italic;}
+.mtip svg{width:13px;height:13px;flex:none;color:var(--poc);margin-top:.3rem;}
+.mtip b{font-style:normal;font-weight:600;color:var(--poc);}
 @media (min-width:860px){.plist.two{grid-template-columns:1fr 1fr;}}
 
 /* ideas */
@@ -428,6 +431,7 @@ const km = (a, b) => { const r = x => x * Math.PI / 180, dLa = r(b[0]-a[0]), dLo
 const walkMin = d => Math.max(5, Math.round(d * 1.3 / 4.8 * 60 / 5) * 5);   // línea recta × 1,3 a 4,8 km/h: estimación
 const fmtDist = d => d < 1 ? `${Math.round(d * 1000 / 50) * 50} m` : `${d.toFixed(1).replace('.', ',')} km`;
 const minsOf = p => { const m = String(p.dur).match(/([\d,]+)\s*[–-]?\s*[\d,]*\s*(min|h)/); if (!m) return 60; const v = parseFloat(m[1].replace(',', '.')); return m[2] === 'h' ? v * 60 : v; };
+const tipShort = t => { const ps = t.split(/(?<=\.)\s+/); return (ps[0].length < 40 && ps[1] ? ps[0] + ' ' + ps[1] : ps[0]).replace(/\.$/, ''); };
 const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.7 5.9 6.4.7-4.8 4.3 1.4 6.3L12 16.8 6.3 20l1.4-6.3L2.9 9.4l6.4-.7z"/></svg>';
 const POC = (label = 'POC') => `<span class="poc" title="Recomendación personal de Mike">${STAR}${label}<span class="sr"> (recomendación personal de Mike)</span></span>`;
 const ICON = {
@@ -470,7 +474,8 @@ const inPlan = (t, id) => state.plan.some(x => x.t === t && x.id === id);
 const saveFilter = () => store.set('zh-filter2', { cat: state.cat, opts: [...state.opts] });
 const CAT_CHIPS = [['top','TOP 10'],['poc','Selección de Mike'],['navidad','Navidad'],['casco','Casco antiguo'],['cultura','Cultura y experiencias'],['gastro','Comer y café'],['excursion','Excursiones'],['todos','Todo']];
 const OPT_CHIPS = [['noche','Abierto por la noche'],['lluvia','Con lluvia'],['gratis','Gratis']];
-const SUB_GASTRO = [['cafe','Café'],['almuerzo','Almuerzo']];
+const SUB_GASTRO = [['cafe','Café'],['almuerzo','Almuerzo'],['bar','Copas']];
+const TAGL = { cafe:'Café', almuerzo:'Almuerzo', bar:'Copas' };
 const CAT_NOTE = {
   excursion:'Tiempos de ida aproximados desde Zürich HB; comprobad la conexión del día. Ideales para el fin de semana.',
   navidad:'La tabla de «Esta tarde» muestra qué está abierto cada día y hasta qué hora.',
@@ -508,7 +513,7 @@ const heartBtn = (t, id, name) => { const on = inPlan(t, id);
   return `<button class="btn ico" type="button" data-plan="${t}:${id}" aria-pressed="${on}" aria-label="${on ? 'Quitar de mi plan' : 'Guardar en mi plan'}: ${esc(name)}">${ICON.heart}</button>`; };
 function card(p){
   const flags = [p.night && 'Por la noche', p.rain && 'Con lluvia', p.free === true && 'Gratis'].filter(Boolean);
-  const tags = (p.tags || []).map(t => `<span class="badge">${t === 'cafe' ? 'Café' : 'Almuerzo'}</span>`).join('');
+  const tags = (p.tags || []).map(t => `<span class="badge">${TAGL[t]}</span>`).join('');
   const dist = state.near ? `<span class="dist">a ${fmtDist(km(state.near, p.ll))}</span>` : '';
   const share = `${p.name}${p.poc ? ' (recomendación de Mike)' : ''}\n${gSearch(p)}\n\nGuía: ${SITE}#p-${p.id}`;
   return `<article class="pc" id="p-${p.id}" aria-labelledby="h-${p.id}">
@@ -517,6 +522,7 @@ function card(p){
       <div class="pc-badges">${p.prio === 'top' ? '<span class="badge top">TOP 10</span>' : p.excTop ? '<span class="badge">Excursión top</span>' : ''}<span class="badge" style="--c:${CATS[p.cat].color}"><i></i>${CATS[p.cat].label}</span>${tags}${dist}</div>
       <h3 id="h-${p.id}">${esc(p.name)}${p.poc ? POC() : ''}</h3>
       <p class="pc-desc">${esc(p.desc)}</p>
+      ${p.tip ? `<p class="mtip">${STAR}<span><b>Consejo de Mike:</b> ${esc(p.tip)}</span></p>` : ''}
       ${flags.length ? `<div class="pc-flags">${flags.map(f => `<span>${f}</span>`).join('')}</div>` : ''}
       <p class="pc-hours">${esc(p.hours)}<br>${statusLabel(p)}</p>
       <details>
@@ -580,7 +586,7 @@ function initMap(){
 function popup(p){
   const d = km(HB, p.ll);
   return `${p.prio === 'top' ? '<span class="badge top" style="font-size:.7rem">TOP 10</span> ' : ''}${p.poc ? POC() : ''}
-    <span class="pn">${esc(p.name)}</span><span class="pd">${esc(p.desc.split('. ')[0])}.</span>
+    <span class="pn">${esc(p.name)}</span><span class="pd">${p.tip ? '«' + esc(tipShort(p.tip)) + '.» — Mike' : esc(p.desc.split('. ')[0]) + '.'}</span>
     <span class="pm">${p.cat !== 'excursion' && d < 3 ? `≈ ${walkMin(d)} min a pie desde Zürich HB` : esc(p.ov.split('. ')[0])}</span>
     <div class="pa"><a href="${gSearch(p)}" target="_blank" rel="noopener">Abrir en Google Maps</a><a href="${gDir(p)}" target="_blank" rel="noopener">Cómo llegar</a>
     <button class="full" type="button" data-card="${p.id}">Ver ficha</button></div>`;
@@ -696,7 +702,7 @@ function renderToday(){
       p.status !== 'ok' ? '<span class="st pend">Horario por confirmar</span>' : '',
     ].filter(Boolean);
     return `<article class="pick"><h3><button type="button" data-card="${p.id}">${esc(p.name)}</button>${p.poc ? POC() : ''}</h3><span class="cat">${CATS[p.cat].label}</span>
-      <p>${esc(p.desc.split('. ')[0])}.</p><div class="why">${why.map(w => `<span>${w}</span>`).join('')}</div>
+      <p>${p.tip ? '<i>«' + esc(tipShort(p.tip)) + '.»</i> — Mike' : esc(p.desc.split('. ')[0]) + '.'}</p><div class="why">${why.map(w => `<span>${w}</span>`).join('')}</div>
       <div class="acts"><a class="btn sm pri" href="${gDir(p)}" target="_blank" rel="noopener">${ICON.nav}Cómo llegar</a><button class="btn sm" type="button" data-card="${p.id}">${ICON.card}Ficha</button>${heartBtn('p', p.id, p.name).replace('btn ico','btn ico sm')}</div></article>`;
   }).join('') : '<p class="prose">A esta hora ya no hay mucho abierto. Un paseo por el Niederdorf iluminado siempre funciona.</p>';
   $('#todayNote').textContent = `Según los horarios publicados (comprobados el ${TRIP.checked}), la distancia desde Zürich HB y la prioridad; la selección de Mike puntúa algo más y los horarios sin confirmar casi nada.` +
