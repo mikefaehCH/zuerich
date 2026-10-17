@@ -136,7 +136,8 @@ h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.15;}
 .chip.sm{min-height:34px;font-size:.8rem;padding:.2rem .7rem;}
 .tabs{position:sticky;top:46px;z-index:600;background:var(--navbg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);margin:0 calc(-1 * var(--pad));padding:.45rem var(--pad);}
 .toolbar{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin:.35rem 0 .1rem;font-size:.82rem;color:var(--muted);}
-.toolbar .acts{display:flex;gap:.9rem;}
+.toolbar .acts{display:flex;gap:.8rem;}
+.toolbar .link[aria-pressed="true"]{text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--star);text-decoration-thickness:2px;}
 
 .plist{display:grid;gap:.7rem;margin-top:.5rem;}
 @media (min-width:760px){.plist{grid-template-columns:1fr 1fr;gap:.9rem;}}
@@ -149,6 +150,7 @@ h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.15;}
 .pc-b{flex:1;min-width:0;}
 .pc-cat{font-size:.72rem;color:var(--muted);line-height:1.3;}
 .pc-cat .top{color:var(--acc-ink);font-weight:600;}
+.pc-cat .rec{color:var(--ink);font-weight:600;}
 .pc h3{font-size:1.28rem;margin:.1rem 0 .2rem;}
 .pc-desc{color:var(--muted);font-size:.88rem;line-height:1.45;}
 .pc-foot{display:flex;align-items:center;gap:1rem;margin-top:.3rem;}
@@ -183,6 +185,7 @@ h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.15;}
 .pinw.top .pin{left:0;top:0;width:22px;height:22px;}
 .pinw .pstar{position:absolute;right:-7px;top:-8px;width:14px;height:14px;color:#C49A48;filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1px #fff);}
 .cl{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#24453C;color:#fff;font:600 .85rem var(--sans);border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.35);}
+.of{display:flex;align-items:center;justify-content:center;width:60px;height:24px;border-radius:6px;background:#262923;color:#fff;font:600 .72rem var(--sans);border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.35);}
 .me{width:16px;height:16px;border-radius:50%;background:#2a7de1;border:3px solid #fff;box-shadow:0 0 0 6px rgba(42,125,225,.25);}
 .legend{display:flex;gap:.2rem .9rem;flex-wrap:wrap;font-size:.76rem;color:var(--muted);margin-top:.5rem;}
 .legend span{display:inline-flex;align-items:center;gap:.3rem;}
@@ -322,7 +325,7 @@ footer p+p{margin-top:.35rem;}
     <div class="tabs"><div class="frow" role="group" aria-label="Mostrar" id="tabs"></div>
       <div class="frow" role="group" aria-label="Tipo" id="subtabs" style="margin-top:.4rem" hidden></div></div>
     <div class="toolbar"><span id="count" aria-live="polite"></span>
-      <span class="acts"><button type="button" class="link" id="nearBtn">Cerca de mí</button><button type="button" class="link" id="mapBtn" aria-expanded="false" aria-controls="mapbox">Ver mapa</button></span></div>
+      <span class="acts"><button type="button" class="link" id="offBtn" aria-pressed="false">Oficina</button><button type="button" class="link" id="nearBtn">Cerca de mí</button><button type="button" class="link" id="mapBtn" aria-expanded="false" aria-controls="mapbox">Ver mapa</button></span></div>
     <div class="mapbox" id="mapbox" hidden><div id="map" role="region" aria-label="Mapa de los lugares"></div><div class="legend" id="legend"></div></div>
     <p class="note" id="tabNote" hidden></p>
     <div class="plist" id="plist"></div>
@@ -428,6 +431,8 @@ const gWalk = ids => {
   return 'https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=' + encodeURIComponent(ps[0].q) +
     '&destination=' + encodeURIComponent(ps[ps.length-1].q) + (w.length ? '&waypoints=' + encodeURIComponent(w.map(x => x.q).join('|')) : '');
 };
+const offMin = p => p.cat === 'excursion' ? null : walkMin(km(OFFICE.ll, p.ll));
+const gOffice = p => 'https://www.google.com/maps/dir/?api=1&travelmode=' + (offMin(p) <= 20 ? 'walking' : 'transit') + '&origin=' + encodeURIComponent(OFFICE.q) + '&destination=' + encodeURIComponent(p.q);
 const wa = t => 'https://wa.me/?text=' + encodeURIComponent(t);
 const km = (a, b) => { const r = x => x * Math.PI / 180, dLa = r(b[0]-a[0]), dLo = r(b[1]-a[1]);
   const h = Math.sin(dLa/2)**2 + Math.cos(r(a[0])) * Math.cos(r(b[0])) * Math.sin(dLo/2)**2; return 12742 * Math.asin(Math.sqrt(h)); };
@@ -470,7 +475,7 @@ function loadPlan(){
 const TABS = [['destacados','Destacados'],['navidad','Navidad'],['favoritos','Favoritos'],['comer','Comer y café'],['excursiones','Excursiones'],['todo','Todo']];
 const SUBS = [['cafe','Café'],['almuerzo','Almuerzo'],['cena','Cena'],['bar','Copas']];
 const TAB_NOTE = { excursiones:'Tiempos de ida aproximados desde Zürich HB; comprobad la conexión del día.' };
-const state = { tab: store.get('zh-tab', 'destacados'), sub:null, near:null, plan: loadPlan(), incoming:null };
+const state = { tab: store.get('zh-tab', 'destacados'), sub:null, near:null, nearFrom:null, plan: loadPlan(), incoming:null };
 if (!TABS.some(t => t[0] === state.tab)) state.tab = 'destacados';
 const savePlan = () => { store.set('zh-plan3', state.plan); const c = $('#planCnt'); c.textContent = state.plan.length || ''; c.setAttribute('aria-label', state.plan.length ? `${state.plan.length} lugares` : ''); };
 const inPlan = id => state.plan.includes(id);
@@ -507,7 +512,7 @@ function card(p){
   return `<article class="pc" id="p-${p.id}" aria-labelledby="h-${p.id}">
     <div class="pc-main">${thumb(p)}
       <div class="pc-b">
-        <p class="pc-cat">${p.prio === 'top' ? '<span class="top">TOP 10</span> · ' : ''}${CATS[p.cat].label}${dateRange(p)}</p>
+        <p class="pc-cat">${p.prio === 'top' ? '<span class="top">TOP 10</span> · ' : ''}${CATS[p.cat].label}${dateRange(p)}${p.rec ? ' · <span class="rec">Recomendado por Mike</span>' : ''}${offMin(p) <= 20 ? ` · a ${offMin(p)} min de la oficina` : ''}</p>
         <h3 id="h-${p.id}">${esc(p.name)}${p.poc ? STAR : ''}</h3>
         <p class="pc-desc">${esc(short(p.desc))}</p>
       </div>
@@ -523,7 +528,8 @@ function card(p){
       <p><strong>Horario:</strong> ${esc(p.hours)} ${statusLabel(p)}</p>
       <p><strong>Precio:</strong> ${esc(p.price)} · <strong>Duración:</strong> ${esc(p.dur)}</p>
       <p><strong>Cómo llegar:</strong> ${esc(p.ov)}</p>
-      <p class="links"><a href="${gDir(p)}" target="_blank" rel="noopener">Cómo llegar en transporte</a><button type="button" data-showmap="${p.id}">Ver en el mapa</button><a href="${wa(share)}" target="_blank" rel="noopener">Compartir por WhatsApp</a>${p.web ? `<a href="${p.web}" target="_blank" rel="noopener">Web oficial</a>` : ''}${p.src ? `<a href="${p.src}" target="_blank" rel="noopener">Fuente (${TRIP.checked})</a>` : ''}</p>
+      ${p.cat !== 'excursion' ? `<p><strong>Desde la oficina:</strong> ${offMin(p) <= 25 ? `≈ ${offMin(p)} min a pie` : 'mejor en tranvía o tren'}</p>` : ''}
+      <p class="links">${p.cat !== 'excursion' ? `<a href="${gOffice(p)}" target="_blank" rel="noopener">Ruta desde la oficina</a>` : ''}<a href="${gDir(p)}" target="_blank" rel="noopener">Cómo llegar en transporte</a><button type="button" data-showmap="${p.id}">Ver en el mapa</button><a href="${wa(share)}" target="_blank" rel="noopener">Compartir por WhatsApp</a>${p.web ? `<a href="${p.web}" target="_blank" rel="noopener">Web oficial</a>` : ''}${p.src ? `<a href="${p.src}" target="_blank" rel="noopener">Fuente (${TRIP.checked})</a>` : ''}</p>
       ${isLocal(p.img) ? `<p style="font-size:.72rem">Foto: ${esc(p.credit)}</p>` : ''}
     </div>
   </article>`;
@@ -555,18 +561,19 @@ function renderTabs(){
 const GROUPS = [['navidad','Navidad'],['ver','Casco antiguo y vistas'],['cultura','Cultura'],['experiencia','Experiencias'],['gastro','Comer y café'],['excursion','Excursiones']];
 function renderList(){
   const list = visible();
-  $('#count').textContent = (list.length === 1 ? '1 lugar' : `${list.length} lugares`) + (state.near ? ' · por distancia' : '');
+  $('#count').textContent = (list.length === 1 ? '1 lugar' : `${list.length} lugares`) + (state.near ? (state.nearFrom === 'office' ? ' · cerca de la oficina' : ' · por distancia') : '');
   const n = $('#tabNote'); n.hidden = !TAB_NOTE[state.tab]; n.textContent = TAB_NOTE[state.tab] || '';
   if (state.tab === 'todo' && !state.near){
     $('#plist').innerHTML = GROUPS.map(([c, l]) => { const g = list.filter(p => p.cat === c); return g.length ? `<h3 class="group-h">${l}</h3>` + g.map(p => card(p)).join('') : ''; }).join('');
   } else $('#plist').innerHTML = list.map(p => card(p)).join('');
-  $('#nearBtn').textContent = state.near ? 'Quitar distancia' : 'Cerca de mí';
+  $('#nearBtn').textContent = state.near && state.nearFrom === 'me' ? 'Quitar distancia' : 'Cerca de mí';
+  $('#offBtn').setAttribute('aria-pressed', !!state.near && state.nearFrom === 'office');
   if (map) renderMarkers(list);
 }
 function refresh(){ store.set('zh-tab', state.tab); renderTabs(); renderList(); }
 function goTo(target){
   if (target === 'ideas') return scrollTo($('#ideas'));
-  state.tab = target; state.sub = null; state.near = null; refresh(); scrollTo($('#lista'));
+  state.tab = target; state.sub = null; state.near = null; state.nearFrom = null; refresh(); scrollTo($('#lista'));
 }
 
 /* ================= mapa (Leaflet se carga solo al abrirlo) ================= */
@@ -588,6 +595,7 @@ async function openMap(){
     cluster = L.markerClusterGroup({ maxClusterRadius:36, disableClusteringAtZoom:15, showCoverageOnHover:false, animate:false,
       iconCreateFunction: c => L.divIcon({ className:'', html:`<div class="cl">${c.getChildCount()}</div>`, iconSize:[34,34], iconAnchor:[17,17] }) }).addTo(map);
     routeLayer = L.layerGroup().addTo(map);
+    L.marker(OFFICE.ll, { title:'Oficina', alt:'Oficina', zIndexOffset:800, icon:L.divIcon({ className:'', html:'<div class="of">Oficina</div>', iconSize:[60,24], iconAnchor:[30,12] }) }).bindPopup('<span class="pn">La oficina</span><span class="pd">' + esc(OFFICE.q) + '</span>').addTo(map);
     $('#legend').innerHTML = Object.values(CATS).map(c => `<span style="--c:${c.color}"><i></i>${c.label}</span>`).join('') + `<span>Punto grande: TOP 10</span><span>${STAR_SVG} Favoritos de Mike</span>`;
   }
   map.invalidateSize(); renderMarkers(visible());
@@ -631,12 +639,18 @@ function toggleMore(id){
   const b = document.querySelector(`[data-more="${id}"]`), m = document.getElementById('m-' + id); if (!b || !m) return;
   const open = m.hidden; m.hidden = !open; b.setAttribute('aria-expanded', open); b.textContent = open ? 'Menos' : 'Más información';
 }
+function nearOffice(){
+  const on = state.near && state.nearFrom === 'office';
+  meMarker && map && map.removeLayer(meMarker);
+  state.near = on ? null : OFFICE.ll; state.nearFrom = on ? null : 'office'; renderList();
+  if (!on) toast('Ordenado por distancia a la oficina');
+}
 function nearMe(){
-  if (state.near){ state.near = null; meMarker && map && map.removeLayer(meMarker); renderList(); return; }
+  if (state.near){ const wasMe = state.nearFrom === 'me'; state.near = null; state.nearFrom = null; meMarker && map && map.removeLayer(meMarker); renderList(); if (wasMe) return; }
   if (!navigator.geolocation){ toast('Este navegador no permite la ubicación'); return; }
   toast('Buscando vuestra ubicación…');
   navigator.geolocation.getCurrentPosition(pos => {
-    state.near = [pos.coords.latitude, pos.coords.longitude];
+    state.near = [pos.coords.latitude, pos.coords.longitude]; state.nearFrom = 'me';
     if (map){ meMarker && map.removeLayer(meMarker); meMarker = L.marker(state.near, { interactive:false, icon:L.divIcon({ className:'', html:'<div class="me"></div>', iconSize:[16,16], iconAnchor:[8,8] }) }).addTo(map); }
     renderList(); toast('Ordenado por distancia');
   }, () => toast('No se pudo obtener la ubicación'), { enableHighAccuracy:true, timeout:10000, maximumAge:60000 });
@@ -799,6 +813,7 @@ document.addEventListener('click', e => {
   else if (ds.goto){ goTo(ds.goto); }
   else if (t.id === 'mapBtn'){ $('#mapbox').hidden ? openMap() : closeMap(); }
   else if (t.id === 'nearBtn'){ nearMe(); }
+  else if (t.id === 'offBtn'){ nearOffice(); }
   else if (ds.more){ toggleMore(ds.more); }
   else if (ds.showmap){ showOnMap(ds.showmap); }
   else if (ds.card){ e.preventDefault(); openCard(ds.card); }
