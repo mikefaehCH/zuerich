@@ -178,7 +178,7 @@ const PLACES = [
     web:'https://utokulm.ch/', dur:'2–3 h en total', when:['manana','tarde'], rain:false, night:false, free:true, warm:false, view:true,
     ov:SZU_NOTE,
     hours:'Montaña de acceso libre. Desde la estación, unos 10 minutos de subida a pie hasta la cima.', price:'Gratis; solo el billete de tren.', status:'ok', src:'https://www.szu.ch/de/hb/fahrgaeste-s10/',
-    img:null },
+    img:'img/uetliberg-niebla', imgCap:'Uto Kulm y la torre del Uetliberg sobre el mar de niebla', credit:'Patrick Federi / Unsplash' },
 
   /* ---------- CULTURA ---------- */
   { id:'landesmuseum', close:[17,null,17,17,17,17,17], name:'Museo Nacional Suizo (Landesmuseum)', cat:'cultura', prio:'top', casco:false,
