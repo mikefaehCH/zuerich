@@ -1,7 +1,7 @@
 /* Zúrich en Navidad – caché sin conexión. Subir la versión con cada cambio. */
-const CACHE = 'zuerich-v8';
+const CACHE = 'zuerich-v9';
 const CORE = ['./', './index.html', './data.js', './manifest.webmanifest', './icon.svg',
-  './img/bahnhofstrasse-navidad-800.webp', './img/bahnhofstrasse-navidad-1600.webp',
+  './img/hero-800.webp', './img/hero-1600.webp',
   './vendor/leaflet/leaflet.js', './vendor/leaflet/leaflet.css',
   './vendor/markercluster/leaflet.markercluster.js', './vendor/markercluster/MarkerCluster.css',
   './vendor/fonts/fraunces-latin-400-normal.woff2', './vendor/fonts/fraunces-latin-500-normal.woff2',

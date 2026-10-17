@@ -5,19 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
 <title>Zúrich en Navidad 2026 – guía personal</title>
-<meta name="description" content="Guía personal de Zúrich para el 20–27 de noviembre de 2026: qué hacer esta tarde, lugares imprescindibles, la selección de Mike, mercados navideños, ideas sin fecha y vuestro propio plan.">
+<meta name="description" content="Guía personal de Zúrich para el 20–27 de noviembre de 2026: mercados de Navidad, casco antiguo, los favoritos de Mike, ideas para una tarde y vuestro plan.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
 <meta property="og:title" content="Zúrich en Navidad">
 <meta property="og:description" content="Una semana para descubrir el encanto de Suiza · 20–27 de noviembre de 2026">
 <meta property="og:url" content="https://mikefaehch.github.io/zuerich/">
-<meta property="og:image" content="https://mikefaehch.github.io/zuerich/img/bahnhofstrasse-navidad-1600.webp">
+<meta property="og:image" content="https://mikefaehch.github.io/zuerich/img/hero-1600.webp">
 <meta name="theme-color" content="#f7f5ef">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="preload" as="image" href="img/bahnhofstrasse-navidad-800.webp" imagesrcset="img/bahnhofstrasse-navidad-800.webp 800w, img/bahnhofstrasse-navidad-1600.webp 1600w" imagesizes="100vw">
-<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
-<link rel="stylesheet" href="vendor/markercluster/MarkerCluster.css">
+<link rel="preload" as="image" href="img/hero-800.webp" imagesrcset="img/hero-800.webp 800w, img/hero-1600.webp 1600w" imagesizes="100vw">
 <style>
 @font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:swap;src:url(vendor/fonts/fraunces-latin-400-normal.woff2) format('woff2');}
 @font-face{font-family:'Fraunces';font-style:normal;font-weight:500;font-display:swap;src:url(vendor/fonts/fraunces-latin-500-normal.woff2) format('woff2');}
@@ -29,368 +27,318 @@
 
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --bg:#f7f5ef; --bg2:#f2efe7; --card:#fcfbf7; --ink:#252923; --muted:#5f655b; --line:#e0dcd1;
-  --acc:#2f4a63; --acc-soft:#5e7891; --acc-bg:#2f4a63; --acc-on:#cfe0ee;
-  --red:#a3402f; --ok:#4f7a5a; --warn:#9a6a1c; --poc:#9c8350;
-  --navbg:rgba(247,245,239,.94);
+  --bg:#f7f5ef; --bg2:#f1eee6; --card:#fcfbf7; --ink:#252923; --muted:#5f655b; --line:#e2ded3;
+  --acc:#2f4a63; --acc-soft:#5e7891; --acc-bg:#2f4a63;
+  --star:#C49A48; --ok:#4f7a5a; --warn:#9a6a1c; --red:#a3402f;
+  --navbg:rgba(247,245,239,.95);
   --serif:'Fraunces',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#141714; --bg2:#202520; --card:#1a1e1a; --ink:#e9e6dd; --muted:#a6aca1; --line:#2c322c;
-  --acc:#a9c1d8; --acc-soft:#86a0b8; --acc-bg:#263a4d; --acc-on:#cfe0ee; --red:#e08a78; --ok:#8cb896; --warn:#d9a35a; --poc:#c7ad78;
-  --navbg:rgba(20,23,20,.93);
+  --bg:#141714; --bg2:#1e231e; --card:#1a1e1a; --ink:#e9e6dd; --muted:#a6aca1; --line:#2c322c;
+  --acc:#a9c1d8; --acc-soft:#86a0b8; --acc-bg:#263a4d; --star:#d4ad62; --ok:#8cb896; --warn:#d9a35a; --red:#e08a78;
+  --navbg:rgba(20,23,20,.94);
 }}
 :root[data-theme="dark"]{
-  --bg:#141714; --bg2:#202520; --card:#1a1e1a; --ink:#e9e6dd; --muted:#a6aca1; --line:#2c322c;
-  --acc:#a9c1d8; --acc-soft:#86a0b8; --acc-bg:#263a4d; --acc-on:#cfe0ee; --red:#e08a78; --ok:#8cb896; --warn:#d9a35a; --poc:#c7ad78;
-  --navbg:rgba(20,23,20,.93);
+  --bg:#141714; --bg2:#1e231e; --card:#1a1e1a; --ink:#e9e6dd; --muted:#a6aca1; --line:#2c322c;
+  --acc:#a9c1d8; --acc-soft:#86a0b8; --acc-bg:#263a4d; --star:#d4ad62; --ok:#8cb896; --warn:#d9a35a; --red:#e08a78;
+  --navbg:rgba(20,23,20,.94);
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip;}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 a{color:var(--acc);}
-a:focus-visible,button:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px;}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px;}
 img{display:block;max-width:100%;}
 .sr{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;}
 .skip{position:absolute;left:1rem;top:-3rem;z-index:1000;background:var(--card);color:var(--acc);padding:.6rem 1rem;border-radius:8px;font-weight:600;}
 .skip:focus{top:1rem;}
+.star{display:inline-block;width:.8em;height:.8em;color:var(--star);vertical-align:.02em;margin-left:.3rem;flex:none;}
 
-/* sello POC */
-.poc{display:inline-flex;align-items:center;gap:.25rem;color:var(--poc);font:600 .7rem/1 var(--sans);letter-spacing:.06em;white-space:nowrap;vertical-align:middle;}
-.poc svg{width:12px;height:12px;flex:none;}
-h3 .poc{margin-left:.35rem;position:relative;top:-.12em;}
+/* hero: ~50 % de la pantalla en el móvil */
+#inicio{position:relative;height:52svh;min-height:340px;max-height:620px;display:flex;align-items:flex-end;padding:0 1.25rem;overflow:hidden;background:#1d2a33;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--hx,50%) var(--hy,50%);}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,13,20,0) 30%,rgba(8,13,20,.35) 60%,rgba(8,13,20,.82) 100%);}
+.hero-content{position:relative;z-index:2;width:100%;max-width:760px;margin:0 auto;padding-bottom:1.6rem;color:#fff;}
+.hero-meta{font-size:.88rem;font-weight:500;color:rgba(255,255,255,.88);margin-bottom:.4rem;}
+.hero-h1{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:.98;font-size:clamp(2.7rem,9vw,5rem);}
+.hero-h1 em{font-style:italic;color:#e7dcc4;}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,.88);margin-top:.5rem;max-width:28rem;}
+.hero-credit{position:absolute;right:.75rem;bottom:.4rem;z-index:2;font-size:.64rem;color:rgba(255,255,255,.6);}
+@media (min-width:860px){#inicio{height:60vh;}}
 
-/* hero */
-#inicio{position:relative;min-height:84svh;display:flex;align-items:flex-end;padding:0 1.25rem;overflow:hidden;background:#1d2a33;}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 50%;}
-.hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,16,22,.15) 0%,rgba(10,16,22,.3) 40%,rgba(10,16,22,.86) 100%);}
-.hero-content{position:relative;z-index:2;width:100%;max-width:760px;margin:0 auto;padding-bottom:2.8rem;color:#fff;}
-.hero-meta{font-size:.95rem;font-weight:500;color:rgba(255,255,255,.9);margin-bottom:1rem;}
-.hero-h1{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1;font-size:clamp(3.1rem,8vw,5.8rem);margin:0 0 .9rem;}
-.hero-h1 em{display:block;font-style:italic;color:#d9e4ee;}
-.hero-sub{max-width:30rem;font-size:1.1rem;line-height:1.5;color:rgba(255,255,255,.9);margin-bottom:1.7rem;}
-.hero-ctas{display:grid;gap:.5rem;max-width:30rem;}
-.hero-cta{display:flex;align-items:center;justify-content:space-between;gap:.75rem;min-height:52px;padding:.85rem 1rem;border-radius:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);color:#fff;text-decoration:none;font-weight:600;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
-.hero-cta:first-child{background:#fff;color:#1d2a33;border-color:#fff;}
-.hero-cta svg{width:18px;height:18px;flex:none;}
-.hero-credit{position:absolute;right:.75rem;bottom:.5rem;z-index:2;font-size:.68rem;color:rgba(255,255,255,.65);}
-
-/* countdown */
-#countdown{background:var(--bg);border-bottom:1px solid var(--line);padding:.7rem 1.25rem;text-align:center;font-size:.88rem;color:var(--muted);}
-#countdown b{font-family:var(--serif);font-weight:600;color:var(--acc);font-size:1.05rem;}
-
-/* nav */
-nav.top{position:sticky;top:0;z-index:700;background:var(--navbg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;}
-nav.top a{flex:1;position:relative;text-align:center;white-space:nowrap;padding:1rem .3rem;font-size:.9rem;font-weight:500;color:var(--muted);text-decoration:none;}
+/* navegación: tres áreas */
+nav.top{position:sticky;top:0;z-index:700;background:var(--navbg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;justify-content:center;}
+nav.top a{flex:1;max-width:220px;text-align:center;padding:.95rem .3rem;font-size:.95rem;font-weight:500;color:var(--muted);text-decoration:none;position:relative;}
 nav.top a.on{color:var(--ink);}
-nav.top a.on::before{content:"";position:absolute;top:.45rem;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--acc);}
-nav.top a .cnt{display:inline-block;min-width:1.15rem;margin-left:.2rem;padding:0 .3rem;border-radius:99px;background:var(--acc-bg);color:#fff;font-size:.68rem;line-height:1.15rem;}
-nav.top a .cnt:empty{display:none;}
+nav.top a.on::after{content:"";position:absolute;left:30%;right:30%;bottom:0;height:2px;background:var(--acc);border-radius:2px;}
+nav.top .cnt{color:var(--acc);font-weight:700;}
 
-/* secciones */
-.sec{max-width:760px;margin:0 auto;padding:3.2rem 1.25rem 0;scroll-margin-top:3.5rem;}
-.kicker{font-size:.92rem;color:var(--acc-soft);margin-bottom:.35rem;}
-h2{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5.5vw,2.9rem);line-height:1.08;letter-spacing:-.015em;margin-bottom:.9rem;}
-h2 em{font-style:normal;color:var(--acc-soft);}
-h3{font-family:var(--serif);font-weight:500;font-size:1.3rem;line-height:1.25;}
-.prose{color:var(--muted);font-size:1rem;line-height:1.7;max-width:38rem;margin-bottom:1rem;}
-.prose strong{color:var(--ink);font-weight:600;}
-.divider{max-width:760px;margin:3.2rem auto 0;border:0;border-top:1px solid var(--line);}
-.note{font-size:.8rem;color:var(--muted);margin-top:.6rem;}
-.alert{border-left:4px solid var(--warn);background:var(--bg2);border-radius:0 11px 11px 0;padding:.8rem 1rem;font-size:.9rem;}
-.alert strong{display:block;margin-bottom:.15rem;}
-.alert p{color:var(--muted);}
+.sec{max-width:760px;margin:0 auto;padding:2.6rem 1.25rem 0;scroll-margin-top:3.4rem;}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,5.5vw,2.6rem);line-height:1.08;letter-spacing:-.015em;margin-bottom:.5rem;}
+h3{font-family:var(--serif);font-weight:500;font-size:1.2rem;line-height:1.25;}
+.lead{color:var(--muted);font-size:.98rem;margin-bottom:1rem;max-width:36rem;}
+.lead .star{margin:0 .1rem 0 0;}
+.note{font-size:.78rem;color:var(--muted);margin-top:.5rem;}
+.divider{max-width:760px;margin:2.6rem auto 0;border:0;border-top:1px solid var(--line);}
 
-/* botones, insignias, chips */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:44px;padding:.55rem .85rem;border:1px solid var(--line);background:var(--card);color:var(--acc);border-radius:8px;font:600 .88rem var(--sans);text-decoration:none;cursor:pointer;}
-.btn svg{width:17px;height:17px;flex:none;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;min-height:44px;padding:.5rem .85rem;border:1px solid var(--line);background:var(--card);color:var(--acc);border-radius:99px;font:600 .86rem var(--sans);text-decoration:none;cursor:pointer;}
+.btn svg{width:16px;height:16px;flex:none;}
 .btn.pri{background:var(--acc-bg);border-color:var(--acc-bg);color:#fff;}
-.btn.ico{width:44px;padding:0;}
-.btn.sm{min-height:38px;padding:.35rem .7rem;font-size:.82rem;}
-.btn[aria-pressed="true"] svg{fill:var(--red);stroke:var(--red);}
-.badge{display:inline-flex;align-items:center;gap:.35rem;font-size:.75rem;font-weight:600;padding:.12rem .55rem;border-radius:99px;border:1px solid var(--line);color:var(--muted);background:var(--card);white-space:nowrap;}
-.badge.top{background:var(--acc-bg);border-color:var(--acc-bg);color:#fff;}
-.badge i{width:8px;height:8px;border-radius:50%;background:var(--c);}
-.st{font-size:.75rem;font-weight:600;}
-.st.ok{color:var(--ok);} .st.sec{color:var(--warn);} .st.pend{color:var(--red);}
+.btn.ghost{border-color:transparent;background:none;padding:.5rem .4rem;}
+.add{width:44px;height:44px;flex:none;border-radius:50%;border:1.5px solid var(--acc);background:none;color:var(--acc);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;}
+.add svg{width:18px;height:18px;}
+.add[aria-pressed="true"]{background:var(--acc-bg);border-color:var(--acc-bg);color:#fff;}
+
+/* chips */
 .frow{display:flex;gap:.35rem;overflow-x:auto;scrollbar-width:none;padding:.15rem 0;}
 .frow::-webkit-scrollbar{display:none;}
-.frow + .frow{margin-top:.35rem;}
-.flabel{flex:none;align-self:center;font-size:.75rem;color:var(--muted);padding:0 .2rem;}
-.chip{flex:none;display:inline-flex;align-items:center;gap:.4rem;min-height:40px;padding:.35rem .85rem;border:1px solid var(--line);background:var(--card);border-radius:99px;font:500 .86rem var(--sans);color:var(--ink);cursor:pointer;white-space:nowrap;}
-.chip i{width:9px;height:9px;border-radius:50%;background:var(--c);}
-.chip svg{width:12px;height:12px;color:var(--poc);}
+.chip{flex:none;display:inline-flex;align-items:center;gap:.3rem;min-height:40px;padding:.35rem .9rem;border:1px solid var(--line);background:var(--card);border-radius:99px;font:500 .88rem var(--sans);color:var(--ink);cursor:pointer;white-space:nowrap;}
 .chip[aria-pressed="true"]{background:var(--acc-bg);border-color:var(--acc-bg);color:#fff;}
-.chip[aria-pressed="true"] svg{color:#e6d3a6;}
+.chip .star{margin:0;}
+.chip.sm{min-height:34px;font-size:.8rem;padding:.25rem .7rem;}
+.tabs{position:sticky;top:51px;z-index:600;background:var(--navbg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);margin:0 -1.25rem;padding:.5rem 1.25rem;border-bottom:1px solid var(--line);}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin:.7rem 0 .2rem;font-size:.84rem;color:var(--muted);flex-wrap:wrap;}
+.toolbar .acts{display:flex;gap:.2rem;}
+.toolbar button{background:none;border:0;color:var(--acc);font:600 .84rem var(--sans);cursor:pointer;min-height:40px;padding:0 .4rem;}
 
 /* esta tarde */
-.today-ctx{font-size:.9rem;color:var(--muted);margin:-.3rem 0 1rem;}
-.picks{display:grid;gap:.6rem;margin-top:1rem;}
-.pick{display:grid;grid-template-columns:1fr auto;gap:.2rem .8rem;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9rem 1rem;}
-.pick h3{font-size:1.18rem;}
-.pick h3 button{background:none;border:0;padding:0;font:inherit;color:inherit;text-align:left;cursor:pointer;}
-.pick p{grid-column:1/-1;color:var(--muted);font-size:.92rem;}
-.pick .why{grid-column:1/-1;display:flex;gap:.2rem .9rem;flex-wrap:wrap;font-size:.8rem;margin-top:.15rem;}
-.pick .acts{grid-column:1/-1;display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.5rem;}
-.pick .cat{font-size:.75rem;color:var(--muted);padding-top:.25rem;white-space:nowrap;}
-.xmas{margin-top:2.2rem;}
-.banner{margin:0 0 1.2rem;}
-.banner img{width:100%;aspect-ratio:16/8;object-fit:cover;border-radius:8px;background:var(--bg2);}
-.banner figcaption{font-size:.72rem;color:var(--muted);margin-top:.35rem;}
-.xmas h3{margin-bottom:.6rem;}
-.cal-wrap{position:relative;overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--card);}
-.cal{width:100%;border-collapse:collapse;font-size:.85rem;}
-.cal th,.cal td{padding:.5rem .35rem;text-align:center;border-bottom:1px solid var(--line);}
-.cal tr:last-child td,.cal tr:last-child th{border-bottom:0;}
-.cal thead th{font-weight:500;color:var(--muted);font-size:.75rem;line-height:1.2;}
-.cal thead th b{display:block;font-family:var(--serif);color:var(--ink);font-size:.95rem;}
-.cal thead th.today b{color:var(--acc);text-decoration:underline;}
-.cal tbody th{text-align:left;padding-left:.8rem;position:sticky;left:0;background:var(--card);min-width:9.5rem;font-weight:400;}
-.cal tbody th button{background:none;border:0;padding:.2rem 0;font:600 .88rem var(--sans);color:var(--acc);text-align:left;cursor:pointer;}
-.cal .y{color:var(--ok);font-size:1.05rem;} .cal .n{color:var(--line);} .cal .q{color:var(--warn);font-weight:700;}
-.cal td small{display:block;font-size:.68rem;color:var(--muted);}
+.tonight{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem .4rem;margin-bottom:1.6rem;}
+.tonight h3{font-size:1.05rem;}
+.tonight .ctx{font-size:.8rem;color:var(--muted);}
+.trow{display:flex;align-items:center;gap:.7rem;padding:.65rem 0;border-top:1px solid var(--line);}
+.trow:first-of-type{border-top:0;}
+.trow .tx{flex:1;min-width:0;}
+.trow .nm{background:none;border:0;padding:0;font:600 1rem var(--sans);color:var(--ink);text-align:left;cursor:pointer;}
+.trow .why{display:block;font-size:.8rem;color:var(--muted);}
 
-/* lugares */
-.fbar{position:sticky;top:52px;z-index:600;background:var(--navbg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);margin:0 -1.25rem;padding:.55rem 1.25rem;border-bottom:1px solid var(--line);}
-.fcount{display:flex;justify-content:space-between;align-items:center;gap:.4rem 1rem;font-size:.85rem;color:var(--muted);margin:.9rem 0 .2rem;flex-wrap:wrap;}
-.fcount button{background:none;border:0;color:var(--acc);font:600 .85rem var(--sans);cursor:pointer;min-height:40px;}
-.fcount button:disabled{color:var(--muted);opacity:.5;cursor:default;}
-.wnote{font-size:.88rem;color:var(--muted);background:var(--bg2);border-radius:11px;padding:.7rem .9rem;margin-top:.6rem;}
-#map{height:min(58vh,500px);border-radius:8px;border:1px solid var(--line);background:var(--bg2);z-index:1;margin-top:.8rem;}
+/* tarjetas */
+.plist{display:grid;gap:.9rem;margin-top:.8rem;}
+@media (min-width:760px){.plist{grid-template-columns:1fr 1fr;}}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;scroll-margin-top:7.5rem;transition:box-shadow .3s;display:flex;flex-direction:column;}
+.pc.flash{box-shadow:0 0 0 3px var(--acc-soft);}
+.pc-img img{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--bg2);}
+.pc-b{padding:.85rem 1rem .9rem;display:flex;flex-direction:column;flex:1;}
+.pc-cat{font-size:.76rem;color:var(--muted);letter-spacing:.01em;}
+.pc-cat .top{color:var(--acc);font-weight:700;}
+.pc h3{font-size:1.28rem;margin:.1rem 0 .3rem;}
+.pc-desc{color:var(--muted);font-size:.94rem;flex:1;}
+.pc-foot{display:flex;align-items:center;gap:.5rem;margin-top:.7rem;}
+.pc-foot .maps{flex:1;}
+.pc details{margin-top:.5rem;border-top:1px solid var(--line);}
+.pc summary{list-style:none;cursor:pointer;color:var(--acc);font:600 .85rem var(--sans);min-height:42px;display:flex;align-items:center;justify-content:space-between;}
+.pc summary::-webkit-details-marker{display:none;}
+.pc summary::after{content:"+";font-size:1.1rem;font-weight:400;}
+.pc details[open] summary::after{content:"–";}
+.more{font-size:.88rem;color:var(--muted);display:grid;gap:.55rem;padding-bottom:.3rem;}
+.more p strong{color:var(--ink);font-weight:600;}
+.mtip{border-left:2px solid var(--star);padding:.1rem 0 .1rem .7rem;font-style:italic;color:var(--ink);}
+.mtip b{font-style:normal;color:var(--star);font-weight:600;}
+.st{font-size:.75rem;font-weight:600;}
+.st.ok{color:var(--ok);} .st.sec{color:var(--warn);} .st.pend{color:var(--red);}
+.more .links{display:flex;gap:.3rem .9rem;flex-wrap:wrap;}
+.more .links a,.more .links button{background:none;border:0;padding:0;color:var(--acc);font:600 .85rem var(--sans);text-decoration:none;cursor:pointer;min-height:36px;display:inline-flex;align-items:center;}
+.group-h{font-family:var(--serif);font-size:1.15rem;font-weight:500;margin:1.4rem 0 -.2rem;grid-column:1/-1;}
+
+/* mapa (se carga solo al abrirlo) */
+.mapbox{margin-top:.8rem;}
+#map{height:min(55vh,460px);border-radius:12px;border:1px solid var(--line);background:var(--bg2);z-index:1;}
 .leaflet-container{font-family:var(--sans);}
 .leaflet-popup-content{font-size:.86rem;line-height:1.45;margin:.75rem .85rem;}
-.leaflet-popup-content .pn{font-family:var(--serif);font-size:1.05rem;font-weight:600;display:block;margin:.2rem 0 .15rem;color:#252923;}
-.leaflet-popup-content .pd{color:#555;display:block;}
-.leaflet-popup-content .pm{font-size:.75rem;color:#777;display:block;margin-top:.2rem;}
-.leaflet-popup-content .pa{display:grid;grid-template-columns:1fr 1fr;gap:.3rem;margin-top:.6rem;}
-.leaflet-popup-content .pa a,.leaflet-popup-content .pa button{display:flex;align-items:center;justify-content:center;min-height:40px;font:600 .8rem var(--sans);padding:.3rem .4rem;border:1px solid #ddd;border-radius:6px;background:#fff;color:#2f4a63;text-decoration:none;cursor:pointer;text-align:center;}
-.leaflet-popup-content .pa button.full{grid-column:1/-1;background:#2f4a63;color:#fff;border-color:#2f4a63;}
-.leaflet-popup-content .poc{color:#9c8350;}
+.leaflet-popup-content .pn{font-family:var(--serif);font-size:1.05rem;font-weight:600;display:block;color:#252923;}
+.leaflet-popup-content .pd{color:#666;display:block;font-size:.8rem;}
+.leaflet-popup-content .pa{display:grid;grid-template-columns:1fr 1fr;gap:.3rem;margin-top:.55rem;}
+.leaflet-popup-content .pa a,.leaflet-popup-content .pa button{display:flex;align-items:center;justify-content:center;min-height:40px;font:600 .8rem var(--sans);border:1px solid #ddd;border-radius:99px;background:#fff;color:#2f4a63;text-decoration:none;cursor:pointer;}
+.leaflet-popup-content .star{color:#C49A48;}
 .pinw{position:relative;width:22px;height:22px;}
 .pin{position:absolute;left:2px;top:2px;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);background:var(--c);}
 .pinw.top .pin{left:0;top:0;width:22px;height:22px;}
-.pinw .pstar{position:absolute;right:-7px;top:-8px;width:14px;height:14px;color:#9c8350;filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1px #fff);}
+.pinw .pstar{position:absolute;right:-7px;top:-8px;width:14px;height:14px;color:#C49A48;filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1px #fff);}
+.cl{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#2f4a63;color:#fff;font:600 .85rem var(--sans);border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.35);}
 .me{width:16px;height:16px;border-radius:50%;background:#2a7de1;border:3px solid #fff;box-shadow:0 0 0 6px rgba(42,125,225,.25);}
-.cl{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--acc-bg);color:#fff;font:600 .85rem var(--sans);border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.35);}
-.legend{display:flex;gap:.3rem 1rem;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:.6rem;}
-.legend span{display:inline-flex;align-items:center;gap:.35rem;}
-.legend i{width:10px;height:10px;border-radius:50%;background:var(--c);}
-.plist{display:grid;gap:.9rem;margin-top:1.6rem;}
-.pc{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;scroll-margin-top:8.5rem;transition:box-shadow .3s;}
-.pc.flash{box-shadow:0 0 0 3px var(--acc-soft);}
-.pc-img img{width:100%;aspect-ratio:2/1;object-fit:cover;background:var(--bg2);}
-.pc-cap{font-size:.7rem;color:var(--muted);padding:.25rem 1rem 0;}
-.pc-b{padding:1rem 1rem 1.05rem;}
-.pc-badges{display:flex;gap:.35rem .5rem;flex-wrap:wrap;align-items:center;margin-bottom:.45rem;}
-.pc h3{font-size:1.35rem;margin-bottom:.3rem;}
-.pc-desc{color:var(--muted);font-size:.95rem;}
-.pc-flags{display:flex;gap:.3rem .9rem;flex-wrap:wrap;font-size:.82rem;margin:.6rem 0 .2rem;}
-.pc-flags span::before{content:"✓ ";color:var(--ok);font-weight:700;}
-.pc-hours{font-size:.88rem;margin-top:.55rem;padding-top:.55rem;border-top:1px solid var(--line);}
-.pc details{margin-top:.4rem;font-size:.88rem;}
-.pc summary{cursor:pointer;color:var(--acc);font-weight:600;min-height:40px;display:flex;align-items:center;}
-.pc dl{display:grid;grid-template-columns:7.5rem 1fr;gap:.3rem .75rem;margin-top:.3rem;}
-.pc dt{color:var(--muted);}
-.pc dd a{word-break:break-word;}
-.pc-act{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.8rem;}
-.dist{font-size:.8rem;color:var(--acc);font-weight:600;}
-.mtip{display:flex;gap:.5rem;align-items:flex-start;margin-top:.7rem;padding:.65rem .8rem;border-left:2px solid var(--poc);background:var(--bg2);border-radius:0 8px 8px 0;font-size:.92rem;font-style:italic;}
-.mtip svg{width:13px;height:13px;flex:none;color:var(--poc);margin-top:.3rem;}
-.mtip b{font-style:normal;font-weight:600;color:var(--poc);}
-@media (min-width:860px){.plist.two{grid-template-columns:1fr 1fr;}}
+.legend{display:flex;gap:.2rem .9rem;flex-wrap:wrap;font-size:.76rem;color:var(--muted);margin-top:.5rem;}
+.legend span{display:inline-flex;align-items:center;gap:.3rem;}
+.legend i{width:9px;height:9px;border-radius:50%;background:var(--c);}
+
+/* calendario navideño (plegado) */
+.fold{margin-top:1rem;border:1px solid var(--line);border-radius:12px;background:var(--card);}
+.fold > summary{list-style:none;cursor:pointer;padding:.85rem 1rem;font:600 .92rem var(--sans);color:var(--ink);display:flex;justify-content:space-between;align-items:center;min-height:48px;}
+.fold > summary::-webkit-details-marker{display:none;}
+.fold > summary::after{content:"+";color:var(--acc);font-size:1.2rem;font-weight:400;}
+.fold[open] > summary::after{content:"–";}
+.fold .inner{padding:0 1rem 1rem;}
+.cal-wrap{position:relative;overflow-x:auto;}
+.cal{width:100%;border-collapse:collapse;font-size:.82rem;}
+.cal th,.cal td{padding:.45rem .3rem;text-align:center;border-bottom:1px solid var(--line);}
+.cal thead th{font-weight:500;color:var(--muted);font-size:.72rem;line-height:1.2;}
+.cal thead th b{display:block;font-family:var(--serif);color:var(--ink);font-size:.92rem;}
+.cal tbody th{text-align:left;position:sticky;left:0;background:var(--card);min-width:8.5rem;font-weight:400;padding-left:0;}
+.cal tbody th button{background:none;border:0;padding:.2rem 0;font:600 .84rem var(--sans);color:var(--acc);text-align:left;cursor:pointer;}
+.cal .y{color:var(--ok);} .cal .n{color:var(--line);} .cal .q{color:var(--warn);font-weight:700;}
+.cal td small{display:block;font-size:.66rem;color:var(--muted);}
 
 /* ideas */
-.idea{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1.1rem 1rem;scroll-margin-top:4rem;}
-.idea-meta{font-size:.82rem;color:var(--muted);margin:.2rem 0 .5rem;}
-.idea p{color:var(--muted);font-size:.95rem;}
-.idea .inote{font-size:.85rem;color:var(--ink);background:var(--bg2);border-radius:8px;padding:.5rem .7rem;margin-top:.6rem;}
-.stops{list-style:none;counter-reset:s;margin:.8rem 0 .2rem;}
-.stops li{counter-increment:s;position:relative;padding:0 0 .55rem 2.1rem;font-size:.93rem;}
-.stops li::before{content:counter(s);position:absolute;left:0;top:.05rem;width:1.45rem;height:1.45rem;border-radius:50%;background:var(--acc-bg);color:#fff;font:600 .75rem/1.45rem var(--sans);text-align:center;}
-.stops li::after{content:"";position:absolute;left:.7rem;top:1.6rem;bottom:.1rem;width:1px;background:var(--line);}
-.stops li:last-child::after{display:none;}
-.stops button{background:none;border:0;padding:0;font:600 .93rem var(--sans);color:var(--ink);cursor:pointer;text-align:left;}
-.stops small{display:block;color:var(--muted);font-size:.8rem;}
+.ideas{display:grid;gap:.8rem;}
+.idea{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem;scroll-margin-top:4rem;}
+.idea .meta{font-size:.78rem;color:var(--muted);margin:.15rem 0 .45rem;}
+.idea p{color:var(--muted);font-size:.93rem;}
+.idea .route{font-size:.88rem;margin-top:.55rem;line-height:1.7;}
+.idea .route button{background:none;border:0;padding:0;font:600 .88rem var(--sans);color:var(--ink);cursor:pointer;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;}
+.idea .route .sep{color:var(--muted);margin:0 .3rem;}
+.idea .inote{font-size:.8rem;color:var(--warn);margin-top:.4rem;}
+.idea .acts{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.75rem;}
 
 /* mi plan */
-.share-in{background:var(--acc-bg);color:#fff;border-radius:8px;padding:1rem;margin-bottom:1rem;}
-.share-in p{color:rgba(255,255,255,.88);font-size:.92rem;margin:.2rem 0 .7rem;}
-.share-in .btn{border-color:rgba(255,255,255,.4);}
-.pgroup{margin-top:1.4rem;}
-.pgroup h3{font-size:1.15rem;display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;flex-wrap:wrap;}
-.pgroup h3 small{font:400 .8rem var(--sans);color:var(--muted);}
-.pitems{list-style:none;border-top:1px solid var(--line);margin-top:.5rem;}
-.pitem{display:grid;grid-template-columns:1fr auto auto;gap:.1rem .5rem;align-items:center;padding:.6rem 0;border-bottom:1px solid var(--line);}
-.pitem .nm{background:none;border:0;padding:0;font:700 .98rem var(--sans);color:var(--ink);text-align:left;cursor:pointer;}
-.pitem .sub{grid-column:1/-1;font-size:.8rem;color:var(--muted);}
-.pitem .warn{grid-column:1/-1;font-size:.8rem;color:var(--warn);font-weight:600;}
-.pitem select{min-height:40px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:500 .85rem var(--sans);padding:0 .5rem;}
-.pitem .rm{background:none;border:0;color:var(--muted);cursor:pointer;min-width:40px;min-height:40px;font-size:1.15rem;}
-.plan-empty{background:var(--bg2);border-radius:11px;padding:1.1rem 1rem;color:var(--muted);font-size:.93rem;}
-.plan-acts{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:1.4rem;}
+.plan-list{list-style:none;margin-top:.6rem;border-top:1px solid var(--line);}
+.pl{display:flex;align-items:center;gap:.6rem;padding:.55rem 0;border-bottom:1px solid var(--line);background:var(--bg);}
+.pl.dragging{opacity:.95;box-shadow:0 6px 20px rgba(0,0,0,.15);border-radius:8px;position:relative;z-index:5;background:var(--card);}
+.handle{width:40px;height:44px;flex:none;border:0;background:none;color:var(--muted);cursor:grab;touch-action:none;display:flex;align-items:center;justify-content:center;border-radius:8px;}
+.handle svg{width:18px;height:18px;}
+.pl .num{font:600 .8rem var(--sans);color:var(--muted);width:1.2rem;text-align:right;}
+.pl .tx{flex:1;min-width:0;}
+.pl .nm{background:none;border:0;padding:0;font:600 .98rem var(--sans);color:var(--ink);text-align:left;cursor:pointer;}
+.pl .sub{display:block;font-size:.78rem;color:var(--muted);}
+.pl .rm{width:40px;height:44px;border:0;background:none;color:var(--muted);font-size:1.2rem;cursor:pointer;flex:none;}
+.plan-empty{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:1.1rem 1rem;color:var(--muted);font-size:.93rem;}
+.plan-acts{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:1rem;}
+.share-in{background:var(--acc-bg);color:#fff;border-radius:12px;padding:1rem;margin-bottom:1rem;}
+.share-in p{color:rgba(255,255,255,.88);font-size:.9rem;margin:.2rem 0 .7rem;}
+.share-in .btn{border-color:rgba(255,255,255,.45);background:transparent;color:#fff;}
+.share-in .btn.pri{background:#fff;color:#2f4a63;}
 
-/* info */
-.wx{display:flex;gap:1.25rem;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;}
-.wx-t{font-family:var(--serif);font-size:2.3rem;line-height:1;color:var(--acc);flex:none;}
-.wx-d{font-size:.92rem;color:var(--muted);}
-.wx-d b{color:var(--ink);font-weight:600;display:block;}
-.wx-days{display:flex;gap:.2rem 1rem;margin-top:.3rem;flex-wrap:wrap;font-size:.82rem;}
-.infos{display:grid;border-top:1px solid var(--line);margin-top:1.5rem;}
-.info{padding:1rem 0;border-bottom:1px solid var(--line);}
-.info h3{font-size:1.12rem;margin-bottom:.2rem;}
-.info p{color:var(--muted);font-size:.93rem;}
-.info p strong{color:var(--ink);font-weight:600;}
-@media (min-width:760px){.infos{grid-template-columns:1fr 1fr;column-gap:3rem;}}
-.links{display:grid;margin-top:1rem;border-top:1px solid var(--line);}
-.links a{display:flex;justify-content:space-between;gap:1rem;min-height:48px;align-items:center;padding:.6rem 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:500;}
-.links a span{color:var(--muted);font-weight:400;font-size:.88rem;text-align:right;}
-.ext::after{content:" ↗";font-size:.85em;color:var(--muted);}
-@media (min-width:760px){.links{grid-template-columns:1fr 1fr;column-gap:3rem;}}
+/* FAQ */
+.faq{border-top:1px solid var(--line);margin-top:.6rem;}
+.faq details{border-bottom:1px solid var(--line);}
+.faq summary{list-style:none;cursor:pointer;padding:.85rem 0;font:600 1rem var(--sans);display:flex;justify-content:space-between;align-items:center;min-height:52px;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";color:var(--acc);font-size:1.25rem;font-weight:400;}
+.faq details[open] summary::after{content:"–";}
+.faq .a{padding:0 0 1rem;color:var(--muted);font-size:.93rem;display:grid;gap:.5rem;}
+.faq .a strong{color:var(--ink);font-weight:600;}
+.faq .a ul{padding-left:1.1rem;}
+.wx{display:flex;gap:.9rem;align-items:center;}
+.wx-t{font-family:var(--serif);font-size:2rem;line-height:1;color:var(--acc);}
 
-footer{max-width:760px;margin:3.5rem auto 0;padding:1.5rem 1.25rem 5rem;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted);}
-footer p+p{margin-top:.5rem;}
-#themeBtn{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom));z-index:800;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);box-shadow:0 2px 10px rgba(0,0,0,.12);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+footer{max-width:760px;margin:3rem auto 0;padding:1.3rem 1.25rem 5rem;border-top:1px solid var(--line);font-size:.78rem;color:var(--muted);}
+footer p+p{margin-top:.4rem;}
+#themeBtn{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom));z-index:800;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);box-shadow:0 2px 10px rgba(0,0,0,.12);cursor:pointer;display:flex;align-items:center;justify-content:center;}
 #themeBtn svg{width:18px;height:18px;}
-#toast{position:fixed;left:50%;bottom:calc(1.2rem + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:900;background:var(--ink);color:var(--bg);padding:.6rem 1rem;border-radius:99px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .2s;white-space:nowrap;}
+#toast{position:fixed;left:50%;bottom:calc(1.2rem + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:900;background:var(--ink);color:var(--bg);padding:.55rem 1rem;border-radius:99px;font-size:.86rem;opacity:0;pointer-events:none;transition:opacity .2s;white-space:nowrap;}
 #toast.show{opacity:1;}
-@media (max-width:380px){nav.top a{font-size:.84rem;padding:1rem .2rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.pc,#toast{transition:none;}}
 </style>
 </head>
 <body>
-<a class="skip" href="#hoy">Saltar al contenido</a>
+<a class="skip" href="#descubrir">Saltar al contenido</a>
 
 <header id="inicio">
-  <img class="hero-img" alt="Un tranvía de Zúrich bajo las luces de Navidad de la Bahnhofstrasse, de noche"
-       src="img/bahnhofstrasse-navidad-800.webp" srcset="img/bahnhofstrasse-navidad-800.webp 800w, img/bahnhofstrasse-navidad-1600.webp 1600w" sizes="100vw" fetchpriority="high">
+  <img class="hero-img" id="heroImg" alt="" src="img/hero-800.webp" srcset="img/hero-800.webp 800w, img/hero-1600.webp 1600w" sizes="100vw" fetchpriority="high">
   <div class="hero-shade"></div>
   <div class="hero-content">
-    <p class="hero-meta">20–27 de noviembre de 2026</p>
-    <h1 class="hero-h1">Zúrich<em>en Navidad</em></h1>
-    <p class="hero-sub">Una guía de Mike para vuestra semana en Zúrich. Sin programa fijo: elegid vosotros.</p>
-    <div class="hero-ctas">
-      <a class="hero-cta" href="#hoy">¿Qué hacemos esta tarde?
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="hero-cta" href="#lugares">Lugares y mapa
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="hero-cta" href="#ideas">Ideas para una tarde
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </div>
+    <p class="hero-meta" id="heroMeta">20–27 de noviembre de 2026</p>
+    <h1 class="hero-h1">Zúrich <em>en Navidad</em></h1>
+    <p class="hero-sub">La guía de Mike para vuestra semana en Zúrich.</p>
   </div>
-  <span class="hero-credit">Foto: Ralph Hutter / Unsplash</span>
+  <span class="hero-credit" id="heroCredit"></span>
 </header>
 
-<div id="countdown" aria-live="polite"></div>
-
 <nav class="top" aria-label="Secciones">
-  <a href="#hoy">Esta tarde</a>
-  <a href="#lugares">Lugares</a>
+  <a href="#descubrir">Descubrir</a>
   <a href="#ideas">Ideas</a>
-  <a href="#plan">Mi plan<span class="cnt" id="planCnt" aria-label="lugares guardados"></span></a>
-  <a href="#info">Info</a>
+  <a href="#plan">Mi plan<span class="cnt" id="planCnt"></span></a>
 </nav>
 
 <main>
-  <!-- 1 · Esta tarde -->
-  <section class="sec" id="hoy" aria-labelledby="hoyT">
-    <p class="kicker">Para hoy</p>
-    <h2 id="hoyT">¿Qué hacemos <em>esta tarde?</em></h2>
-    <p class="today-ctx" id="todayCtx"></p>
-    <div class="frow" role="group" aria-label="Tiempo disponible" id="tTime"></div>
-    <div class="frow" role="group" aria-label="Tiempo que hace" id="tWx"></div>
-    <div class="picks" id="picks" aria-live="polite"></div>
-    <p class="note" id="todayNote"></p>
-    <div class="xmas">
-      <figure class="banner"><img src="img/mercado-atardecer-800.webp" srcset="img/mercado-atardecer-800.webp 800w, img/mercado-atardecer-1600.webp 1600w" sizes="(min-width:760px) 720px, 100vw" alt="Puestos de un mercado navideño al atardecer, con un abeto iluminado entre los árboles" loading="lazy" decoding="async"><figcaption>Mercado navideño al atardecer · Foto: Seraina Larissa / Unsplash</figcaption></figure>
-      <h3>Navidad: qué está abierto</h3>
-      <div class="cal-wrap"><table class="cal" id="cal"></table></div>
-      <p class="note"><span class="st ok">●</span> abierto, con hora de cierre · <span class="st pend">?</span> pendiente de confirmación · — cerrado</p>
+  <!-- A · Descubrir -->
+  <section class="sec" id="descubrir" aria-labelledby="desT">
+    <h2 id="desT">Descubrir</h2>
+    <p class="lead" id="favLegend"></p>
+
+    <div class="tonight" id="tonight" aria-labelledby="tonT">
+      <h3 id="tonT">Para esta tarde</h3>
+      <p class="ctx" id="tonCtx"></p>
+      <div id="tonRows" aria-live="polite"></div>
     </div>
+
+    <div class="tabs"><div class="frow" role="group" aria-label="Mostrar" id="tabs"></div></div>
+    <div class="frow" role="group" aria-label="Tipo" id="subtabs" style="margin-top:.5rem" hidden></div>
+    <div class="toolbar"><span id="count" aria-live="polite"></span>
+      <span class="acts"><button type="button" id="nearBtn">Cerca de mí</button><button type="button" id="mapBtn" aria-expanded="false" aria-controls="mapbox">Ver mapa</button></span></div>
+    <div class="mapbox" id="mapbox" hidden><div id="map" role="region" aria-label="Mapa de los lugares"></div><div class="legend" id="legend"></div></div>
+    <p class="note" id="tabNote" hidden></p>
+    <div class="plist" id="plist"></div>
+
+    <details class="fold" id="calFold">
+      <summary>Mercados de Navidad: qué abre cada día</summary>
+      <div class="inner"><div class="cal-wrap"><table class="cal" id="cal"></table></div>
+      <p class="note"><span class="st ok">●</span> abierto, con hora de cierre · <span class="st pend">?</span> por confirmar · — cerrado</p></div>
+    </details>
   </section>
 
   <hr class="divider">
 
-  <!-- 2 · Lugares -->
-  <section class="sec" id="lugares" aria-labelledby="lugT">
-    <p class="kicker">Lugares</p>
-    <h2 id="lugT">Todo <em>en el mapa</em></h2>
-    <figure class="banner"><img src="img/zuerich-luftbild-800.webp" srcset="img/zuerich-luftbild-800.webp 800w, img/zuerich-luftbild-1600.webp 1600w" sizes="(min-width:760px) 720px, 100vw" alt="Vista aérea de Zúrich: el Limmat, el Grossmünster, el Fraumünster, San Pedro y el lago con los Alpes al fondo" loading="lazy" decoding="async"><figcaption>El Limmat, el casco antiguo y el lago · Foto: Henrique Ferreira / Unsplash</figcaption></figure>
-    <p class="prose">Empezad por el TOP 10 o por la selección de Mike. El mapa y las fichas muestran siempre lo mismo.</p>
-    <div class="fbar">
-      <div class="frow" role="group" aria-label="Mostrar" id="fCat"></div>
-      <div class="frow" role="group" aria-label="Opciones" id="fOpt"></div>
-    </div>
-    <div class="fcount"><span id="fCount" aria-live="polite"></span><span><button type="button" id="nearBtn">Cerca de mí</button> · <button type="button" id="fReset">Ver todo</button></span></div>
-    <div class="wnote" id="wNote" hidden></div>
-    <div id="map" role="region" aria-label="Mapa interactivo de los lugares"></div>
-    <div class="legend" id="legend"></div>
-    <div class="plist two" id="plist"></div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- 3 · Ideas -->
+  <!-- B · Ideas -->
   <section class="sec" id="ideas" aria-labelledby="ideT">
-    <p class="kicker">Ideas</p>
-    <h2 id="ideT">Ideas para <em>una tarde</em></h2>
-    <p class="prose">Combinaciones que funcionan bien, sin día fijo. Guardad las que os gusten en vuestro plan.</p>
-    <div class="frow" role="group" aria-label="Situación" id="iCtx"></div>
-    <div class="frow" role="group" aria-label="Tiempo disponible" id="iTime"></div>
-    <div class="plist" id="ideaList"></div>
+    <h2 id="ideT">Ideas para una tarde</h2>
+    <p class="lead">Tres planes que funcionan bien. Sin día fijo: elegid vosotros.</p>
+    <div class="ideas" id="ideasTop"></div>
+    <details class="fold" id="ideasMore">
+      <summary id="ideasMoreSum">Más ideas</summary>
+      <div class="inner"><div class="ideas" id="ideasRest"></div></div>
+    </details>
   </section>
 
   <hr class="divider">
 
-  <!-- 4 · Mi plan -->
+  <!-- C · Mi plan -->
   <section class="sec" id="plan" aria-labelledby="plaT">
-    <p class="kicker">Mi plan</p>
-    <h2 id="plaT">Vuestro <em>plan</em></h2>
-    <p class="prose">Con el corazón guardáis lugares e ideas. Aquí podéis asignarles un día si queréis, abrir la ruta en Google Maps y mandar el plan a vuestro compañero por WhatsApp.</p>
+    <h2 id="plaT">Mi plan</h2>
+    <p class="lead">Añadid lugares con <b>+</b>. Ordenadlos arrastrando y abrid la ruta en Google Maps.</p>
     <div id="shareIn"></div>
     <div id="planBody"></div>
     <div class="plan-acts" id="planActs"></div>
-    <p class="note">El plan se guarda en este móvil y funciona sin conexión. El mapa y Google Maps necesitan internet.</p>
   </section>
 
   <hr class="divider">
 
-  <!-- 5 · Info -->
+  <!-- Información práctica (FAQ) -->
   <section class="sec" id="info" aria-labelledby="infoT">
-    <p class="kicker">Información práctica</p>
-    <h2 id="infoT">Conviene <em>saber</em></h2>
-    <div class="wx"><div class="wx-t" id="wxT">–</div><div class="wx-d" id="wxD"><b>El tiempo en Zúrich</b>Cargando…</div></div>
-    <div class="alert" role="note"><strong>Obras en la S10 y la S4</strong><p id="szuNote"></p></div>
-    <div class="infos">
-      <div class="info"><h3>Francos, no euros</h3><p>Se paga en francos suizos (CHF). La tarjeta y el pago sin contacto funcionan casi en todas partes; algunos mercados son solo con tarjeta. La propina está incluida; redondear es un detalle.</p></div>
-      <div class="info"><h3>Transporte público</h3><p>Tranvías, autobuses y trenes son puntuales y frecuentes. <strong>El billete se compra antes de subir</strong> (máquina o app SBB Mobile); hay controles.</p></div>
-      <div class="info"><h3>Zonas ZVV y tren SBB</h3><p>En la ciudad basta un billete ZVV de la <strong>zona 110</strong>. El aeropuerto está en otra zona. Para otras ciudades se compra un billete SBB hasta el destino. Comparad precios antes de comprar un abono o la Zürich Card.</p></div>
-      <div class="info"><h3>Frío y oscuridad</h3><p>Anochece hacia las 16:40 y suele hacer entre 2 y 7 °C, a menudo con niebla. Abrigo, gorro, guantes y calzado cómodo e impermeable: el empedrado del casco antiguo resbala con la lluvia.</p></div>
-      <div class="info"><h3>Domingo</h3><p>Casi todas las tiendas cierran. Abren la estación central y su centro comercial subterráneo, el aeropuerto, muchos cafés, museos y los mercados navideños.</p></div>
-      <div class="info"><h3>Reservar</h3><p>En Adviento, los restaurantes de fondue se llenan. Reservad uno o dos días antes, sobre todo viernes y sábado.</p></div>
-      <div class="info"><h3>Qué probar</h3><p><strong>Fondue</strong> (queso fundido con vino blanco; se acompaña de vino o té), <strong>raclette</strong>, <strong>rösti</strong> (patata rallada y dorada), <strong>Zürcher Geschnetzeltes</strong> (ternera en salsa de nata, el plato de la ciudad), chocolate y los <strong>Luxemburgerli</strong> de Sprüngli. En Adviento: «Tirggel», galletas finas de miel.</p></div>
-      <div class="info"><h3>Enchufes, agua, emergencias</h3><p>Enchufe suizo (tipo J): llevad adaptador. El agua del grifo y de las fuentes es potable. Emergencias <a href="tel:112">112</a>, ambulancia <a href="tel:144">144</a>, policía <a href="tel:117">117</a>.</p></div>
-      <div class="info"><h3>Excursiones más lejos</h3><p>El Rigi Kulm, con vistas alpinas impresionantes, está a unas 1,5–2 horas en tren: fuera del límite de una hora, solo con un día entero y cielo despejado.</p></div>
-      <div class="info"><h3>Sin conexión</h3><p>Añadid la guía a la pantalla de inicio del móvil. Los textos y vuestro plan funcionan sin internet; el mapa, el tiempo y Google Maps no.</p></div>
-    </div>
-    <h3 style="margin-top:2.2rem">Enlaces útiles</h3>
-    <div class="links">
-      <a href="https://www.sbb.ch/en" target="_blank" rel="noopener" class="ext">SBB <span>Trenes y horarios</span></a>
-      <a href="https://www.zvv.ch/" target="_blank" rel="noopener" class="ext">ZVV <span>Transporte de Zúrich</span></a>
-      <a href="https://www.zuerich.com/en" target="_blank" rel="noopener" class="ext">Zürich Tourismus <span>Oficina de turismo</span></a>
-      <a href="https://illuminarium.ch/en" target="_blank" rel="noopener" class="ext">Illuminarium <span>Entradas y horario</span></a>
-      <a href="https://bellevuenoel.ch/" target="_blank" rel="noopener" class="ext">Bellevue Noël <span>Mercado y programa</span></a>
-      <a href="https://polarzauber.ch/en/" target="_blank" rel="noopener" class="ext">Polarzauber <span>Mercado de la estación</span></a>
-      <a href="https://www.kunsthaus.ch/" target="_blank" rel="noopener" class="ext">Kunsthaus <span>Museo de arte</span></a>
-      <a href="https://www.landesmuseum.ch/" target="_blank" rel="noopener" class="ext">Landesmuseum <span>Museo Nacional</span></a>
-      <a href="https://www.lindt-home-of-chocolate.com/" target="_blank" rel="noopener" class="ext">Lindt Home of Chocolate <span>Entradas</span></a>
-      <a href="https://www.szu.ch/de/hb/fahrgaeste-s10/" target="_blank" rel="noopener" class="ext">SZU <span>Obras S10 / Uetliberg</span></a>
+    <h2 id="infoT" style="font-size:1.6rem">Información práctica</h2>
+    <div class="faq">
+      <details><summary>Transporte</summary><div class="a">
+        <p>Tranvías y trenes son puntuales y frecuentes. <strong>El billete se compra antes de subir</strong> (máquina o app SBB Mobile).</p>
+        <p>En la ciudad basta la <strong>zona 110</strong>; el aeropuerto es otra zona. Para otras ciudades, billete SBB hasta el destino. Comparad precios antes de comprar un abono o la Zürich Card.</p>
+        <p><strong>Obras S10 y S4:</strong> <span id="szuNote"></span></p>
+      </div></details>
+      <details><summary>Horarios y domingos</summary><div class="a">
+        <p>El domingo cierran casi todas las tiendas; abren la estación central, el aeropuerto, muchos cafés, museos y los mercados navideños.</p>
+        <p>Museos e iglesias cierran pronto (a menudo a las 17 h). El Kunsthaus abre los jueves hasta las 20 h.</p>
+        <p>Los horarios marcados «por confirmar» aún no estaban publicados: comprobad la web antes de ir.</p>
+      </div></details>
+      <details><summary>Reservas</summary><div class="a">
+        <p>En Adviento, las fondues se llenan: reservad uno o dos días antes, sobre todo viernes y sábado (también la cabaña de fondue del Illuminarium).</p>
+      </div></details>
+      <details><summary>Tiempo y ropa</summary><div class="a">
+        <div class="wx"><div class="wx-t" id="wxT">–</div><div id="wxD">Cargando el tiempo…</div></div>
+        <p>A finales de noviembre: 2–7 °C, a menudo niebla; anochece hacia las 16:40. Abrigo, gorro, guantes y calzado cómodo e impermeable: el empedrado resbala.</p>
+      </div></details>
+      <details><summary>Consejos prácticos</summary><div class="a">
+        <ul>
+          <li>Se paga en <strong>francos suizos</strong>; tarjeta y pago sin contacto casi en todas partes. La propina está incluida.</li>
+          <li>Enchufe suizo (tipo J): llevad adaptador. El agua del grifo y de las fuentes es potable.</li>
+          <li>Qué probar: fondue, raclette, rösti, «Zürcher Geschnetzeltes», chocolate y, en Adviento, los «Tirggel».</li>
+          <li>Emergencias <a href="tel:112">112</a> · ambulancia <a href="tel:144">144</a> · policía <a href="tel:117">117</a>.</li>
+          <li>Añadid la guía a la pantalla de inicio: textos y plan funcionan sin conexión; el mapa no.</li>
+        </ul>
+      </div></details>
+      <details><summary>Enlaces útiles</summary><div class="a">
+        <p><a href="https://www.sbb.ch/en" target="_blank" rel="noopener">SBB</a> · <a href="https://www.zvv.ch/" target="_blank" rel="noopener">ZVV</a> · <a href="https://www.zuerich.com/en" target="_blank" rel="noopener">Zürich Tourismus</a> · <a href="https://illuminarium.ch/en" target="_blank" rel="noopener">Illuminarium</a> · <a href="https://bellevuenoel.ch/" target="_blank" rel="noopener">Bellevue Noël</a> · <a href="https://polarzauber.ch/en/" target="_blank" rel="noopener">Polarzauber</a> · <a href="https://www.kunsthaus.ch/" target="_blank" rel="noopener">Kunsthaus</a> · <a href="https://www.szu.ch/de/hb/fahrgaeste-s10/" target="_blank" rel="noopener">SZU (obras S10)</a></p>
+      </div></details>
     </div>
   </section>
 </main>
 
 <footer>
   <p>Una guía de Mike para sus compañeros. <span id="checked"></span></p>
-  <p>Los horarios marcados como «pendiente de confirmación» aún no estaban publicados; consultad la web oficial antes de ir. Los tiempos de viaje y a pie son aproximados.</p>
-  <p>Fotos: Unsplash (autores en cada imagen). Mapa © colaboradores de OpenStreetMap. Fuentes Fraunces y DM Sans (OFL), Leaflet y Leaflet.markercluster.</p>
+  <p>Fotos: Unsplash (autores en cada imagen). Mapa © colaboradores de OpenStreetMap. Fuentes Fraunces y DM Sans (OFL), Leaflet.</p>
 </footer>
 
 <button id="themeBtn" type="button" aria-label="Cambiar entre modo claro y oscuro">
@@ -399,32 +347,33 @@ footer p+p{margin-top:.5rem;}
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script src="data.js"></script>
-<script src="vendor/leaflet/leaflet.js"></script>
-<script src="vendor/markercluster/leaflet.markercluster.js"></script>
 <script>
 /* ================= utilidades ================= */
+const HERO = { alt:'Callejuela del casco antiguo con estrellas navideñas al anochecer', credit:'Ricardo Gomez Angel / Unsplash', x:'50%', y:'40%' };   // imagen provisional
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const byId = Object.fromEntries(PLACES.map(p => [p.id, p]));
 const ideaById = Object.fromEntries(IDEAS.map(i => [i.id, i]));
 const HB = [47.3779, 8.5403];
 const WD = ['dom','lun','mar','mié','jue','vie','sáb'];
+const MO = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const WDL = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
 const MOL = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const startDate = new Date(TRIP.start + 'T00:00:00');
 const NDAYS = Math.round((new Date(TRIP.end + 'T00:00:00') - startDate) / 864e5) + 1;
 const dayDate = i => new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + i);
 const fmtLong = d => `${WDL[d.getDay()]} ${d.getDate()} de ${MOL[d.getMonth()]}`;
-const fmtShort = d => `${WD[d.getDay()]} ${d.getDate()}`;
 const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const isoShort = s => { const [y,m,d] = s.split('-').map(Number); return `${d} ${MO[m-1]}`; };
 const hh = h => `${Math.floor(h)}:${String(Math.round((h % 1) * 60)).padStart(2,'0')}`;
 const SITE = 'https://mikefaehch.github.io/zuerich/';
 const isLocal = n => !!n && n.startsWith('img/');
 const gSearch = p => p.gmap || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.q));
 const gDir = p => 'https://www.google.com/maps/dir/?api=1&travelmode=transit&' + (p.cat === 'excursion' ? 'origin=' + encodeURIComponent('Zürich HB') + '&' : '') + 'destination=' + encodeURIComponent(p.q);
+const MAXSTOPS = 10;   // límite de Google Maps: origen + 8 paradas + destino
 const gWalk = ids => {
-  const ps = ids.map(id => byId[id]).filter(Boolean).slice(0, 10);
-  if (!ps.length) return '#';
+  const ps = ids.map(id => byId[id]).filter(p => p && p.cat !== 'excursion').slice(0, MAXSTOPS);
+  if (!ps.length) return null;
   if (ps.length === 1) return gDir(ps[0]);
   const w = ps.slice(1, -1);
   return 'https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=' + encodeURIComponent(ps[0].q) +
@@ -433,228 +382,200 @@ const gWalk = ids => {
 const wa = t => 'https://wa.me/?text=' + encodeURIComponent(t);
 const km = (a, b) => { const r = x => x * Math.PI / 180, dLa = r(b[0]-a[0]), dLo = r(b[1]-a[1]);
   const h = Math.sin(dLa/2)**2 + Math.cos(r(a[0])) * Math.cos(r(b[0])) * Math.sin(dLo/2)**2; return 12742 * Math.asin(Math.sqrt(h)); };
-const walkMin = d => Math.max(5, Math.round(d * 1.3 / 4.8 * 60 / 5) * 5);   // línea recta × 1,3 a 4,8 km/h: estimación
+const walkMin = d => Math.max(5, Math.round(d * 1.3 / 4.8 * 60 / 5) * 5);
 const fmtDist = d => d < 1 ? `${Math.round(d * 1000 / 50) * 50} m` : `${d.toFixed(1).replace('.', ',')} km`;
 const minsOf = p => { const m = String(p.dur).match(/([\d,]+)\s*[–-]?\s*[\d,]*\s*(min|h)/); if (!m) return 60; const v = parseFloat(m[1].replace(',', '.')); return m[2] === 'h' ? v * 60 : v; };
-const tipShort = t => { const ps = t.split(/(?<=\.)\s+/); return (ps[0].length < 40 && ps[1] ? ps[0] + ' ' + ps[1] : ps[0]).replace(/\.$/, ''); };
-const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.7 5.9 6.4.7-4.8 4.3 1.4 6.3L12 16.8 6.3 20l1.4-6.3L2.9 9.4l6.4-.7z"/></svg>';
-const POC = (label = 'POC') => `<span class="poc" title="Recomendación personal de Mike">${STAR}${label}<span class="sr"> (recomendación personal de Mike)</span></span>`;
+const sentences = t => String(t).split(/(?<=[.!?»])\s+(?=[A-ZÁÉÍÓÚÑ¿¡«])/);
+const short = (t, n = 2) => sentences(t).slice(0, n).join(' ');
+const rest = (t, n = 2) => sentences(t).slice(n).join(' ');
+const STAR_SVG = '<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.7 5.9 6.4.7-4.8 4.3 1.4 6.3L12 16.8 6.3 20l1.4-6.3L2.9 9.4l6.4-.7z"/></svg>';
+const STAR = STAR_SVG.replace('aria-hidden="true"', 'role="img" aria-label="Favorito de Mike"');
 const ICON = {
   pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
   nav:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg>',
-  map:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>',
-  heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 22l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
   wa:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.2A8.5 8.5 0 1 1 20.5 11.6z"/></svg>',
-  train:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l-2-4M15 21l2-4"/></svg>',
-  card:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h10M7 14h6"/></svg>',
-  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>',
+  grip:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></svg>',
 };
-function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 2400); }
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 2200); }
 const store = {
   get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
   set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
 };
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const scrollTo = el => el && el.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block:'start' });
-function todayIndex(){
-  const n = new Date(); const t = new Date(n.getFullYear(), n.getMonth(), n.getDate());
-  const i = Math.round((t - startDate) / 864e5);
-  return i >= 0 && i < NDAYS ? i : -1;
-}
+function todayIndex(){ const n = new Date(); const t = new Date(n.getFullYear(), n.getMonth(), n.getDate()); const i = Math.round((t - startDate) / 864e5); return i >= 0 && i < NDAYS ? i : -1; }
 
 /* ================= estado ================= */
-const saved = store.get('zh-filter2', {});
-/* plan: [{t:'p'|'i', id, d}]  d = 0 sin día, 1..NDAYS = día de la estancia */
-const loadPlan = () => {
-  const p = store.get('zh-plan', null);
-  if (p) return p.filter(x => (x.t === 'p' ? byId : ideaById)[x.id]);
-  return store.get('zh-favs', []).filter(id => byId[id]).map(id => ({ t:'p', id, d:0 }));   // migración de favoritos antiguos
-};
-const state = {
-  cat: saved.cat || 'top', opts: new Set(saved.opts || []), sub: null, near: null,
-  plan: loadPlan(), tTime: 2, tWx: null, liveWx: null, iCtx: 'todas', iTime: 'todas', incoming: null,
-};
-const savePlan = () => { store.set('zh-plan', state.plan); $('#planCnt').textContent = state.plan.length || ''; };
-const inPlan = (t, id) => state.plan.some(x => x.t === t && x.id === id);
-const saveFilter = () => store.set('zh-filter2', { cat: state.cat, opts: [...state.opts] });
-const CAT_CHIPS = [['top','TOP 10'],['poc','Selección de Mike'],['navidad','Navidad'],['casco','Casco antiguo'],['cultura','Cultura y experiencias'],['gastro','Comer y café'],['excursion','Excursiones'],['todos','Todo']];
-const OPT_CHIPS = [['noche','Abierto por la noche'],['lluvia','Con lluvia'],['gratis','Gratis']];
-const SUB_GASTRO = [['cafe','Café'],['almuerzo','Almuerzo'],['bar','Copas']];
-const TAGL = { cafe:'Café', almuerzo:'Almuerzo', bar:'Copas' };
-const CAT_NOTE = {
-  excursion:'Tiempos de ida aproximados desde Zürich HB; comprobad la conexión del día. Ideales para el fin de semana.',
-  navidad:'La tabla de «Esta tarde» muestra qué está abierto cada día y hasta qué hora.',
-  poc:'Los sitios que Mike recomienda personalmente.',
-};
+/* Mi plan = lista ordenada de ids de lugares. Migración desde versiones anteriores (sin pérdida):
+   zh-plan [{t:'p'|'i', id, d}] → lugares en el mismo orden; las ideas se convierten en sus paradas. zh-favs → lugares. */
+function loadPlan(){
+  const v3 = store.get('zh-plan3', null);
+  if (Array.isArray(v3)) return v3.filter(id => byId[id]);
+  const out = [];
+  const add = id => { if (byId[id] && !out.includes(id)) out.push(id); };
+  const v2 = store.get('zh-plan', null);
+  if (Array.isArray(v2)) v2.forEach(x => x.t === 'i' ? (ideaById[x.id]?.stops || []).forEach(add) : add(x.id));
+  else store.get('zh-favs', []).forEach(add);
+  return out;
+}
+const TABS = [['destacados','Destacados'],['navidad','Navidad'],['favoritos','Mis favoritos'],['comer','Comer y café'],['excursiones','Excursiones'],['todo','Ver todo']];
+const SUBS = [['cafe','Café'],['almuerzo','Almuerzo'],['bar','Copas']];
+const TAB_NOTE = { excursiones:'Tiempos de ida aproximados desde Zürich HB; comprobad la conexión del día.' };
+const state = { tab: store.get('zh-tab', 'destacados'), sub:null, near:null, plan: loadPlan(), incoming:null, liveWx:null };
+if (!TABS.some(t => t[0] === state.tab)) state.tab = 'destacados';
+const savePlan = () => { store.set('zh-plan3', state.plan); $('#planCnt').textContent = state.plan.length ? ' · ' + state.plan.length : ''; };
+const inPlan = id => state.plan.includes(id);
 const PRIO_ORDER = { top:0, muy:1, si:2 };
+const isXmasHighlight = p => p.cat === 'navidad' && (p.prio === 'top' || p.poc);
 
-function matches(p){
-  const c = state.cat;
-  if (c === 'top' && p.prio !== 'top') return false;
-  if (c === 'poc' && !p.poc) return false;
-  if (c === 'casco' && !p.casco) return false;
-  if (c === 'cultura' && !['cultura','experiencia','ver'].includes(p.cat)) return false;
-  if (['navidad','gastro','excursion'].includes(c) && p.cat !== c) return false;
-  if (c === 'gastro' && state.sub && !(p.tags || []).includes(state.sub)) return false;
-  for (const o of state.opts){
-    if (o === 'noche' && !p.night) return false;
-    if (o === 'gratis' && p.free !== true) return false;
-    if (o === 'lluvia' && !p.rain) return false;
+function inTab(p){
+  switch (state.tab){
+    case 'destacados': return p.prio === 'top' || isXmasHighlight(p);
+    case 'navidad': return p.cat === 'navidad';
+    case 'favoritos': return !!p.poc;
+    case 'comer': return p.cat === 'gastro' && (!state.sub || (p.tags || []).includes(state.sub));
+    case 'excursiones': return p.cat === 'excursion';
+    default: return true;
   }
-  return true;
 }
 function visible(){
-  const list = PLACES.filter(matches);
+  const list = PLACES.filter(inTab);
   if (state.near) return list.sort((a, b) => km(state.near, a.ll) - km(state.near, b.ll));
-  return list.sort((a, b) => PRIO_ORDER[a.prio] - PRIO_ORDER[b.prio] || (b.poc?1:0) - (a.poc?1:0));
+  const navFirst = state.tab === 'destacados' ? (a, b) => (b.cat === 'navidad') - (a.cat === 'navidad') : () => 0;
+  return list.sort((a, b) => navFirst(a, b) || PRIO_ORDER[a.prio] - PRIO_ORDER[b.prio] || (b.poc?1:0) - (a.poc?1:0));
 }
 
-/* ================= fichas ================= */
-const freeLabel = p => p.free === true ? 'Gratis' : p.free === 'mixto' ? 'Parte gratis' : p.free === false ? 'De pago' : null;
-const statusLabel = p => p.status === 'ok' ? '<span class="st ok">Confirmado</span>' :
-  p.status === 'sec' ? '<span class="st sec">Según fuente secundaria: confirmar</span>' : '<span class="st pend">Horario pendiente de confirmación</span>';
-const WHEN = { manana:'Mañana', tarde:'Tarde', noche:'Noche' };
-const heartBtn = (t, id, name) => { const on = inPlan(t, id);
-  return `<button class="btn ico" type="button" data-plan="${t}:${id}" aria-pressed="${on}" aria-label="${on ? 'Quitar de mi plan' : 'Guardar en mi plan'}: ${esc(name)}">${ICON.heart}</button>`; };
+/* ================= tarjeta simplificada ================= */
+const statusLabel = p => p.status === 'ok' ? '<span class="st ok">Confirmado</span>' : p.status === 'sec' ? '<span class="st sec">Confirmar antes de ir</span>' : '<span class="st pend">Horario por confirmar</span>';
+const dateRange = p => p.cat !== 'navidad' ? '' : p.open ? ` · ${isoShort(p.open[0])} – ${isoShort(p.open[1])}` : ' · fechas por confirmar';
+const addBtn = p => `<button class="add" type="button" data-plan="${p.id}" aria-pressed="${inPlan(p.id)}" aria-label="${inPlan(p.id) ? 'Quitar de mi plan' : 'Añadir a mi plan'}: ${esc(p.name)}">${inPlan(p.id) ? ICON.check : ICON.plus}</button>`;
 function card(p){
-  const flags = [p.night && 'Por la noche', p.rain && 'Con lluvia', p.free === true && 'Gratis'].filter(Boolean);
-  const tags = (p.tags || []).map(t => `<span class="badge">${TAGL[t]}</span>`).join('');
-  const dist = state.near ? `<span class="dist">a ${fmtDist(km(state.near, p.ll))}</span>` : '';
-  const share = `${p.name}${p.poc ? ' (recomendación de Mike)' : ''}\n${gSearch(p)}\n\nGuía: ${SITE}#p-${p.id}`;
+  const more = rest(p.desc);
+  const share = `${p.name}${p.poc ? ' (favorito de Mike)' : ''}\n${gSearch(p)}\n\nGuía: ${SITE}#p-${p.id}`;
   return `<article class="pc" id="p-${p.id}" aria-labelledby="h-${p.id}">
-    ${isLocal(p.img) ? `<div class="pc-img"><img src="${p.img}-800.webp" srcset="${p.img}-800.webp 800w, ${p.img}-1600.webp 1600w" sizes="(min-width:860px) 520px, 100vw" alt="${esc(p.imgCap)}" loading="lazy" decoding="async"></div><p class="pc-cap">${esc(p.imgCap)} · Foto: ${esc(p.credit)}</p>` : ''}
+    ${isLocal(p.img) ? `<div class="pc-img"><img src="${p.img}-800.webp" srcset="${p.img}-800.webp 800w, ${p.img}-1600.webp 1600w" sizes="(min-width:760px) 360px, 100vw" alt="${esc(p.imgCap)}" loading="lazy" decoding="async" width="800" height="450"></div>` : ''}
     <div class="pc-b">
-      <div class="pc-badges">${p.prio === 'top' ? '<span class="badge top">TOP 10</span>' : p.excTop ? '<span class="badge">Excursión top</span>' : ''}<span class="badge" style="--c:${CATS[p.cat].color}"><i></i>${CATS[p.cat].label}</span>${tags}${dist}</div>
-      <h3 id="h-${p.id}">${esc(p.name)}${p.poc ? POC() : ''}</h3>
-      <p class="pc-desc">${esc(p.desc)}</p>
-      ${p.tip ? `<p class="mtip">${STAR}<span><b>Consejo de Mike:</b> ${esc(p.tip)}</span></p>` : ''}
-      ${flags.length ? `<div class="pc-flags">${flags.map(f => `<span>${f}</span>`).join('')}</div>` : ''}
-      <p class="pc-hours">${esc(p.hours)}<br>${statusLabel(p)}</p>
-      <details>
-        <summary>Más información</summary>
-        <dl>
-          <dt>Duración</dt><dd>${esc(p.dur)}</dd>
-          <dt>Mejor momento</dt><dd>${p.when.map(w => WHEN[w]).join(', ')}</dd>
-          ${freeLabel(p) ? `<dt>Entrada</dt><dd>${freeLabel(p)}</dd>` : ''}
-          <dt>Precio</dt><dd>${esc(p.price)}</dd>
-          <dt>Cómo llegar</dt><dd>${esc(p.ov)}</dd>
-          ${p.weather ? `<dt>Tiempo</dt><dd>${esc(p.weather)}</dd>` : ''}
-          <dt>Dirección</dt><dd>${esc(p.addr)}</dd>
-          ${p.web ? `<dt>Web oficial</dt><dd><a class="ext" href="${p.web}" target="_blank" rel="noopener">${esc(p.web.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,''))}</a></dd>` : ''}
-          ${p.src ? `<dt>Fuente</dt><dd><a class="ext" href="${p.src}" target="_blank" rel="noopener">comprobado el ${TRIP.checked}</a></dd>` : ''}
-        </dl>
-      </details>
-      <div class="pc-act">
-        <a class="btn pri" href="${gSearch(p)}" target="_blank" rel="noopener">${ICON.pin}Abrir en Google Maps</a>
-        <a class="btn" href="${gDir(p)}" target="_blank" rel="noopener">${ICON.nav}Cómo llegar</a>
-        <button class="btn" type="button" data-showmap="${p.id}">${ICON.map}Ver en el mapa</button>
-        ${heartBtn('p', p.id, p.name)}
-        <a class="btn ico" href="${wa(share)}" target="_blank" rel="noopener" aria-label="Compartir ${esc(p.name)} por WhatsApp">${ICON.wa}</a>
+      <p class="pc-cat">${p.prio === 'top' ? '<span class="top">TOP 10</span> · ' : ''}${CATS[p.cat].label}${dateRange(p)}</p>
+      <h3 id="h-${p.id}">${esc(p.name)}${p.poc ? STAR : ''}</h3>
+      <p class="pc-desc">${esc(short(p.desc))}</p>
+      <div class="pc-foot">
+        <a class="btn maps" href="${gSearch(p)}" target="_blank" rel="noopener">${ICON.pin}Google Maps</a>
+        ${addBtn(p)}
       </div>
+      <details><summary>Más información</summary><div class="more">
+        ${p.tip ? `<p class="mtip"><b>Consejo de Mike:</b> ${esc(p.tip)}</p>` : ''}
+        ${more ? `<p>${esc(more)}</p>` : ''}
+        <p><strong>Horario:</strong> ${esc(p.hours)} ${statusLabel(p)}</p>
+        <p><strong>Precio:</strong> ${esc(p.price)} · <strong>Duración:</strong> ${esc(p.dur)}</p>
+        <p><strong>Cómo llegar:</strong> ${esc(p.ov)}</p>
+        <p class="links"><a href="${gDir(p)}" target="_blank" rel="noopener">Cómo llegar en transporte</a><button type="button" data-showmap="${p.id}">Ver en el mapa</button><a href="${wa(share)}" target="_blank" rel="noopener">Compartir por WhatsApp</a>${p.web ? `<a href="${p.web}" target="_blank" rel="noopener">Web oficial</a>` : ''}${p.src ? `<a href="${p.src}" target="_blank" rel="noopener">Fuente (${TRIP.checked})</a>` : ''}</p>
+        ${isLocal(p.img) ? `<p style="font-size:.72rem">Foto: ${esc(p.credit)}</p>` : ''}
+      </div></details>
     </div>
   </article>`;
 }
 
-/* ================= lugares: filtros + lista ================= */
-const chip = (g, v, l, on, color, star) => `<button class="chip" type="button" data-${g}="${v}" aria-pressed="${on}"${color ? ` style="--c:${color}"` : ''}>${color ? '<i></i>' : ''}${star ? STAR : ''}${l}</button>`;
-function renderFilters(){
-  $('#fCat').innerHTML = CAT_CHIPS.map(([v,l]) => chip('cat', v, l, state.cat === v, CATS[v]?.color, v === 'poc')).join('');
-  $('#fOpt').innerHTML = (state.cat === 'gastro' ? SUB_GASTRO.map(([v,l]) => chip('sub', v, l, state.sub === v)).join('') + '<span class="flabel">·</span>' : '') +
-    OPT_CHIPS.map(([v,l]) => chip('opt', v, l, state.opts.has(v))).join('');
+/* ================= descubrir ================= */
+const chip = (g, v, l, on, extra = '') => `<button class="chip${extra}" type="button" data-${g}="${v}" aria-pressed="${on}">${l}</button>`;
+function renderTabs(){
+  $('#tabs').innerHTML = TABS.map(([v,l]) => chip('tab', v, v === 'favoritos' ? l + STAR_SVG : l, state.tab === v)).join('');
+  const st = $('#subtabs'); st.hidden = state.tab !== 'comer';
+  st.innerHTML = SUBS.map(([v,l]) => chip('sub', v, l, state.sub === v, ' sm')).join('');
 }
+const GROUPS = [['navidad','Navidad'],['ver','Casco antiguo y vistas'],['cultura','Cultura'],['experiencia','Experiencias'],['gastro','Comer y café'],['excursion','Excursiones']];
 function renderList(){
   const list = visible();
-  $('#fCount').textContent = (list.length === 1 ? '1 lugar' : `${list.length} lugares`) + (state.near ? ' · por distancia' : '');
-  $('#plist').innerHTML = list.length ? list.map(card).join('') : '<p class="prose">Ningún lugar cumple todos los filtros. Probad a quitar alguno.</p>';
-  const wn = $('#wNote'); wn.hidden = !CAT_NOTE[state.cat]; wn.textContent = CAT_NOTE[state.cat] || '';
-  $('#fReset').disabled = state.cat === 'todos' && !state.opts.size && !state.near && !state.sub;
+  $('#count').textContent = (list.length === 1 ? '1 lugar' : `${list.length} lugares`) + (state.near ? ' · por distancia' : '');
+  const n = $('#tabNote'); n.hidden = !TAB_NOTE[state.tab]; n.textContent = TAB_NOTE[state.tab] || '';
+  if (state.tab === 'todo' && !state.near){
+    $('#plist').innerHTML = GROUPS.map(([c, l]) => { const g = list.filter(p => p.cat === c); return g.length ? `<h3 class="group-h">${l}</h3>` + g.map(card).join('') : ''; }).join('');
+  } else $('#plist').innerHTML = list.map(card).join('');
   $('#nearBtn').textContent = state.near ? 'Quitar distancia' : 'Cerca de mí';
-  renderMarkers(list);
+  if (map) renderMarkers(list);
 }
-function refresh(){ saveFilter(); renderFilters(); renderList(); }
-function showAll(){ state.cat = 'todos'; state.opts.clear(); state.sub = null; state.near = null; meMarker && map && map.removeLayer(meMarker); refresh(); }
+function refresh(){ store.set('zh-tab', state.tab); renderTabs(); renderList(); }
 
-/* ================= mapa ================= */
-let map, cluster, routeLayer, meMarker; const markers = {};
-function initMap(){
-  if (!window.L){ $('#map').innerHTML = '<p class="prose" style="padding:1rem">El mapa necesita conexión a internet.</p>'; return; }
-  map = L.map('map', { scrollWheelZoom:false, fadeAnimation:false }).setView([47.3725, 8.5405], 14);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19,
-    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">colaboradores de OpenStreetMap</a>' }).addTo(map);
-  cluster = L.markerClusterGroup ? L.markerClusterGroup({ maxClusterRadius:36, disableClusteringAtZoom:15, showCoverageOnHover:false, animate:false,
-    iconCreateFunction: c => L.divIcon({ className:'', html:`<div class="cl">${c.getChildCount()}</div>`, iconSize:[34,34], iconAnchor:[17,17] }) }) : L.layerGroup();
-  cluster.addTo(map);
-  routeLayer = L.layerGroup().addTo(map);
-  $('#legend').innerHTML = Object.values(CATS).map(c => `<span style="--c:${c.color}"><i></i>${c.label}</span>`).join('') +
-    `<span>Punto grande: TOP 10</span><span>${POC('POC · Recomendación personal de Mike')}</span>`;
+/* ================= mapa (Leaflet se carga solo al abrirlo) ================= */
+let map, cluster, routeLayer, meMarker, leafletLoading; const markers = {};
+function loadLeaflet(){
+  if (window.L && L.markerClusterGroup) return Promise.resolve();
+  if (leafletLoading) return leafletLoading;
+  const css = h => new Promise(r => { const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = h; l.onload = r; l.onerror = r; document.head.appendChild(l); });
+  const js = s => new Promise((r, j) => { const e = document.createElement('script'); e.src = s; e.onload = r; e.onerror = j; document.head.appendChild(e); });
+  return leafletLoading = Promise.all([css('vendor/leaflet/leaflet.css'), css('vendor/markercluster/MarkerCluster.css')])
+    .then(() => js('vendor/leaflet/leaflet.js')).then(() => js('vendor/markercluster/leaflet.markercluster.js'));
 }
+async function openMap(){
+  const box = $('#mapbox'); box.hidden = false; $('#mapBtn').setAttribute('aria-expanded','true'); $('#mapBtn').textContent = 'Ocultar mapa';
+  if (!map){
+    try{ await loadLeaflet(); }catch(e){ $('#map').innerHTML = '<p class="note" style="padding:1rem">El mapa necesita conexión a internet.</p>'; return; }
+    map = L.map('map', { scrollWheelZoom:false, fadeAnimation:false }).setView([47.3725, 8.5405], 14);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">colaboradores de OpenStreetMap</a>' }).addTo(map);
+    cluster = L.markerClusterGroup({ maxClusterRadius:36, disableClusteringAtZoom:15, showCoverageOnHover:false, animate:false,
+      iconCreateFunction: c => L.divIcon({ className:'', html:`<div class="cl">${c.getChildCount()}</div>`, iconSize:[34,34], iconAnchor:[17,17] }) }).addTo(map);
+    routeLayer = L.layerGroup().addTo(map);
+    $('#legend').innerHTML = Object.values(CATS).map(c => `<span style="--c:${c.color}"><i></i>${c.label}</span>`).join('') + `<span>Punto grande: TOP 10</span><span>${STAR_SVG} Favoritos de Mike</span>`;
+  }
+  map.invalidateSize(); renderMarkers(visible());
+}
+function closeMap(){ $('#mapbox').hidden = true; $('#mapBtn').setAttribute('aria-expanded','false'); $('#mapBtn').textContent = 'Ver mapa'; }
 function popup(p){
   const d = km(HB, p.ll);
-  return `${p.prio === 'top' ? '<span class="badge top" style="font-size:.7rem">TOP 10</span> ' : ''}${p.poc ? POC() : ''}
-    <span class="pn">${esc(p.name)}</span><span class="pd">${p.tip ? '«' + esc(tipShort(p.tip)) + '.» — Mike' : esc(p.desc.split('. ')[0]) + '.'}</span>
-    <span class="pm">${p.cat !== 'excursion' && d < 3 ? `≈ ${walkMin(d)} min a pie desde Zürich HB` : esc(p.ov.split('. ')[0])}</span>
-    <div class="pa"><a href="${gSearch(p)}" target="_blank" rel="noopener">Abrir en Google Maps</a><a href="${gDir(p)}" target="_blank" rel="noopener">Cómo llegar</a>
-    <button class="full" type="button" data-card="${p.id}">Ver ficha</button></div>`;
+  return `<span class="pn">${esc(p.name)}${p.poc ? STAR_SVG : ''}</span><span class="pd">${p.prio === 'top' ? 'TOP 10 · ' : ''}${CATS[p.cat].label}${p.cat !== 'excursion' && d < 3 ? ` · ≈ ${walkMin(d)} min a pie de HB` : ''}</span>
+    <div class="pa"><a href="${gSearch(p)}" target="_blank" rel="noopener">Google Maps</a><button type="button" data-card="${p.id}">Ver ficha</button></div>`;
 }
 function renderMarkers(list){
-  if (!map) return;
   cluster.clearLayers();
   list.forEach(p => {
     const top = p.prio === 'top';
-    const icon = L.divIcon({ className:'', html:`<div class="pinw${top ? ' top' : ''}"><div class="pin" style="--c:${CATS[p.cat].color}"></div>${p.poc ? `<span class="pstar">${STAR}</span>` : ''}</div>`, iconSize:[22,22], iconAnchor:[11,11], popupAnchor:[0,-10] });
-    markers[p.id] = L.marker(p.ll, { icon, title:p.name + (p.poc ? ' (POC)' : ''), alt:p.name, keyboard:true, zIndexOffset: top ? 500 : p.poc ? 300 : 0 })
-      .bindPopup(popup(p), { maxWidth:250, minWidth:210, autoPanPadding:[24,70] });
+    const icon = L.divIcon({ className:'', html:`<div class="pinw${top ? ' top' : ''}"><div class="pin" style="--c:${CATS[p.cat].color}"></div>${p.poc ? `<span class="pstar">${STAR_SVG}</span>` : ''}</div>`, iconSize:[22,22], iconAnchor:[11,11], popupAnchor:[0,-10] });
+    markers[p.id] = L.marker(p.ll, { icon, title:p.name, alt:p.name, keyboard:true, zIndexOffset: top ? 500 : p.poc ? 300 : 0 }).bindPopup(popup(p), { maxWidth:240, minWidth:200, autoPanPadding:[24,70] });
     cluster.addLayer(markers[p.id]);
   });
-  fitTo(list.map(p => p));
-}
-function fitTo(list){
   const far = ['lindt','zauberpark','felsenegg','winterzauber','uetliberg'];
   const city = list.filter(p => p.cat !== 'excursion' && !far.includes(p.id));
-  const pts = (state.cat === 'excursion' || !city.length ? list : city).map(p => p.ll);
+  const pts = (state.tab === 'excursiones' || !city.length ? list : city).map(p => p.ll);
   if (state.near) pts.push(state.near);
-  if (pts.length > 1) map.fitBounds(pts, { padding:[28,28], maxZoom:16, animate:false });
-  else if (pts.length === 1) map.setView(pts[0], 15, { animate:false });
+  if (pts.length > 1) map.fitBounds(pts, { padding:[28,28], maxZoom:16, animate:false }); else if (pts.length) map.setView(pts[0], 15, { animate:false });
 }
-function showOnMap(id){
-  const p = byId[id]; if (!p || !map) return;
-  if (!PLACES.filter(matches).includes(p)) showAll();
-  scrollTo($('#map'));
-  setTimeout(() => { map.invalidateSize(); cluster.zoomToShowLayer ? cluster.zoomToShowLayer(markers[id], () => markers[id].openPopup()) : (map.setView(p.ll, 16, { animate:false }), markers[id].openPopup()); }, reduced() ? 50 : 450);
+async function showOnMap(id){
+  const p = byId[id]; if (!p) return;
+  if (!PLACES.filter(inTab).includes(p)){ state.tab = 'todo'; state.sub = null; refresh(); }
+  await openMap(); scrollTo($('#mapbox'));
+  setTimeout(() => { map.invalidateSize(); cluster.zoomToShowLayer(markers[id], () => markers[id].openPopup()); }, reduced() ? 60 : 450);
 }
-function showStopsOnMap(stops){
-  if (!map) return;
-  routeLayer.clearLayers();
+async function showStops(stops){
+  await openMap(); routeLayer.clearLayers();
   const pts = stops.map(id => byId[id].ll);
   if (pts.length > 1) L.polyline(pts, { color:'#2f4a63', weight:4, opacity:.85, dashArray:'6 8' }).addTo(routeLayer);
   pts.forEach((ll, i) => L.marker(ll, { interactive:false, icon:L.divIcon({ className:'', html:`<div class="cl" style="width:26px;height:26px;font-size:.75rem">${i+1}</div>`, iconSize:[26,26], iconAnchor:[13,13] }) }).addTo(routeLayer));
-  scrollTo($('#map'));
-  setTimeout(() => { map.invalidateSize(); pts.length > 1 ? map.fitBounds(pts, { padding:[40,40], animate:false }) : map.setView(pts[0], 13, { animate:false }); }, reduced() ? 50 : 450);
-  toast('Recorrido marcado en el mapa');
+  scrollTo($('#mapbox'));
+  setTimeout(() => { map.invalidateSize(); pts.length > 1 ? map.fitBounds(pts, { padding:[40,40], animate:false }) : map.setView(pts[0], 13, { animate:false }); }, reduced() ? 60 : 450);
 }
 function openCard(id, instant){
   if (!byId[id]) return;
   let el = document.getElementById('p-' + id);
-  if (!el){ showAll(); el = document.getElementById('p-' + id); }
+  if (!el){ state.tab = 'todo'; state.sub = null; refresh(); el = document.getElementById('p-' + id); }
   map && map.closePopup();
-  if (instant) el.scrollIntoView({ block:'start' }); else scrollTo(el);
+  instant ? el.scrollIntoView({ block:'start' }) : scrollTo(el);
   el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 1800);
   history.replaceState(null, '', '#p-' + id);
 }
 function nearMe(){
-  if (state.near){ state.near = null; meMarker && map.removeLayer(meMarker); refresh(); return; }
+  if (state.near){ state.near = null; meMarker && map && map.removeLayer(meMarker); renderList(); return; }
   if (!navigator.geolocation){ toast('Este navegador no permite la ubicación'); return; }
   toast('Buscando vuestra ubicación…');
   navigator.geolocation.getCurrentPosition(pos => {
     state.near = [pos.coords.latitude, pos.coords.longitude];
     if (map){ meMarker && map.removeLayer(meMarker); meMarker = L.marker(state.near, { interactive:false, icon:L.divIcon({ className:'', html:'<div class="me"></div>', iconSize:[16,16], iconAnchor:[8,8] }) }).addTo(map); }
-    refresh(); toast('Ordenado por distancia');
+    renderList(); toast('Ordenado por distancia');
   }, () => toast('No se pudo obtener la ubicación'), { enableHighAccuracy:true, timeout:10000, maximumAge:60000 });
 }
 
-/* ================= esta tarde ================= */
-const RAIN_CODES = c => (c >= 51 && c <= 67) || (c >= 80 && c <= 82) || c >= 95;
-function todayContext(){
+/* ================= para esta tarde (3 sugerencias compactas) ================= */
+function tonightContext(){
   const now = new Date(), ti = todayIndex();
   if (ti >= 0){
     let d = now, h = now.getHours() + now.getMinutes() / 60, label = 'Hoy';
@@ -663,248 +584,241 @@ function todayContext(){
     else h = Math.max(h, we ? 14 : 17.5);
     return { live:true, date:d, day:d.getDay(), h, label };
   }
-  const d = dayDate(3);
-  return { live:false, date:d, day:d.getDay(), h:18, label:'Ejemplo' };
+  const d = dayDate(3); return { live:false, date:d, day:d.getDay(), h:18 };
 }
 function suggestions(ctx){
-  const avail = state.tTime * 60, rain = (state.tWx || state.liveWx) === 'lluvia';
+  const rain = state.liveWx === 'lluvia';
   const cands = PLACES.filter(p => p.cat !== 'excursion' && p.close && p.close[ctx.day] != null).filter(p => {
     if (p.open && (iso(ctx.date) < p.open[0] || iso(ctx.date) > p.open[1])) return false;
     if (p.closed && p.closed.includes(ctx.day)) return false;
-    return p.close[ctx.day] - ctx.h >= Math.min(minsOf(p) / 60, 1) && minsOf(p) <= avail;
+    return p.close[ctx.day] - ctx.h >= Math.min(minsOf(p) / 60, 1) && minsOf(p) <= 150;
   }).map(p => {
     const d = km(HB, p.ll);
-    let s = { top:3, muy:2, si:0 }[p.prio] + (p.poc ? 1.5 : 0) + (p.cat === 'navidad' ? 1 : 0) - Math.max(0, d - 1.2) * 0.7;
+    let s = { top:3, muy:2, si:0 }[p.prio] + (p.poc ? 1.5 : 0) + (p.cat === 'navidad' ? 1 : 0) - Math.max(0, d - 1.2) * .7;
     if (rain) s += p.rain ? 2 : -3;
     if (p.cat === 'gastro') s -= 1;
     if (ctx.h >= 17 && p.when.includes('noche')) s += 1;
-    if (p.status === 'pend') s -= 4; else if (p.status === 'sec') s -= .5;   // horarios sin confirmar: solo como último recurso
+    if (p.status === 'pend') s -= 4; else if (p.status === 'sec') s -= .5;
     return { p, s, d };
-  }).sort((a, b) => b.s - a.s);
-  const pick = [], cats = {}, pool = [...cands];
-  while (pick.length < 3 && pool.length){
+  });
+  const pick = [], cats = {};
+  while (pick.length < 3 && cands.length){
     let bi = 0, bv = -Infinity;
-    pool.forEach((c, i) => { const v = c.s - (cats[c.p.cat] || 0) * (c.p.cat === 'gastro' ? 9 : 1.6); if (v > bv){ bv = v; bi = i; } });
-    const [c] = pool.splice(bi, 1); pick.push(c); cats[c.p.cat] = (cats[c.p.cat] || 0) + 1;
+    cands.forEach((c, i) => { const v = c.s - (cats[c.p.cat] || 0) * (c.p.cat === 'gastro' ? 9 : 1.6); if (v > bv){ bv = v; bi = i; } });
+    const [c] = cands.splice(bi, 1); pick.push(c); cats[c.p.cat] = (cats[c.p.cat] || 0) + 1;
   }
   return pick;
 }
-function renderToday(){
-  const ctx = todayContext(), wx = state.tWx || state.liveWx;
-  $('#tTime').innerHTML = '<span class="flabel">Tenemos</span>' + [[1,'1 hora'],[2,'2 horas'],[3,'3 horas o más']].map(([v,l]) => chip('ttime', v, l, state.tTime === v)).join('');
-  $('#tWx').innerHTML = '<span class="flabel">Tiempo</span>' + [['seco','Seco'],['lluvia','Llueve']].map(([v,l]) => chip('twx', v, l, wx === v)).join('');
-  $('#todayCtx').textContent = ctx.live
-    ? `${ctx.label}, ${fmtLong(ctx.date)}, a partir de las ${hh(ctx.h)}`
-    : `Vista previa: así funcionará durante vuestra visita. Ejemplo para un lunes a las 18:00, después del trabajo.`;
-  const list = suggestions(ctx);
-  $('#picks').innerHTML = list.length ? list.map(({ p, d }) => {
-    const close = p.close[ctx.day];
-    const why = [
-      close >= 24 ? 'Acceso libre' : `Abierto hasta las ${hh(close)}`,
-      d < 3 ? `≈ ${walkMin(d)} min a pie desde HB` : 'Fuera del centro',
-      esc(p.dur),
-      p.rain && wx === 'lluvia' ? 'A cubierto' : '',
-      p.status !== 'ok' ? '<span class="st pend">Horario por confirmar</span>' : '',
-    ].filter(Boolean);
-    return `<article class="pick"><h3><button type="button" data-card="${p.id}">${esc(p.name)}</button>${p.poc ? POC() : ''}</h3><span class="cat">${CATS[p.cat].label}</span>
-      <p>${p.tip ? '<i>«' + esc(tipShort(p.tip)) + '.»</i> — Mike' : esc(p.desc.split('. ')[0]) + '.'}</p><div class="why">${why.map(w => `<span>${w}</span>`).join('')}</div>
-      <div class="acts"><a class="btn sm pri" href="${gDir(p)}" target="_blank" rel="noopener">${ICON.nav}Cómo llegar</a><button class="btn sm" type="button" data-card="${p.id}">${ICON.card}Ficha</button>${heartBtn('p', p.id, p.name).replace('btn ico','btn ico sm')}</div></article>`;
-  }).join('') : '<p class="prose">A esta hora ya no hay mucho abierto. Un paseo por el Niederdorf iluminado siempre funciona.</p>';
-  $('#todayNote').textContent = `Según los horarios publicados (comprobados el ${TRIP.checked}), la distancia desde Zürich HB y la prioridad; la selección de Mike puntúa algo más y los horarios sin confirmar casi nada.` +
-    (state.liveWx && !state.tWx ? ' El tiempo se toma de datos en vivo.' : ' El tiempo lo elegís vosotros.') + ' Los minutos a pie son estimaciones.';
+function renderTonight(){
+  const ctx = tonightContext();
+  $('#tonCtx').textContent = ctx.live ? `${ctx.label}, a partir de las ${hh(ctx.h)} · según horarios publicados` : 'Vista previa: así será un lunes a las 18:00, después del trabajo.';
+  $('#tonRows').innerHTML = suggestions(ctx).map(({ p, d }) => {
+    const c = p.close[ctx.day];
+    return `<div class="trow"><div class="tx"><button class="nm" type="button" data-card="${p.id}">${esc(p.name)}${p.poc ? STAR : ''}</button>
+      <span class="why">${c >= 24 ? 'Acceso libre' : 'Abierto hasta las ' + hh(c)} · ${d < 3 ? '≈ ' + walkMin(d) + ' min a pie de HB' : 'fuera del centro'}${p.status !== 'ok' ? ' · por confirmar' : ''}</span></div>${addBtn(p)}</div>`;
+  }).join('') || '<p class="note">A esta hora ya no hay mucho abierto. Un paseo por el Niederdorf iluminado siempre funciona.</p>';
 }
 function renderCal(){
-  const xmas = PLACES.filter(p => p.cat === 'navidad'), ti = todayIndex();
+  const xmas = PLACES.filter(p => p.cat === 'navidad');
   const days = Array.from({ length:NDAYS }, (_, i) => dayDate(i));
-  const head = '<tr><th scope="col">20–27 nov</th>' + days.map((d, i) => `<th scope="col"${i === ti ? ' class="today"' : ''}>${WD[d.getDay()]}<b>${d.getDate()}</b></th>`).join('') + '</tr>';
-  const rows = xmas.map(p => '<tr><th scope="row"><button type="button" data-card="' + p.id + '">' + esc(p.name.split(' – ')[0]) + '</button></th>' + days.map(d => {
-    if (!p.open) return '<td><span class="q" aria-label="pendiente de confirmación">?</span></td>';
+  const head = '<tr><th scope="col"></th>' + days.map(d => `<th scope="col">${WD[d.getDay()]}<b>${d.getDate()}</b></th>`).join('') + '</tr>';
+  const rows = xmas.map(p => '<tr><th scope="row"><button type="button" data-card="' + p.id + '">' + esc(p.name.split(' – ')[0].replace('Mercado navideño del ', '')) + '</button></th>' + days.map(d => {
+    if (!p.open) return '<td><span class="q" aria-label="por confirmar">?</span></td>';
     const s = iso(d), on = s >= p.open[0] && s <= p.open[1] && !p.closed.includes(d.getDay());
     if (!on) return '<td><span class="n" aria-label="cerrado">—</span></td>';
     const c = p.close ? p.close[d.getDay()] : null;
-    const lab = p.status === 'pend' ? '<small>?</small>' : c && c < 24 ? `<small>${hh(c)}</small>` : '';
-    return `<td><span class="y" aria-hidden="true">●</span><span class="sr">abierto${c && c < 24 ? ' hasta las ' + hh(c) : ''}</span>${lab}</td>`;
+    return `<td><span class="y" aria-hidden="true">●</span><span class="sr">abierto${c && c < 24 ? ' hasta las ' + hh(c) : ''}</span>${p.status === 'pend' ? '<small>?</small>' : c && c < 24 ? `<small>${hh(c)}</small>` : ''}</td>`;
   }).join('') + '</tr>').join('');
-  $('#cal').innerHTML = `<caption class="sr">Mercados y atracciones navideñas abiertos durante la estancia</caption><thead>${head}</thead><tbody>${rows}</tbody>`;
+  $('#cal').innerHTML = `<caption class="sr">Mercados navideños abiertos del 20 al 27 de noviembre</caption><thead>${head}</thead><tbody>${rows}</tbody>`;
 }
 
 /* ================= ideas ================= */
-const ICTX = [['todas','Todas'],['trabajo','Después del trabajo'],['finde','Fin de semana'],['lluvia','Con lluvia']];
-const ITIME = [['todas','Cualquier duración'],['1h','1 hora'],['2h','2 horas'],['3h','3–4 horas'],['medio','Medio día'],['dia','Día completo']];
-function closesEarly(id){ const c = byId[id].close; return c && c.filter(x => x != null).every(x => x <= 17); }
-function renderIdeas(){
-  $('#iCtx').innerHTML = ICTX.map(([v,l]) => chip('ictx', v, l, state.iCtx === v)).join('');
-  $('#iTime').innerHTML = ITIME.map(([v,l]) => chip('itime', v, l, state.iTime === v)).join('');
-  const list = IDEAS.filter(i => (state.iCtx === 'todas' || i.ctx.includes(state.iCtx)) && (state.iTime === 'todas' || i.time === state.iTime));
-  $('#ideaList').innerHTML = list.map(i => `<article class="idea" id="idea-${i.id}">
-    <h3>${esc(i.title)}</h3>
-    <p class="idea-meta">${esc(i.dur)} · ${i.ctx.map(c => ICTX.find(x => x[0] === c)[1]).join(' · ')}</p>
-    <p>${esc(i.text)}</p>
-    <ol class="stops">${i.startStation ? `<li><span>${esc(i.startStation)}</span><small>En tren desde Zürich HB</small></li>` : ''}${i.stops.map(id => `<li><button type="button" data-card="${id}">${esc(byId[id].name)}${byId[id].poc ? ' ' + POC('') : ''}</button><small>${esc(byId[id].dur)}${closesEarly(id) ? ' · cierra a las ' + hh(Math.max(...byId[id].close.filter(x => x != null))) : ''}</small></li>`).join('')}</ol>
+const TOP_IDEAS = ['casco','bellevue','arte'];
+const CTXL = { trabajo:'Después del trabajo', finde:'Fin de semana', lluvia:'Con lluvia' };
+function ideaHTML(i){
+  const all = i.stops.every(inPlan);
+  const walk = i.transit || i.walkOnly ? gDir(byId[i.stops[0]]) : gWalk(i.stops);
+  return `<article class="idea" id="idea-${i.id}"><h3>${esc(i.title)}</h3>
+    <p class="meta">${esc(i.dur)} · ${i.ctx.map(c => CTXL[c]).join(' · ')}</p>
+    <p>${esc(short(i.text))}</p>
+    <p class="route">${i.stops.map(id => `<button type="button" data-card="${id}">${esc(byId[id].name.split(' (')[0].split(' – ')[0])}</button>${byId[id].poc ? STAR : ''}`).join('<span class="sep">→</span>')}</p>
     ${i.note ? `<p class="inote">${esc(i.note)}</p>` : ''}
-    <div class="pc-act">
-      ${i.transit ? `<a class="btn pri" href="${gDir(byId[i.stops[0]])}" target="_blank" rel="noopener">${ICON.train}Conexión en tren</a>`
-        : i.walkOnly ? `<a class="btn pri" href="${gDir(byId[i.stops[0]])}" target="_blank" rel="noopener">${ICON.nav}Cómo llegar al inicio</a>`
-        : `<a class="btn pri" href="${gWalk(i.stops)}" target="_blank" rel="noopener">${ICON.nav}Ruta a pie</a>`}
-      <button class="btn" type="button" data-stops="${i.stops.join(',')}">${ICON.map}Ver en el mapa</button>
-      ${heartBtn('i', i.id, i.title)}
-      <a class="btn ico" href="${wa(i.title + ': ' + i.stops.map(id => byId[id].name).join(' → ') + '\n' + SITE + '#idea-' + i.id)}" target="_blank" rel="noopener" aria-label="Compartir la idea por WhatsApp">${ICON.wa}</a>
-    </div></article>`).join('') || '<p class="prose">No hay ideas con estos filtros.</p>';
+    <div class="acts"><a class="btn pri" href="${walk}" target="_blank" rel="noopener">${ICON.nav}${i.transit ? 'Conexión' : i.walkOnly ? 'Cómo llegar' : 'Ruta a pie'}</a>
+      <button class="btn" type="button" data-addidea="${i.id}" aria-pressed="${all}">${all ? ICON.check + 'En mi plan' : ICON.plus + 'Añadir al plan'}</button>
+      <button class="btn ghost" type="button" data-stops="${i.stops.join(',')}">Mapa</button></div></article>`;
+}
+function renderIdeas(){
+  $('#ideasTop').innerHTML = TOP_IDEAS.map(id => ideaHTML(ideaById[id])).join('');
+  const others = IDEAS.filter(i => !TOP_IDEAS.includes(i.id));
+  $('#ideasRest').innerHTML = others.map(ideaHTML).join('');
+  $('#ideasMoreSum').textContent = `Más ideas (${others.length})`;
 }
 
-/* ================= mi plan ================= */
-const encodePlan = plan => plan.map(x => (x.t === 'i' ? 'i-' : '') + x.id + '.' + x.d).join('~');
-const decodePlan = s => s.split('~').map(tok => { const m = tok.match(/^(i-)?([a-z0-9]+)\.(\d+)$/); if (!m) return null;
-  const t = m[1] ? 'i' : 'p', id = m[2], d = Math.min(+m[3], NDAYS); return (t === 'p' ? byId : ideaById)[id] ? { t, id, d } : null; }).filter(Boolean);
-const planLink = () => SITE + '#plan=' + encodePlan(state.plan);
-function togglePlan(t, id){
-  const i = state.plan.findIndex(x => x.t === t && x.id === id);
-  if (i >= 0) state.plan.splice(i, 1); else state.plan.push({ t, id, d:0 });
-  savePlan();
-  document.querySelectorAll(`[data-plan="${t}:${id}"]`).forEach(b => { const on = inPlan(t, id); b.setAttribute('aria-pressed', on);
-    b.setAttribute('aria-label', (on ? 'Quitar de mi plan' : 'Guardar en mi plan') + ': ' + (t === 'p' ? byId[id].name : ideaById[id].title)); });
-  renderPlan(); toast(inPlan(t, id) ? 'Guardado en «Mi plan»' : 'Quitado de «Mi plan»');
-}
-function itemStops(x){ return x.t === 'p' ? [x.id] : ideaById[x.id].stops; }
-function warnings(x){
-  if (!x.d) return [];
-  const dt = dayDate(x.d - 1), dow = dt.getDay(), we = dow === 0 || dow === 6, out = [];
-  itemStops(x).forEach(id => { const p = byId[id];
-    if (p.closed && p.closed.includes(dow) || (p.close && p.close[dow] == null)) out.push(`${p.name}: cerrado el ${WDL[dow]}`);
-    else if (!we && p.close && p.close[dow] <= 17) out.push(`${p.name} cierra a las ${hh(p.close[dow])}`);
-    if (p.open && (iso(dt) < p.open[0] || iso(dt) > p.open[1])) out.push(`${p.name}: no abre ese día`);
+/* ================= mi plan: lista simple, ordenable ================= */
+const encodePlan = plan => plan.join('~');
+function decodePlan(s){
+  const out = [];
+  s.split('~').forEach(tok => {
+    const m = tok.match(/^(i-)?([a-z0-9-]+?)(?:\.\d+)?$/); if (!m) return;      // admite también enlaces antiguos «id.día» e «i-idea»
+    const ids = m[1] ? (ideaById[m[2]]?.stops || []) : [m[2]];
+    ids.forEach(id => { if (byId[id] && !out.includes(id)) out.push(id); });
   });
-  return [...new Set(out)];
+  return out;
+}
+const planLink = () => SITE + '#plan=' + encodePlan(state.plan);
+function syncAddButtons(){
+  document.querySelectorAll('[data-plan]').forEach(b => { const id = b.dataset.plan, on = inPlan(id);
+    b.setAttribute('aria-pressed', on); b.setAttribute('aria-label', (on ? 'Quitar de mi plan' : 'Añadir a mi plan') + ': ' + byId[id].name); b.innerHTML = on ? ICON.check : ICON.plus; });
+  document.querySelectorAll('[data-addidea]').forEach(b => { const all = ideaById[b.dataset.addidea].stops.every(inPlan);
+    b.setAttribute('aria-pressed', all); b.innerHTML = all ? ICON.check + 'En mi plan' : ICON.plus + 'Añadir al plan'; });
+}
+function togglePlace(id){
+  const i = state.plan.indexOf(id);
+  i >= 0 ? state.plan.splice(i, 1) : state.plan.push(id);
+  savePlan(); syncAddButtons(); renderPlan();
+  toast(inPlan(id) ? 'Añadido a «Mi plan»' : 'Quitado de «Mi plan»');
+}
+function toggleIdea(iid){
+  const stops = ideaById[iid].stops, all = stops.every(inPlan);
+  if (all) state.plan = state.plan.filter(id => !stops.includes(id)); else stops.forEach(id => { if (!inPlan(id)) state.plan.push(id); });
+  savePlan(); syncAddButtons(); renderPlan(); toast(all ? 'Idea quitada de «Mi plan»' : 'Idea añadida a «Mi plan»');
 }
 function renderPlan(){
-  const sel = x => `<select data-day="${x.t}:${x.id}" aria-label="Día para ${esc(x.t === 'p' ? byId[x.id].name : ideaById[x.id].title)}">
-      <option value="0"${!x.d ? ' selected' : ''}>Sin día</option>${Array.from({ length:NDAYS }, (_, i) => `<option value="${i+1}"${x.d === i + 1 ? ' selected' : ''}>${fmtShort(dayDate(i))}</option>`).join('')}</select>`;
-  const itemHTML = x => {
-    const isIdea = x.t === 'i', o = isIdea ? ideaById[x.id] : byId[x.id];
-    const sub = isIdea ? `Idea · ${o.dur} · ${o.stops.length} paradas` : `${CATS[o.cat].label} · ${o.dur}`;
-    return `<li class="pitem"><button class="nm" type="button" ${isIdea ? `data-goidea="${x.id}"` : `data-card="${x.id}"`}>${esc(isIdea ? o.title : o.name)}${!isIdea && o.poc ? ' ' + POC('') : ''}</button>
-      ${sel(x)}<button class="rm" type="button" data-plan="${x.t}:${x.id}" aria-label="Quitar ${esc(isIdea ? o.title : o.name)}">×</button>
-      <span class="sub">${esc(sub)}</span>${warnings(x).map(w => `<span class="warn">${esc(w)}</span>`).join('')}</li>`;
-  };
-  if (!state.plan.length){
-    $('#planBody').innerHTML = '<div class="plan-empty">Todavía no hay nada guardado. Tocad el corazón en un lugar o en una idea y aparecerá aquí.</div>';
-    $('#planActs').innerHTML = ''; savePlan(); return;
-  }
-  const groups = [];
-  for (let d = 1; d <= NDAYS; d++){ const items = state.plan.filter(x => x.d === d); if (items.length) groups.push([d, items]); }
-  const undated = state.plan.filter(x => !x.d);
-  const groupHTML = (title, items, d) => {
-    const stops = [...new Set(items.flatMap(itemStops))].filter(id => byId[id].cat !== 'excursion');
-    return `<div class="pgroup"><h3>${title}<small>${items.length} ${items.length === 1 ? 'elemento' : 'elementos'}</small></h3><ul class="pitems">${items.map(itemHTML).join('')}</ul>
-      ${d && stops.length ? `<div class="pc-act"><a class="btn sm" href="${gWalk(stops)}" target="_blank" rel="noopener">${ICON.nav}Ruta a pie de este día</a><button class="btn sm" type="button" data-stops="${stops.join(',')}">${ICON.map}Ver en el mapa</button></div>` : ''}</div>`;
-  };
-  $('#planBody').innerHTML = groups.map(([d, items]) => groupHTML(fmtLong(dayDate(d - 1)).replace(/^./, c => c.toUpperCase()), items, d)).join('') +
-    (undated.length ? groupHTML('Sin día', undated, 0) : '');
-  const text = 'Nuestro plan para Zúrich:\n' + [...groups.map(([d, items]) => fmtShort(dayDate(d - 1)) + ': ' + items.map(x => x.t === 'p' ? byId[x.id].name : ideaById[x.id].title).join(', ')),
-    ...(undated.length ? ['Sin día: ' + undated.map(x => x.t === 'p' ? byId[x.id].name : ideaById[x.id].title).join(', ')] : [])].join('\n') + '\n\nAbrir el plan: ' + planLink();
-  $('#planActs').innerHTML = `<a class="btn pri" href="${wa(text)}" target="_blank" rel="noopener">${ICON.wa}Enviar el plan por WhatsApp</a>
-    <button class="btn" type="button" data-copyplan>${ICON.link}Copiar enlace</button>
-    <button class="btn" type="button" data-clearplan>Vaciar</button>`;
   savePlan();
+  if (!state.plan.length){
+    $('#planBody').innerHTML = '<div class="plan-empty">Todavía está vacío. Tocad <b>+</b> en cualquier lugar o «Añadir al plan» en una idea.</div>';
+    $('#planActs').innerHTML = ''; return;
+  }
+  $('#planBody').innerHTML = `<ol class="plan-list" id="planList">${state.plan.map((id, i) => { const p = byId[id];
+    const early = p.close && p.close.filter(x => x != null).every(x => x <= 17) ? ` · cierra a las ${hh(Math.max(...p.close.filter(x => x != null)))}` : '';
+    return `<li class="pl" data-id="${id}"><button class="handle" type="button" aria-label="Mover ${esc(p.name)} (flechas arriba y abajo)">${ICON.grip}</button><span class="num">${i+1}</span>
+      <span class="tx"><button class="nm" type="button" data-card="${id}">${esc(p.name)}${p.poc ? STAR : ''}</button><span class="sub">${CATS[p.cat].label} · ${esc(p.dur)}${early}</span></span>
+      <button class="rm" type="button" data-plan="${id}" aria-label="Quitar ${esc(p.name)}">×</button></li>`; }).join('')}</ol>`;
+  const walkIds = state.plan.filter(id => byId[id].cat !== 'excursion');
+  const route = gWalk(walkIds);
+  const text = 'Nuestro plan para Zúrich:\n' + state.plan.map((id, i) => `${i+1}. ${byId[id].name}`).join('\n') + (route ? '\n\nRuta a pie: ' + route : '') + '\n\nAbrir el plan: ' + planLink();
+  $('#planActs').innerHTML = `${route ? `<a class="btn pri" href="${route}" target="_blank" rel="noopener">${ICON.nav}Abrir ruta en Google Maps</a>` : ''}
+    <a class="btn" href="${wa(text)}" target="_blank" rel="noopener">${ICON.wa}Compartir por WhatsApp</a>
+    <button class="btn ghost" type="button" data-clearplan>Vaciar</button>
+    ${walkIds.length > MAXSTOPS ? `<p class="note" style="width:100%">Google Maps admite como máximo ${MAXSTOPS} paradas: la ruta usa las ${MAXSTOPS} primeras.</p>` : walkIds.length > 4 ? '<p class="note" style="width:100%">En el móvil, Google Maps a veces muestra solo algunas paradas intermedias.</p>' : ''}`;
+  initDrag();
+}
+/* arrastrar con el dedo o el ratón (Pointer Events) + flechas del teclado */
+function initDrag(){
+  const list = $('#planList'); if (!list) return;
+  list.querySelectorAll('.handle').forEach(h => {
+    h.addEventListener('pointerdown', e => {
+      if (e.button > 0) return;
+      const li = h.closest('.pl'); e.preventDefault(); li.classList.add('dragging');
+      // escuchamos en window: mover el elemento en el DOM rompería la captura del puntero
+      const move = ev => {
+        ev.preventDefault();
+        const sibs = [...list.children].filter(x => x !== li);
+        const after = sibs.find(s => { const r = s.getBoundingClientRect(); return ev.clientY < r.top + r.height / 2; }) || null;
+        if (li.nextElementSibling !== after) list.insertBefore(li, after);
+      };
+      const up = () => { window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up);
+        li.classList.remove('dragging'); commitOrder(li.dataset.id); };
+      window.addEventListener('pointermove', move, { passive:false }); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
+    });
+    h.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return; e.preventDefault();
+      const id = h.closest('.pl').dataset.id, i = state.plan.indexOf(id), j = e.key === 'ArrowUp' ? i - 1 : i + 1;
+      if (j < 0 || j >= state.plan.length) return;
+      [state.plan[i], state.plan[j]] = [state.plan[j], state.plan[i]]; renderPlan();
+      document.querySelector(`.pl[data-id="${id}"] .handle`)?.focus(); toast(`Posición ${j + 1}`);
+    });
+  });
+}
+function commitOrder(focusId){
+  const order = [...$('#planList').children].map(li => li.dataset.id);
+  if (order.join() === state.plan.join()) return;
+  state.plan = order; renderPlan(); document.querySelector(`.pl[data-id="${focusId}"] .handle`)?.focus();
 }
 function renderIncoming(){
   const inc = state.incoming;
   if (!inc){ $('#shareIn').innerHTML = ''; return; }
-  const names = inc.map(x => x.t === 'p' ? byId[x.id].name : ideaById[x.id].title);
   $('#shareIn').innerHTML = `<div class="share-in" role="region" aria-label="Plan compartido"><strong>Os han compartido un plan</strong>
-    <p>${inc.length} ${inc.length === 1 ? 'elemento' : 'elementos'}: ${esc(names.slice(0, 5).join(', '))}${names.length > 5 ? '…' : ''}</p>
-    <div class="pc-act" style="margin-top:0"><button class="btn pri" type="button" data-inc="replace" style="background:#fff;color:#2f4a63">Usar este plan</button>
-    <button class="btn" type="button" data-inc="merge" style="background:transparent;color:#fff">Añadir al mío</button>
-    <button class="btn" type="button" data-inc="ignore" style="background:transparent;color:#fff">Ignorar</button></div></div>`;
+    <p>${inc.length} ${inc.length === 1 ? 'lugar' : 'lugares'}: ${esc(inc.slice(0, 5).map(id => byId[id].name).join(', '))}${inc.length > 5 ? '…' : ''}</p>
+    <div class="plan-acts" style="margin-top:0"><button class="btn pri" type="button" data-inc="replace">Usar este plan</button><button class="btn" type="button" data-inc="merge">Añadir al mío</button><button class="btn" type="button" data-inc="ignore">Ignorar</button></div></div>`;
 }
 
-/* ================= tiempo, cuenta atrás, navegación, tema ================= */
+/* ================= tiempo en vivo, navegación, tema ================= */
+const RAIN = c => (c >= 51 && c <= 67) || (c >= 80 && c <= 82) || c >= 95;
 const WMO = c => c===0?'despejado':c<=2?'algo nuboso':c===3?'cubierto':c<=48?'niebla':c<=57?'llovizna':c<=67?'lluvia':c<=77?'nieve':c<=82?'chubascos':c<=86?'chubascos de nieve':'tormenta';
 async function weather(){
   try{
-    const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${HB[0]}&longitude=${HB[1]}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FZurich&forecast_days=4`);
-    if (!r.ok) throw 0;
-    const w = await r.json();
+    const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${HB[0]}&longitude=${HB[1]}&current=temperature_2m,weather_code&timezone=Europe%2FZurich`);
+    if (!r.ok) throw 0; const w = await r.json();
     $('#wxT').textContent = Math.round(w.current.temperature_2m) + '°';
-    const days = w.daily.time.slice(1).map((t, i) => { const d = new Date(t + 'T12:00:00');
-      return `<span>${WD[d.getDay()]} ${Math.round(w.daily.temperature_2m_min[i+1])}–${Math.round(w.daily.temperature_2m_max[i+1])}°, ${WMO(w.daily.weather_code[i+1])}</span>`; }).join('');
-    $('#wxD').innerHTML = `<b>Ahora en Zúrich: ${WMO(w.current.weather_code)}</b><div class="wx-days">${days}</div><small>Datos en vivo de Open-Meteo</small>`;
-    if (todayIndex() >= 0){ state.liveWx = RAIN_CODES(w.current.weather_code) ? 'lluvia' : 'seco'; renderToday(); }
-  }catch(e){
-    $('#wxT').textContent = '–';
-    $('#wxD').innerHTML = '<b>Sin datos del tiempo en este momento</b>Para la previsión, consultad meteoswiss.admin.ch.';
-  }
+    $('#wxD').textContent = `Ahora en Zúrich: ${WMO(w.current.weather_code)} (datos en vivo de Open-Meteo).`;
+    if (todayIndex() >= 0){ state.liveWx = RAIN(w.current.weather_code) ? 'lluvia' : 'seco'; renderTonight(); }
+  }catch(e){ $('#wxD').textContent = 'Sin datos del tiempo ahora. Previsión: meteoswiss.admin.ch'; }
 }
-function countdown(){
+function heroMeta(){
   const now = new Date(), ti = todayIndex(), end = dayDate(NDAYS);
-  if (ti >= 0) $('#countdown').innerHTML = `¡Bienvenidos a Zúrich! · Día <b>${ti+1}</b> de ${NDAYS}`;
-  else if (now >= end) $('#countdown').textContent = 'Gracias por la visita. ¡Hasta la próxima!';
-  else { const d = Math.ceil((startDate - now) / 864e5); $('#countdown').innerHTML = `Llegada el ${fmtLong(startDate)} · faltan <b>${d}</b> ${d === 1 ? 'día' : 'días'}`; }
+  const base = '20–27 de noviembre de 2026';
+  if (ti >= 0) $('#heroMeta').textContent = `¡Bienvenidos! · día ${ti+1} de ${NDAYS}`;
+  else if (now < startDate){ const d = Math.ceil((startDate - now) / 864e5); $('#heroMeta').textContent = `${base} · faltan ${d} ${d === 1 ? 'día' : 'días'}`; }
+  else $('#heroMeta').textContent = base;
 }
 function navSpy(){
   const links = [...document.querySelectorAll('nav.top a')];
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) links.forEach(a => { const on = a.getAttribute('href') === '#' + e.target.id; a.classList.toggle('on', on); on ? a.setAttribute('aria-current','true') : a.removeAttribute('aria-current'); });
-  }), { rootMargin:'-45% 0px -50% 0px' });
-  links.forEach(a => { const s = document.querySelector(a.getAttribute('href')); s && io.observe(s); });
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => { const on = a.getAttribute('href') === '#' + e.target.id; a.classList.toggle('on', on); on ? a.setAttribute('aria-current','true') : a.removeAttribute('aria-current'); }); }), { rootMargin:'-40% 0px -55% 0px' });
+  ['descubrir','ideas','plan'].forEach(id => io.observe(document.getElementById(id)));
 }
 function theme(){
   const root = document.documentElement, t = store.get('zh-theme', null);
   if (t) root.dataset.theme = t;
-  $('#themeBtn').onclick = () => {
-    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    root.dataset.theme = dark ? 'light' : 'dark'; store.set('zh-theme', root.dataset.theme);
-  };
+  $('#themeBtn').onclick = () => { const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark'; store.set('zh-theme', root.dataset.theme); };
 }
 
 /* ================= eventos ================= */
-document.addEventListener('click', async e => {
+document.addEventListener('click', e => {
   const t = e.target.closest('button, a'); if (!t) return;
   const ds = t.dataset;
-  if (ds.cat){ state.cat = ds.cat; state.sub = null; refresh(); }
+  if (ds.tab){ state.tab = ds.tab; state.sub = null; refresh(); }
   else if (ds.sub){ state.sub = state.sub === ds.sub ? null : ds.sub; refresh(); }
-  else if (ds.opt){ state.opts.has(ds.opt) ? state.opts.delete(ds.opt) : state.opts.add(ds.opt); refresh(); }
-  else if (t.id === 'fReset'){ showAll(); }
+  else if (t.id === 'mapBtn'){ $('#mapbox').hidden ? openMap() : closeMap(); }
   else if (t.id === 'nearBtn'){ nearMe(); }
   else if (ds.showmap){ showOnMap(ds.showmap); }
   else if (ds.card){ e.preventDefault(); openCard(ds.card); }
-  else if (ds.plan){ const [tp, id] = ds.plan.split(':'); togglePlan(tp, id); }
-  else if (ds.stops){ showStopsOnMap(ds.stops.split(',')); }
-  else if (ds.goidea){ state.iCtx = 'todas'; state.iTime = 'todas'; renderIdeas(); scrollTo(document.getElementById('idea-' + ds.goidea)); }
-  else if (ds.ttime){ state.tTime = +ds.ttime; renderToday(); }
-  else if (ds.twx){ state.tWx = (state.tWx || state.liveWx) === ds.twx ? null : ds.twx; renderToday(); }
-  else if (ds.ictx){ state.iCtx = ds.ictx; renderIdeas(); }
-  else if (ds.itime){ state.iTime = ds.itime; renderIdeas(); }
-  else if (ds.copyplan !== undefined){ try{ await navigator.clipboard.writeText(planLink()); toast('Enlace copiado'); }catch(err){ prompt('Copiad este enlace:', planLink()); } }
-  else if (ds.clearplan !== undefined){ if (confirm('¿Vaciar todo el plan?')){ state.plan = []; savePlan(); document.querySelectorAll('[data-plan]').forEach(b => b.setAttribute('aria-pressed','false')); renderPlan(); } }
+  else if (ds.plan){ togglePlace(ds.plan); }
+  else if (ds.addidea){ toggleIdea(ds.addidea); }
+  else if (ds.stops){ showStops(ds.stops.split(',')); }
+  else if (ds.clearplan !== undefined){ if (confirm('¿Vaciar «Mi plan»?')){ state.plan = []; savePlan(); syncAddButtons(); renderPlan(); } }
   else if (ds.inc){
     if (ds.inc === 'replace') state.plan = state.incoming;
-    if (ds.inc === 'merge') state.incoming.forEach(x => { const f = state.plan.find(y => y.t === x.t && y.id === x.id); f ? (f.d = f.d || x.d) : state.plan.push(x); });
+    if (ds.inc === 'merge') state.incoming.forEach(id => { if (!inPlan(id)) state.plan.push(id); });
     if (ds.inc !== 'ignore') toast('Plan actualizado');
-    state.incoming = null; history.replaceState(null, '', '#plan'); savePlan(); renderIncoming(); renderPlan(); renderList(); renderIdeas(); renderToday();
+    state.incoming = null; history.replaceState(null, '', '#plan'); savePlan(); syncAddButtons(); renderIncoming(); renderPlan();
   }
 });
-document.addEventListener('change', e => {
-  const s = e.target.closest('select[data-day]'); if (!s) return;
-  const [tp, id] = s.dataset.day.split(':'); const x = state.plan.find(y => y.t === tp && y.id === id);
-  if (x){ x.d = +s.value; savePlan(); renderPlan(); const again = document.querySelector(`select[data-day="${tp}:${id}"]`); again && again.focus(); }
-});
 
-/* ================= inicio ================= */
+/* ================= enlaces profundos (incluidos los antiguos) ================= */
+const ALIAS = { '#hoy':'#descubrir', '#lugares':'#descubrir', '#mapa':'#descubrir', '#esencial':'#descubrir', '#seleccion':'#descubrir', '#navidad':'#calFold', '#rutas':'#ideas', '#semana':'#ideas', '#excursiones':'#descubrir', '#comer':'#descubrir', '#bienvenida':'#descubrir' };
 function handleHash(instant){
-  const h = decodeURIComponent(location.hash);
-  if (h.startsWith('#plan=')){ const inc = decodePlan(h.slice(6)); if (inc.length){ state.incoming = inc; renderIncoming(); setTimeout(() => document.getElementById('plan').scrollIntoView(), 60); } return; }
+  let h = decodeURIComponent(location.hash);
+  if (h.startsWith('#plan=')){ const inc = decodePlan(h.slice(6)); if (inc.length){ state.incoming = inc; renderIncoming(); setTimeout(() => $('#plan').scrollIntoView(), 60); } return; }
   if (h.startsWith('#p-') && byId[h.slice(3)]) return setTimeout(() => openCard(h.slice(3), instant), 60);
-  if (h.startsWith('#idea-') && ideaById[h.slice(6)]) return setTimeout(() => document.getElementById(h.slice(1))?.scrollIntoView(), 60);
+  if (h.startsWith('#idea-') && ideaById[h.slice(6)]){ if (!TOP_IDEAS.includes(h.slice(6))) $('#ideasMore').open = true; return setTimeout(() => document.getElementById(h.slice(1))?.scrollIntoView(), 60); }
+  if (h === '#mapa') openMap();
+  if (h === '#comer'){ state.tab = 'comer'; refresh(); }
+  if (h === '#excursiones'){ state.tab = 'excursiones'; refresh(); }
+  if (h === '#navidad') $('#calFold').open = true;
+  h = ALIAS[h] || h;
   if (h.length > 1 && document.querySelector(h)) setTimeout(() => document.querySelector(h).scrollIntoView(), 60);
 }
+
+/* ================= inicio ================= */
 (function init(){
+  const hi = $('#heroImg'); hi.alt = HERO.alt; hi.style.setProperty('--hx', HERO.x); hi.style.setProperty('--hy', HERO.y); $('#heroCredit').textContent = HERO.credit ? 'Foto: ' + HERO.credit : '';
+  $('#favLegend').innerHTML = `Lo mejor de Zúrich en Navidad. ${STAR_SVG}<b>Favoritos de Mike</b>: sus recomendaciones personales.`;
   $('#szuNote').textContent = SZU_NOTE;
   $('#checked').textContent = `Datos comprobados por última vez el ${TRIP.checked}.`;
-  theme(); countdown(); setInterval(countdown, 60000);
-  renderToday(); renderCal();
-  initMap(); refresh();
-  renderIdeas(); renderPlan(); renderIncoming();
+  theme(); heroMeta();
+  renderTonight(); refresh(); renderCal(); renderIdeas(); renderPlan(); renderIncoming();
   weather(); navSpy();
   handleHash(true);
   window.addEventListener('hashchange', () => handleHash(false));
