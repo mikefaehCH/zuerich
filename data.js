@@ -116,7 +116,8 @@ const PLACES = [
     addr:'Lindenhof, 8001 Zürich', ll:[47.3730,8.5410], q:'Lindenhof Zürich',
     web:null, dur:'20–30 min', when:['manana','tarde'], rain:false, night:true, free:true, warm:false, view:true,
     ov:'10 minutos a pie desde Zürich HB',
-    hours:'Plaza pública, siempre abierta. Lo más bonito: de día o al atardecer.', price:'Gratis.', status:'ok', src:null, img:null },
+    hours:'Plaza pública, siempre abierta. Lo más bonito: de día o al atardecer.', price:'Gratis.', status:'ok', src:null,
+    img:'img/lindenhof-blick', imgCap:'Desde el muro del Lindenhof: el Limmat y las torres del Grossmünster', credit:'Unsplash' },
 
   { id:'grossmunster', name:'Grossmünster', cat:'ver', prio:'top', casco:true,
     desc:'Las dos torres son el símbolo de Zúrich. Aquí empezó la Reforma protestante suiza con Zwinglio. Sube los casi 190 escalones de la torre Karlsturm para tener la ciudad entera a tus pies.',
@@ -125,7 +126,7 @@ const PLACES = [
     ov:'Tranvía hasta Helmhaus o 15 min a pie desde Zürich HB',
     hours:'Nov–feb: lun–sáb 10–17 h; domingo, después del oficio. Entre semana cierra antes de que salgáis del trabajo: mejor el fin de semana.',
     price:'Iglesia gratis. Torre Karlsturm: CHF 5.', status:'ok', src:'https://www.zuerich.com/de/besuchen/sehenswuerdigkeiten/grossmuenster',
-    img:'Zürich view Quaibrücke 20200702.jpg', imgCap:'El Limmat y el Grossmünster desde el puente Quaibrücke' },
+    img:'img/grossmuenster-alpen', imgCap:'Las torres del Grossmünster con los Alpes al fondo', credit:'Unsplash' },
 
   { id:'fraumunster', name:'Fraumünster', cat:'ver', prio:'muy', casco:true,
     desc:'La iglesia de la torre verde y esbelta. Dentro, cinco vidrieras de Marc Chagall que llenan el coro de azul y verde. Impresiona incluso sin ser religioso.',

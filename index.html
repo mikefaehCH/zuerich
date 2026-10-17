@@ -51,7 +51,7 @@ img{display:block;max-width:100%;}
 
 /* ---------- HERO ---------- */
 #inicio{position:relative;min-height:92svh;display:flex;align-items:flex-end;padding:0 1.25rem;overflow:hidden;background:#1d2a33;}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 40%;}
 .hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,16,22,.2) 0%,rgba(10,16,22,.35) 40%,rgba(10,16,22,.85) 100%);}
 .hero-content{position:relative;z-index:2;width:100%;max-width:760px;margin:0 auto;padding-bottom:3.5rem;color:#fff;}
 .hero-meta{font-size:.95rem;font-weight:500;color:rgba(255,255,255,.88);margin-bottom:1.2rem;}
@@ -92,6 +92,9 @@ h3{font-family:var(--serif);font-weight:500;font-size:1.3rem;line-height:1.25;}
 .divider{max-width:760px;margin:4rem auto 0;border:0;border-top:1px solid var(--line);}
 .quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.55rem,3.6vw,2.15rem);line-height:1.3;color:var(--acc);max-width:34rem;margin-bottom:.6rem;}
 .sign{font-size:.9rem;color:var(--muted);margin-bottom:2.5rem;}
+.fig{margin:0 0 2.5rem;}
+.fig img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 45%;border-radius:8px;background:var(--bg2);}
+.fig figcaption{font-size:.78rem;color:var(--muted);margin-top:.4rem;}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;border-top:1px solid var(--line);padding-top:1.4rem;margin-top:1.8rem;}
 .stat .l{font-size:.82rem;color:var(--muted);}
 .stat .n{font-family:var(--serif);font-size:1.6rem;line-height:1.15;}
@@ -262,9 +265,8 @@ footer a{color:inherit;}
 <body>
 
 <header id="inicio">
-  <img class="hero-img" alt="Vista desde el Uetliberg sobre la niebla que cubre Zúrich"
-       src="https://commons.wikimedia.org/wiki/Special:FilePath/Uetliberg_und_Nebel_%C3%BCber_der_Stadt_Dez._2020.jpg?width=1920"
-       onerror="this.remove();document.getElementById('inicio').classList.add('img-fallback')">
+  <img class="hero-img" alt="Las torres del Grossmünster sobre los tejados del casco antiguo, con los Alpes al fondo"
+       src="img/grossmuenster-alpen-1600.webp" srcset="img/grossmuenster-alpen-800.webp 800w, img/grossmuenster-alpen-1600.webp 1600w" sizes="100vw" fetchpriority="high">
   <div class="hero-shade"></div>
   <div class="hero-content">
     <p class="hero-meta">20–27 de noviembre de 2026</p>
@@ -279,7 +281,7 @@ footer a{color:inherit;}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
-  <a class="hero-credit" href="https://commons.wikimedia.org/wiki/File:Uetliberg_und_Nebel_%C3%BCber_der_Stadt_Dez._2020.jpg" target="_blank" rel="noopener">Foto: Wikimedia Commons</a>
+  <span class="hero-credit">Foto: Unsplash</span>
 </header>
 
 <div id="countdown" aria-live="polite">
@@ -302,6 +304,7 @@ footer a{color:inherit;}
   <section class="sec" id="bienvenida">
     <p class="quote">«En noviembre Zúrich se vuelve pequeña y cálida: niebla sobre el lago, luces en las calles y vino caliente en cada plaza.»</p>
     <p class="sign">— Mike, vuestro colega de Zúrich</p>
+    <figure class="fig"><img src="img/altstadt-haus-zur-glocke-800.webp" srcset="img/altstadt-haus-zur-glocke-800.webp 800w, img/altstadt-haus-zur-glocke-1600.webp 1600w" sizes="(min-width:760px) 720px, 100vw" alt="Plaza empedrada del casco antiguo frente a la casa «Haus zur Glocke»" loading="lazy"><figcaption>Una plaza tranquila del casco antiguo: la casa «Haus zur Glocke». Foto: Unsplash</figcaption></figure>
     <p class="kicker">Bienvenidos</p>
     <h2>Mi Zúrich, <em>para vosotros</em></h2>
     <p class="prose">He reunido aquí lo que yo mismo enseñaría a un amigo que viene por primera vez: el casco antiguo, los mercados de Navidad, un par de museos que merecen la pena, sitios para comer bien y algunas excursiones en tren. Nada es obligatorio: elegid lo que os apetezca cada día.</p>
@@ -465,7 +468,9 @@ const dayDate = i => new Date(startDate.getFullYear(), startDate.getMonth(), sta
 const fmtLong = d => `${WDL[d.getDay()]} ${d.getDate()} de ${['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][d.getMonth()]}`;
 const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 const WHEN = { manana:'Mañana', tarde:'Tarde', noche:'Noche' };
-const IMG = n => 'https://commons.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent(n.replace(/ /g,'_')) + '?width=1200';
+const isLocal = n => n.startsWith('img/');
+const IMG = n => isLocal(n) ? n + '-800.webp' : 'https://commons.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent(n.replace(/ /g,'_')) + '?width=1200';
+const SRCSET = n => isLocal(n) ? ` srcset="${n}-800.webp 800w, ${n}-1600.webp 1600w" sizes="(min-width:860px) 520px, 100vw"` : '';
 const IMGPAGE = n => 'https://commons.wikimedia.org/wiki/File:' + encodeURIComponent(n.replace(/ /g,'_'));
 const gSearch = p => p.gmap || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.q));
 const gDir = p => 'https://www.google.com/maps/dir/?api=1&travelmode=' + (p.cat === 'excursion' ? 'transit&origin=' + encodeURIComponent('Zürich HB') + '&' : 'transit&') + 'destination=' + encodeURIComponent(p.q);
@@ -543,8 +548,8 @@ function card(p, pre = 'p'){
   const flags = [p.night && 'Por la noche', p.rain && 'Con lluvia', p.free === true && 'Gratis'].filter(Boolean);
   const shareText = `${p.name} – ${p.desc.split('. ')[0]}.\n${gSearch(p)}\n\nGuía: ${SITE}`;
   return `<article class="pc${p.personal ? ' personal' : ''}" id="${pre}-${p.id}">
-    ${p.img ? `<div class="pc-img"><img src="${IMG(p.img)}" alt="${esc(p.imgCap||p.name)}" loading="lazy" onerror="this.parentNode.classList.add('img-fallback');this.remove()"></div>
-      <p class="pc-cap"><a href="${IMGPAGE(p.img)}" target="_blank" rel="noopener">Foto: Wikimedia Commons</a></p>` : ''}
+    ${p.img ? `<div class="pc-img"><img src="${IMG(p.img)}"${SRCSET(p.img)} alt="${esc(p.imgCap||p.name)}" loading="lazy" onerror="this.parentNode.classList.add('img-fallback');this.remove()"></div>
+      <p class="pc-cap">${isLocal(p.img) ? `${esc(p.imgCap)} · Foto: ${esc(p.credit)}` : `<a href="${IMGPAGE(p.img)}" target="_blank" rel="noopener">Foto: Wikimedia Commons</a>`}</p>` : ''}
     <div class="pc-b">
       <div class="pc-badges">
         ${p.personal ? '<span class="badge personal">Recomendación personal</span>' : `<span class="badge ${p.prio}">${p.excTop ? 'Excursión top' : PRIO[p.prio]}</span>`}
@@ -815,8 +820,8 @@ document.addEventListener('click', e => {
   $('#szuNote').textContent = SZU_NOTE;
   $('#semanaKicker').textContent = ti >= 0 ? `Hoy es el día ${ti+1}` : 'Día a día';
   $('#checked').textContent = `Datos comprobados por última vez el ${TRIP.checked}.`;
-  const imgs = ['Uetliberg und Nebel über der Stadt Dez. 2020.jpg', ...PLACES.filter(p => p.img).map(p => p.img)];
-  $('#credits').innerHTML = 'Fotos de Wikimedia Commons: ' + imgs.map(n => `<a href="${IMGPAGE(n)}" target="_blank" rel="noopener">${esc(n.replace(/\.jpg$/i,''))}</a>`).join(', ') + '. Mapa © colaboradores de OpenStreetMap.';
+  const imgs = PLACES.filter(p => p.img && !isLocal(p.img)).map(p => p.img);
+  $('#credits').innerHTML = 'Fotos propias del proyecto: Unsplash (ver créditos en cada imagen). Fotos de Wikimedia Commons: ' + imgs.map(n => `<a href="${IMGPAGE(n)}" target="_blank" rel="noopener">${esc(n.replace(/\.jpg$/i,''))}</a>`).join(', ') + '. Mapa © colaboradores de OpenStreetMap.';
   theme(); countdown(); setInterval(countdown, 30000);
   renderDayPick(); renderDay(); renderCal();
   initMap(); refresh();

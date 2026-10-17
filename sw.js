@@ -1,6 +1,6 @@
 /* Zürich – Offline-Cache */
-const CACHE = 'zuerich-v2';
-const CORE = ['./', './index.html', './data.js', './manifest.webmanifest', './icon.svg',
+const CACHE = 'zuerich-v3';
+const CORE = ['./', './index.html', './data.js', './manifest.webmanifest', './icon.svg', './img/grossmuenster-alpen-800.webp', './img/grossmuenster-alpen-1600.webp', './img/lindenhof-blick-800.webp', './img/altstadt-haus-zur-glocke-800.webp',
   './vendor/leaflet/leaflet.js', './vendor/leaflet/leaflet.css',
   './vendor/fonts/fraunces-latin-400-normal.woff2', './vendor/fonts/fraunces-latin-500-normal.woff2',
   './vendor/fonts/fraunces-latin-600-normal.woff2', './vendor/fonts/fraunces-latin-400-italic.woff2',
