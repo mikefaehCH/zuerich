@@ -3,7 +3,7 @@
   "short_name": "Zürich",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f7f5ef",
-  "theme_color": "#f7f5ef",
+  "background_color": "#F8F6F1",
+  "theme_color": "#F8F6F1",
   "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }]
 }
