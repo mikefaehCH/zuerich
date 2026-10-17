@@ -1,291 +1,661 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Zürich</title>
-<meta name="description" content="Zürich zwischen See, Limmat und Uetliberg: Quartiere, Orte und ein Tag quer durch die Stadt.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+<title>Zürich im November</title>
+<meta name="description" content="Eine Woche Zürich Ende November: Tipps für Morgen, Mittag und Abend – Altstadt, Fondue, Weihnachtsmärkte, Uetliberg und mehr.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Zürich. Eine Woche im November.">
+<meta property="og:description" content="Tipps für Morgen, Mittag und Abend – für eine Woche in Zürich Ende November.">
+<meta property="og:url" content="https://mikefaehch.github.io/zuerich/">
+<meta name="theme-color" content="#f7f5ef">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
 <style>
-  :root {
-    --blau: #0a4fa6;      /* Wappenblau */
-    --blau-tief: #06306a;
-    --weiss: #ffffff;
-    --see: #dce9f5;       /* Seewasser an einem klaren Morgen */
-    --stein: #1d2733;     /* Sandstein im Schatten, Text */
-    --grau: #5b6775;
-    --bg: var(--weiss);
-    --fg: var(--stein);
-    --muted: var(--grau);
-    --panel: var(--see);
-    --accent: var(--blau);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0d1724; --fg: #e8eef5; --muted: #9fb0c3; --panel: #13233a; --accent: #6aa6ef;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0d1724; --fg: #e8eef5; --muted: #9fb0c3; --panel: #13233a; --accent: #6aa6ef;
-  }
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:swap;src:url(vendor/fonts/fraunces-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:500;font-display:swap;src:url(vendor/fonts/fraunces-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:600 800;font-display:swap;src:url(vendor/fonts/fraunces-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:400 600;font-display:swap;src:url(vendor/fonts/fraunces-latin-400-italic.woff2) format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:swap;src:url(vendor/fonts/dm-sans-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:swap;src:url(vendor/fonts/dm-sans-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600 700;font-display:swap;src:url(vendor/fonts/dm-sans-latin-700-normal.woff2) format('woff2');}
 
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--fg);
-    font-family: "Schibsted Grotesk", system-ui, sans-serif;
-    font-size: 1.0625rem;
-    line-height: 1.55;
-  }
-  a { color: var(--accent); text-underline-offset: .18em; }
-  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#f7f5ef; --bg2:#f2efe7; --card:#fcfbf7; --ink:#252923; --muted:#5f655b; --line:#e0dcd1;
+  --acc:#2f4a63; --acc-soft:#5e7891; --acc-bg:#2f4a63; --acc-on:#cfe0ee;
+  --morgen:#b7792b; --mittag:#4f7a5a; --abend:#3f5d8a;
+  --navbg:rgba(247,245,239,.94);
+  --serif:'Fraunces',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141714; --bg2:#202520; --card:#1a1e1a; --ink:#e9e6dd; --muted:#a6aca1; --line:#2c322c;
+  --acc:#a9c1d8; --acc-soft:#86a0b8; --acc-bg:#263a4d; --acc-on:#cfe0ee;
+  --morgen:#d9a35a; --mittag:#8cb896; --abend:#8eaad6; --navbg:rgba(20,23,20,.93);
+}}
+:root[data-theme="dark"]{
+  --bg:#141714; --bg2:#202520; --card:#1a1e1a; --ink:#e9e6dd; --muted:#a6aca1; --line:#2c322c;
+  --acc:#a9c1d8; --acc-soft:#86a0b8; --acc-bg:#263a4d; --acc-on:#cfe0ee;
+  --morgen:#d9a35a; --mittag:#8cb896; --abend:#8eaad6; --navbg:rgba(20,23,20,.93);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:var(--acc);}
+a:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px;}
+img{display:block;max-width:100%;}
 
-  /* ---------- Hero: das Wappen, diagonal geteilt ---------- */
-  .hero {
-    position: relative;
-    min-height: min(92vh, 820px);
-    overflow: hidden;
-    color: var(--blau);
-    background: var(--weiss);
-  }
-  .hero__blue {
-    position: absolute; inset: 0;
-    background: var(--blau);
-    clip-path: polygon(100% 0, 100% 100%, 0 100%);
-    transform-origin: bottom right;
-    animation: teilen 1.1s cubic-bezier(.7,0,.2,1) .15s both;
-  }
-  @keyframes teilen { from { clip-path: polygon(100% 100%, 100% 100%, 100% 100%); } }
-  .hero__word {
-    position: absolute; left: 0; right: 0; top: 50%;
-    transform: translateY(-58%);
-    margin: 0;
-    font-weight: 900;
-    font-size: clamp(5rem, 24vw, 22rem);
-    line-height: .8;
-    letter-spacing: -.055em;
-    text-align: center;
-    white-space: nowrap;
-    user-select: none;
-  }
-  /* zweite Kopie in Weiss, nur im blauen Dreieck sichtbar */
-  .hero__word--white { color: var(--weiss); }
-  .hero__layer { position: absolute; inset: 0; }
-  .hero__layer--white { clip-path: polygon(100% 0, 100% 100%, 0 100%); animation: teilen 1.1s cubic-bezier(.7,0,.2,1) .15s both; }
-  .hero__intro {
-    position: absolute; left: 16px; top: 20px;
-    max-width: 22ch;
-    margin: 0;
-    font-size: clamp(1rem, 2.2vw, 1.3rem);
-    font-weight: 500;
-    color: var(--blau-tief);
-  }
-  .hero__coords {
-    position: absolute; right: 16px; bottom: 20px;
-    margin: 0; text-align: right;
-    color: var(--weiss);
-    font-size: .95rem;
-  }
-  @media (min-width: 720px) {
-    .hero__intro { left: 40px; top: 36px; }
-    .hero__coords { right: 40px; bottom: 36px; }
-  }
+/* ---------- HERO ---------- */
+#hero{position:relative;min-height:92svh;display:flex;align-items:flex-end;padding:0 1.25rem;overflow:hidden;background:#1d2a33;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,16,22,.25) 0%,rgba(10,16,22,.35) 40%,rgba(10,16,22,.82) 100%);}
+.hero-content{position:relative;z-index:2;width:100%;max-width:760px;margin:0 auto;padding-bottom:4.5rem;color:#fff;}
+.hero-meta{font-size:.9rem;font-weight:500;color:rgba(255,255,255,.85);margin-bottom:1.4rem;}
+.hero-h1{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1;font-size:clamp(3.4rem,7.5vw,5.6rem);margin:0 0 1.25rem;}
+.hero-h1 em{display:block;font-style:italic;color:#d9e4ee;}
+.hero-sub{max-width:30rem;font-size:1.15rem;line-height:1.55;color:rgba(255,255,255,.88);margin-bottom:2.2rem;}
+.hero-foot{display:flex;align-items:flex-end;gap:.25rem 1rem;flex-wrap:wrap;}
+.hero-note{flex:1 1 20rem;max-width:24rem;border-top:1px solid rgba(255,255,255,.4);padding-top:.7rem;font-size:.85rem;color:rgba(255,255,255,.8);}
+.hero-cta{display:inline-flex;align-items:center;gap:.6rem;color:#fff;text-decoration:none;font-weight:500;font-size:1rem;border-bottom:1px solid rgba(255,255,255,.4);padding:.5rem 0 .8rem;}
+.hero-cta svg{width:16px;height:16px;}
+.hero-credit{position:absolute;right:.75rem;bottom:.5rem;z-index:2;font-size:.68rem;color:rgba(255,255,255,.55);text-decoration:none;}
 
-  /* ---------- Layout ---------- */
-  main { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
-  @media (min-width: 720px) { main { padding: 0 40px; } }
-  section { padding: clamp(56px, 9vw, 112px) 0 0; }
-  section:last-of-type { padding-bottom: clamp(56px, 9vw, 112px); }
-  h2 {
-    margin: 0 0 .4em;
-    font-size: clamp(2rem, 5vw, 3.4rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -.03em;
-    color: var(--accent);
-  }
-  .lead { max-width: 60ch; margin: 0 0 2rem; color: var(--muted); font-size: 1.15rem; }
-  h3 { margin: 0 0 .3em; font-size: 1.3rem; font-weight: 700; letter-spacing: -.01em; }
-  p { margin: 0 0 1em; max-width: 65ch; }
+/* ---------- COUNTDOWN ---------- */
+#countdown{background:var(--bg);border-bottom:1px solid var(--line);padding:.9rem 1.25rem;}
+.cd-inner{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:.9rem;flex-wrap:wrap;}
+.cd-label{font-size:.85rem;color:var(--muted);}
+.cd-nums{display:flex;gap:1.1rem;align-items:flex-end;}
+.cd-unit{text-align:center;line-height:1.1;}
+.cd-num{display:block;font-family:var(--serif);font-weight:600;font-size:1.4rem;color:var(--acc);font-variant-numeric:tabular-nums;}
+.cd-u{font-size:.75rem;color:var(--muted);}
 
-  /* ---------- Quartiere ---------- */
-  .quartiere { display: grid; gap: 0; grid-template-columns: 1fr; border-top: 2px solid var(--accent); }
-  .quartier { padding: 22px 0 24px; border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
-  .quartier p { margin: 0; color: var(--muted); }
-  .quartier__kreis { color: var(--accent); font-weight: 500; font-size: .95rem; margin-bottom: .2rem; display: block; }
-  @media (min-width: 720px) {
-    .quartiere { grid-template-columns: 1fr 1fr; column-gap: 48px; }
-  }
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:500;background:var(--navbg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;overflow-x:auto;scrollbar-width:none;}
+nav::-webkit-scrollbar{display:none;}
+nav a{flex:1;position:relative;text-align:center;white-space:nowrap;padding:1rem .9rem;font-size:.9rem;font-weight:500;color:var(--muted);text-decoration:none;}
+nav a.on{color:var(--ink);}
+nav a.on::before{content:"";position:absolute;top:.45rem;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--acc);}
 
-  /* ---------- Tagesroute als Tramlinie ---------- */
-  .route { list-style: none; margin: 0; padding: 0; position: relative; }
-  .route::before {
-    content: ""; position: absolute; left: 13px; top: 8px; bottom: 8px;
-    width: 6px; border-radius: 3px; background: var(--accent);
-  }
-  .halt { position: relative; padding: 0 0 34px 56px; }
-  .halt:last-child { padding-bottom: 0; }
-  .halt::before {
-    content: ""; position: absolute; left: 4px; top: 4px;
-    width: 24px; height: 24px; border-radius: 50%;
-    background: var(--bg); border: 6px solid var(--accent);
-  }
-  .halt__zeit { display: block; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
-  .halt h3 { margin-top: .1em; }
-  .halt p { color: var(--muted); margin: 0; }
+/* ---------- SECTIONS ---------- */
+.sec{max-width:760px;margin:0 auto;padding:4.5rem 1.25rem 0;scroll-margin-top:3rem;}
+.sec.wide{max-width:1080px;}
+.kicker{font-size:.9rem;color:var(--acc-soft);margin-bottom:.35rem;}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,5.5vw,3rem);line-height:1.08;letter-spacing:-.015em;margin-bottom:1rem;}
+h2 em{font-style:normal;color:var(--acc-soft);}
+h3{font-family:var(--serif);font-weight:500;font-size:1.3rem;line-height:1.25;}
+.prose{color:var(--muted);font-size:.98rem;line-height:1.7;max-width:38rem;margin-bottom:1rem;}
+.prose strong{color:var(--ink);font-weight:500;}
+.divider{max-width:760px;margin:4.5rem auto 0;border:0;border-top:1px solid var(--line);}
 
-  /* ---------- See-Panel ---------- */
-  .see {
-    background: var(--panel);
-    margin: 0 -16px;
-    padding: clamp(40px, 7vw, 80px) 16px;
-    position: relative;
-    overflow: hidden;
-  }
-  @media (min-width: 720px) { .see { margin: 0 -40px; padding-left: 40px; padding-right: 40px; } }
-  .see__grid { display: grid; gap: 28px; }
-  @media (min-width: 720px) { .see__grid { grid-template-columns: 1fr 1fr 1fr; } }
-  .see__wellen { position: absolute; left: 0; right: 0; bottom: 0; height: 40px; color: var(--accent); opacity: .25; }
-  .see .see__item p { color: var(--muted); }
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,3.6vw,2.2rem);line-height:1.3;color:var(--acc);max-width:34rem;margin-bottom:3rem;}
 
-  /* ---------- Fakten ---------- */
-  .fakten { display: grid; grid-template-columns: 1fr; gap: 0; margin: 0; }
-  .fakten div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid color-mix(in srgb, var(--fg) 15%, transparent); }
-  .fakten dt { color: var(--muted); }
-  .fakten dd { margin: 0; font-weight: 700; text-align: right; white-space: nowrap; }
-  @media (min-width: 720px) { .fakten { grid-template-columns: 1fr 1fr; column-gap: 48px; } }
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;border-top:1px solid var(--line);padding-top:1.5rem;margin-top:2rem;}
+.stat .l{font-size:.85rem;color:var(--muted);}
+.stat .n{font-family:var(--serif);font-size:1.7rem;line-height:1.15;}
+.stat .s{font-size:.8rem;color:var(--muted);}
 
-  footer { border-top: 2px solid var(--accent); padding: 24px 0 40px; color: var(--muted); font-size: .95rem; }
+/* ---------- HEUTE / TAGESKARTE ---------- */
+.daypick{display:flex;gap:.35rem;margin:0 0 .9rem;max-width:520px;}
+.dp{flex:1;min-width:0;padding:.35rem .5rem;border:1px solid var(--line);background:var(--card);border-radius:6px;cursor:pointer;color:var(--ink);font-family:var(--sans);line-height:1.15;text-align:center;}
+.dp small{display:block;font-size:.72rem;color:var(--muted);}
+.dp b{font-family:var(--serif);font-weight:600;font-size:1rem;}
+.dp[aria-pressed="true"]{background:var(--acc-bg);border-color:var(--acc-bg);color:#fff;}
+.dp[aria-pressed="true"] small{color:rgba(255,255,255,.75);}
 
-  @media (prefers-reduced-motion: reduce) {
-    .hero__blue, .hero__layer--white { animation: none; }
-  }
+.daycard{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.dc-img{position:relative;aspect-ratio:2/1;background:var(--bg2);}
+.dc-img img{width:100%;height:100%;object-fit:cover;}
+.dc-credit{font-size:.7rem;color:var(--muted);padding:.25rem 1.25rem;background:var(--card);}
+.dc-credit a{color:inherit;text-decoration:none;}
+.dc-head{background:var(--acc-bg);color:#fff;padding:1.1rem 1.25rem 1.2rem;}
+.dc-date{font-size:.8rem;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:.6rem;}
+.dc-tag{border:1px solid rgba(255,255,255,.35);border-radius:99px;padding:0 .55rem;font-size:.72rem;}
+.dc-title{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,4vw,2.1rem);line-height:1.15;margin:.2rem 0 .3rem;}
+.dc-sub{color:rgba(255,255,255,.82);font-size:.95rem;}
+.dc-body{padding:1.25rem;display:grid;gap:.75rem;}
+.slot{background:var(--bg2);border-radius:11px;padding:.9rem 1rem 1rem;border-left:4px solid var(--slot,var(--acc));}
+.slot-h{display:flex;align-items:baseline;justify-content:space-between;gap:.75rem;}
+.slot-name{font-family:var(--serif);font-weight:600;font-size:.95rem;color:var(--slot);}
+.slot-time{font-size:.8rem;color:var(--muted);}
+.slot-place{font-weight:700;font-size:1.02rem;margin:.15rem 0 .2rem;}
+.slot p{color:var(--muted);font-size:.93rem;line-height:1.6;}
+.slot-links{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.6rem;}
+.morgen{--slot:var(--morgen);} .mittag{--slot:var(--mittag);} .abend{--slot:var(--abend);}
+.planb{font-size:.88rem;color:var(--muted);border:1px dashed var(--line);border-radius:11px;padding:.75rem 1rem;}
+.planb strong{color:var(--ink);font-weight:600;}
+
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem .8rem;border:1px solid var(--line);background:var(--card);color:var(--acc);border-radius:6px;font:600 .85rem var(--sans);text-decoration:none;cursor:pointer;}
+.btn svg{width:16px;height:16px;flex:none;}
+.btn.pri{background:var(--acc-bg);border-color:var(--acc-bg);color:#fff;}
+.tip{margin-top:.9rem;background:var(--bg2);border-radius:11px;padding:.8rem 1rem;font-size:.88rem;color:var(--ink);}
+
+/* ---------- WOCHE / TIMELINE ---------- */
+.overview{display:flex;gap:4px;margin:.5rem 0 .35rem;}
+.ov{flex:1;height:12px;border-radius:3px;background:var(--bg2);border:1px solid var(--line);}
+.ov.now{background:var(--acc-bg);border-color:var(--acc-bg);}
+.ov-l{display:flex;gap:4px;}
+.ov-l span{flex:1;text-align:center;font-size:.7rem;color:var(--muted);}
+.ov-sum{font-size:.82rem;color:var(--muted);margin:.6rem 0 2.5rem;}
+
+.tl{position:relative;padding-left:26px;}
+.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line);}
+.day{position:relative;margin-bottom:2.5rem;scroll-margin-top:4rem;}
+.day::before{content:"";position:absolute;left:-26px;top:14px;width:12px;height:12px;margin-left:2px;border-radius:50%;background:var(--bg);border:2px solid var(--line);}
+.day.now::before{background:var(--acc);border-color:var(--acc);}
+.day-row{display:grid;grid-template-columns:1fr;gap:1rem;align-items:center;}
+.day.big .day-pic{aspect-ratio:3/2;}
+.day-pic{border-radius:6px;overflow:hidden;background:var(--bg2);}
+.day-pic img{width:100%;height:100%;object-fit:cover;}
+.day.small .day-row{grid-template-columns:96px 1fr;}
+.day.small .day-pic{aspect-ratio:1;}
+.day-tile{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--acc-bg);color:var(--acc-on);font-family:var(--serif);font-size:2.2rem;}
+.day-meta{font-size:.82rem;color:var(--muted);}
+.day-btn{display:flex;align-items:center;gap:.6rem;background:none;border:0;cursor:pointer;color:var(--ink);text-align:left;padding:0;font-family:var(--serif);font-weight:400;font-size:clamp(1.45rem,3vw,2rem);line-height:1.15;margin:.15rem 0 .3rem;}
+.day-btn svg{width:22px;height:22px;flex:none;color:var(--muted);transition:transform .2s;}
+.day-btn[aria-expanded="true"] svg{transform:rotate(180deg);}
+.day-sub{color:var(--muted);font-size:.98rem;}
+.day-slots{font-size:.85rem;color:var(--acc);margin-top:.45rem;font-weight:500;}
+.day-detail{margin-top:1rem;display:grid;gap:.6rem;}
+.day-detail[hidden]{display:none;}
+@media (min-width:860px){
+  .day.big .day-row{grid-template-columns:minmax(0,1.35fr) 1fr;gap:2.5rem;}
+  .day.small .day-row{grid-template-columns:140px 1fr;gap:1.25rem;}
+}
+
+/* ---------- KARTE ---------- */
+.filters{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.8rem;}
+.flt{display:inline-flex;align-items:center;gap:.45rem;padding:.4rem .8rem;border:1px solid var(--line);background:var(--card);border-radius:99px;font:500 .85rem var(--sans);color:var(--ink);cursor:pointer;}
+.flt i{width:10px;height:10px;border-radius:50%;background:var(--c);}
+.flt[aria-pressed="false"]{opacity:.45;}
+#map{height:min(70vh,560px);border-radius:6px;border:1px solid var(--line);background:var(--bg2);z-index:1;}
+.leaflet-popup-content{font-family:var(--sans);font-size:.85rem;line-height:1.45;margin:.7rem .9rem;}
+.leaflet-popup-content b{font-family:var(--serif);font-size:1rem;font-weight:600;display:block;}
+.pin{width:16px;height:16px;border-radius:50%;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);background:var(--c);}
+
+/* ---------- ESSEN ---------- */
+.dishes{display:grid;gap:0;border-top:1px solid var(--line);margin-bottom:3rem;}
+.dish{display:grid;grid-template-columns:1fr;gap:.15rem;padding:1rem 0;border-bottom:1px solid var(--line);}
+.dish h3{font-size:1.15rem;}
+.dish p{color:var(--muted);font-size:.93rem;}
+.places{display:grid;gap:2.5rem;}
+.pgroup h3{margin-bottom:.6rem;}
+.place{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:.8rem 0;border-top:1px solid var(--line);}
+.place:last-child{border-bottom:1px solid var(--line);}
+.place b{font-weight:700;}
+.place span{display:block;color:var(--muted);font-size:.9rem;}
+.place a{flex:none;font-size:.85rem;font-weight:600;text-decoration:none;padding-top:.15rem;}
+@media (min-width:760px){.places{grid-template-columns:1fr 1fr;column-gap:3rem;}.dish{grid-template-columns:14rem 1fr;gap:1.5rem;}}
+
+/* ---------- INFOS ---------- */
+.wx{display:flex;gap:1.25rem;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1rem 1.25rem;margin-bottom:2.5rem;}
+.wx-t{font-family:var(--serif);font-size:2.4rem;line-height:1;color:var(--acc);flex:none;}
+.wx-d{font-size:.93rem;color:var(--muted);}
+.wx-d b{color:var(--ink);font-weight:600;display:block;}
+.wx-days{display:flex;gap:.2rem 1rem;margin-top:.3rem;flex-wrap:wrap;font-size:.82rem;}
+.infos{display:grid;gap:0;border-top:1px solid var(--line);}
+.info{padding:1.1rem 0;border-bottom:1px solid var(--line);}
+.info h3{font-size:1.15rem;margin-bottom:.2rem;}
+.info p{color:var(--muted);font-size:.93rem;}
+.info p strong{color:var(--ink);font-weight:500;}
+.info a{font-weight:500;}
+@media (min-width:760px){.infos{grid-template-columns:1fr 1fr;column-gap:3rem;}}
+
+footer{max-width:760px;margin:5rem auto 0;padding:1.5rem 1.25rem 4.5rem;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted);}
+footer a{color:inherit;}
+
+#themeBtn{position:fixed;right:1rem;bottom:1rem;z-index:600;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);box-shadow:0 2px 10px rgba(0,0,0,.12);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+#themeBtn svg{width:18px;height:18px;}
+
+.img-fallback{background:linear-gradient(160deg,#3a5672,#1e2f3f)!important;}
+@media (max-width:520px){.stats{gap:1rem}.stat .n{font-size:1.35rem}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.day-btn svg{transition:none;}}
 </style>
 </head>
 <body>
 
-<header class="hero" aria-label="Zürich">
-  <div class="hero__blue" aria-hidden="true"></div>
-  <div class="hero__layer" aria-hidden="true">
-    <p class="hero__word">Zürich</p>
+<header id="hero">
+  <img class="hero-img" alt="Blick vom Uetliberg über das Nebelmeer auf die Stadt Zürich"
+       src="https://commons.wikimedia.org/wiki/Special:FilePath/Uetliberg_und_Nebel_%C3%BCber_der_Stadt_Dez._2020.jpg?width=1920"
+       onerror="this.remove();document.getElementById('hero').classList.add('img-fallback')">
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <p class="hero-meta" id="heroMeta">Zürich · Ende November · Eine Woche</p>
+    <h1 class="hero-h1">Zürich.<em>Eine Woche.</em></h1>
+    <p class="hero-sub">Nebel über dem See, Lichter über der Bahnhofstrasse, Fondue in der Altstadt. Tipps für jeden Morgen, Mittag und Abend.</p>
+    <div class="hero-foot">
+      <p class="hero-note">Die Tage sind kurz: Die Sonne geht kurz nach halb fünf unter. Der Abend beginnt früh.</p>
+      <a class="hero-cta" href="#heute">Zu den Tipps
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></a>
+    </div>
   </div>
-  <div class="hero__layer hero__layer--white" aria-hidden="true">
-    <p class="hero__word hero__word--white">Zürich</p>
-  </div>
-  <h1 class="hero__intro">Zürich – zwischen See, Limmat und Uetliberg.</h1>
-  <p class="hero__coords">47.37° N, 8.54° O<br>408 m ü. M.</p>
+  <a class="hero-credit" href="https://commons.wikimedia.org/wiki/File:Uetliberg_und_Nebel_%C3%BCber_der_Stadt_Dez._2020.jpg" target="_blank" rel="noopener">Foto: Wikimedia Commons</a>
 </header>
 
+<div id="countdown" aria-live="polite">
+  <div class="cd-inner">
+    <span class="cd-label" id="cdLabel">Ankunft in Zürich – noch</span>
+    <div class="cd-nums" id="cdNums"></div>
+  </div>
+</div>
+
+<nav aria-label="Abschnitte">
+  <a href="#heute">Heute</a>
+  <a href="#woche">Woche</a>
+  <a href="#karte">Karte</a>
+  <a href="#essen">Essen</a>
+  <a href="#infos">Infos</a>
+</nav>
+
 <main>
-
-  <section id="quartiere" aria-labelledby="h-quartiere">
-    <h2 id="h-quartiere">Quartiere</h2>
-    <p class="lead">Die Stadt ist in zwölf Kreise geteilt. Wer die Kreisnummer kennt, weiss meist schon, was einen dort erwartet.</p>
-    <div class="quartiere">
-      <article class="quartier">
-        <span class="quartier__kreis">Kreis 1</span>
-        <h3>Altstadt</h3>
-        <p>Enge Gassen im Niederdorf, Zunfthäuser an der Limmat und vom Lindenhof der Blick über die Dächer.</p>
-      </article>
-      <article class="quartier">
-        <span class="quartier__kreis">Kreis 4 und 5</span>
-        <h3>Aussersihl und Industriequartier</h3>
-        <p>Langstrasse, Viaduktbögen, Bars und Ateliers in alten Fabrikhallen. Hier ist Zürich am lautesten.</p>
-      </article>
-      <article class="quartier">
-        <span class="quartier__kreis">Kreis 8</span>
-        <h3>Seefeld</h3>
-        <p>Villen, Seepromenade und das Zürichhorn mit dem Pavillon Le Corbusier.</p>
-      </article>
-      <article class="quartier">
-        <span class="quartier__kreis">Kreis 3</span>
-        <h3>Wiedikon</h3>
-        <p>Wohnquartier mit Quartierbeizen, Märkten und dem Fussweg hinauf zum Uetliberg.</p>
-      </article>
+  <section class="sec" id="intro">
+    <p class="quote">«Zürich zeigt sich im November von seiner ruhigen Seite. Wer früh rausgeht und abends sitzen bleibt, hat die Stadt fast für sich.»</p>
+    <p class="kicker">Willkommen</p>
+    <h2>Eine Woche <em>in Zürich</em></h2>
+    <p class="prose">Für jeden Tag gibt es drei Tipps: einen für den <strong>Morgen</strong>, einen für den <strong>Mittag</strong> und einen für den <strong>Abend</strong>. Alles liegt nahe beieinander und ist zu Fuss oder mit dem Tram erreichbar. Wer tagsüber arbeitet, nimmt einfach den Abend – der lohnt sich im November am meisten.</p>
+    <p class="prose">Ende November öffnen die Weihnachtsmärkte und die Bahnhofstrasse leuchtet. Für Regentage steht bei jedem Tag ein Plan B.</p>
+    <div class="stats">
+      <div class="stat"><div class="l">Dauer</div><div class="n">7 Tage</div><div class="s" id="statDates">Ende November</div></div>
+      <div class="stat"><div class="l">Temperatur</div><div class="n">2–7 °C</div><div class="s">oft Nebel am Morgen</div></div>
+      <div class="stat"><div class="l">Sonnenuntergang</div><div class="n">16:35</div><div class="s">Aufgang um 7:45</div></div>
     </div>
   </section>
 
-  <section id="tag" aria-labelledby="h-tag">
-    <h2 id="h-tag">Ein Tag in Zürich</h2>
-    <p class="lead">Eine Route zu Fuss und mit dem Tram, vom Morgen am Hauptbahnhof bis zum Abend über der Stadt.</p>
-    <ol class="route">
-      <li class="halt">
-        <span class="halt__zeit">08:30</span>
-        <h3>Hauptbahnhof und Bahnhofstrasse</h3>
-        <p>Kaffee in der Halle, dann unter den Linden der Bahnhofstrasse Richtung See schlendern.</p>
-      </li>
-      <li class="halt">
-        <span class="halt__zeit">10:00</span>
-        <h3>Lindenhof</h3>
-        <p>Ein kurzer Aufstieg mit Aussicht auf Limmat, Grossmünster und Universität.</p>
-      </li>
-      <li class="halt">
-        <span class="halt__zeit">11:00</span>
-        <h3>Fraumünster und Grossmünster</h3>
-        <p>Die Chagall-Fenster im Fraumünster, danach über die Münsterbrücke und die Türme des Grossmünsters hinauf.</p>
-      </li>
-      <li class="halt">
-        <span class="halt__zeit">13:00</span>
-        <h3>Niederdorf</h3>
-        <p>Mittagessen in der Altstadt, danach durch die Gassen zum Central.</p>
-      </li>
-      <li class="halt">
-        <span class="halt__zeit">15:00</span>
-        <h3>Kunsthaus</h3>
-        <p>Am Heimplatz, mit dem Erweiterungsbau von David Chipperfield.</p>
-      </li>
-      <li class="halt">
-        <span class="halt__zeit">18:00</span>
-        <h3>Uetliberg</h3>
-        <p>Mit der S10 auf den Hausberg. Bei klarem Wetter reicht der Blick bis zu den Alpen.</p>
-      </li>
-    </ol>
+  <section class="sec" id="heute">
+    <p class="kicker" id="heuteKicker">Tag für Tag</p>
+    <h2>Was <em>heute</em> drinliegt</h2>
+    <div class="daypick" id="dayPick" role="group" aria-label="Tag wählen"></div>
+    <article class="daycard" id="dayCard" aria-live="polite"></article>
+    <p class="tip"><strong>Tipp:</strong> Seite im Browser «Zum Home-Bildschirm» hinzufügen. Dann ist sie wie eine App griffbereit, und die Tipps sind auch ohne Netz da.</p>
   </section>
 
-  <section aria-labelledby="h-see">
-    <div class="see">
-      <h2 id="h-see">Am Wasser</h2>
-      <p class="lead">Im Sommer wird Zürich zur Badestadt. See und Limmat sind so sauber, dass man mitten in der Stadt schwimmt.</p>
-      <div class="see__grid">
-        <div class="see__item">
-          <h3>Seebad Utoquai</h3>
-          <p>Holzbad aus dem 19. Jahrhundert direkt vor der Altstadt.</p>
-        </div>
-        <div class="see__item">
-          <h3>Flussbad Oberer Letten</h3>
-          <p>Treffpunkt an der Limmat: sich treiben lassen, aussteigen, wieder hinauf.</p>
-        </div>
-        <div class="see__item">
-          <h3>Schifffahrt</h3>
-          <p>Ab Bürkliplatz mit dem Kursschiff dem Ufer entlang bis Rapperswil.</p>
-        </div>
-      </div>
-      <svg class="see__wellen" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 20 Q 50 0 100 20 T 200 20 T 300 20 T 400 20 T 500 20 T 600 20 T 700 20 T 800 20 T 900 20 T 1000 20 T 1100 20 T 1200 20 V40 H0 Z" fill="currentColor"/>
-      </svg>
+  <hr class="divider">
+
+  <section class="sec wide" id="woche">
+    <p class="kicker">Die Woche</p>
+    <h2>Sieben Tage, <em>drei Momente</em></h2>
+    <div class="overview" id="ov" aria-hidden="true"></div>
+    <div class="ov-l" id="ovL" aria-hidden="true"></div>
+    <p class="ov-sum">21 Tipps · alles mit Tram, Zug oder zu Fuss erreichbar</p>
+    <div class="tl" id="timeline"></div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="sec" id="karte">
+    <p class="kicker">Karte</p>
+    <h2>Alle Tipps <em>auf einen Blick</em></h2>
+    <p class="prose">Antippen für Details und Route. Mit den Knöpfen lassen sich Morgen, Mittag und Abend ein- und ausblenden.</p>
+    <div class="filters" id="filters">
+      <button class="flt" type="button" aria-pressed="true" data-slot="morgen" style="--c:var(--morgen)"><i></i>Morgen</button>
+      <button class="flt" type="button" aria-pressed="true" data-slot="mittag" style="--c:var(--mittag)"><i></i>Mittag</button>
+      <button class="flt" type="button" aria-pressed="true" data-slot="abend" style="--c:var(--abend)"><i></i>Abend</button>
+    </div>
+    <div id="map" role="region" aria-label="Karte mit allen Tipps"></div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="sec" id="essen">
+    <p class="kicker">Essen &amp; Trinken</p>
+    <h2>Was man <em>probieren muss</em></h2>
+    <div class="dishes">
+      <div class="dish"><h3>Zürcher Geschnetzeltes</h3><p>Kalbfleisch in Rahmsauce mit Champignons, dazu Rösti. Das Stadtgericht schlechthin.</p></div>
+      <div class="dish"><h3>Fondue</h3><p>Im November genau richtig. Klassisch «moitié-moitié» mit Gruyère und Vacherin, dazu Weisswein oder Schwarztee.</p></div>
+      <div class="dish"><h3>Luxemburgerli</h3><p>Kleine Macarons von Sprüngli. Eine Schachtel ist das bessere Mitbringsel als Schokolade vom Flughafen.</p></div>
+      <div class="dish"><h3>Tirggel</h3><p>Hauchdünnes Honiggebäck aus Zürich, das es nur in der Adventszeit gibt.</p></div>
+      <div class="dish"><h3>Glühwein und Marroni</h3><p>Heisse Marroni gibt es an Ständen in der ganzen Stadt, Glühwein an jedem Weihnachtsmarkt.</p></div>
+    </div>
+    <div class="places" id="places"></div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="sec" id="infos">
+    <p class="kicker">Praktisches</p>
+    <h2>Gut zu <em>wissen</em></h2>
+    <div class="wx" id="wx">
+      <div class="wx-t" id="wxT">–</div>
+      <div class="wx-d" id="wxD"><b>Wetter in Zürich</b>Wird geladen …</div>
+    </div>
+    <div class="infos">
+      <div class="info"><h3>Tram und Bus</h3><p>Das Netz ist dicht, Trams fahren tagsüber alle paar Minuten. Für die Stadt reicht die <strong>Zone 110</strong>. Billette gibt es am Automaten oder in der App <a href="https://www.sbb.ch/de/fahrplan/mobile-fahrplaene/sbb-mobile.html" target="_blank" rel="noopener">SBB Mobile</a>.</p></div>
+      <div class="info"><h3>Vom Flughafen</h3><p>Die S-Bahn fährt in gut zehn Minuten zum Hauptbahnhof, mehrmals pro Stunde. Das Billett muss auch die Flughafenzone abdecken.</p></div>
+      <div class="info"><h3>Zürich Card</h3><p>Freie Fahrt in Tram, Bus, S-Bahn und Schiff inklusive Flughafen und Uetliberg, dazu Rabatte in Museen. Gibt es für 24 oder 72 Stunden. <a href="https://www.zuerich.com/de/zurich-card" target="_blank" rel="noopener">Mehr dazu</a></p></div>
+      <div class="info"><h3>Bezahlen</h3><p>Franken (CHF). Karte und kontaktlos gehen fast überall, Twint ebenso. Trinkgeld ist im Preis enthalten, aufrunden ist üblich.</p></div>
+      <div class="info"><h3>Sonntag</h3><p>Die meisten Läden sind zu. Offen haben der Hauptbahnhof mit dem Shopville, der Flughafen und viele Cafés und Museen.</p></div>
+      <div class="info"><h3>Reservieren</h3><p>Fondue-Lokale, Kronenhalle und Thermalbad sind im Advent oft voll. Einen Tisch ein, zwei Tage im Voraus reservieren.</p></div>
+      <div class="info"><h3>Strom und Wasser</h3><p>Schweizer Stecker (Typ J) – ein Adapter gehört ins Gepäck. Leitungswasser und Brunnenwasser sind trinkbar.</p></div>
+      <div class="info"><h3>Notfall</h3><p>Allgemeiner Notruf <a href="tel:112">112</a>, Sanität <a href="tel:144">144</a>, Polizei <a href="tel:117">117</a>.</p></div>
     </div>
   </section>
-
-  <section id="fakten" aria-labelledby="h-fakten">
-    <h2 id="h-fakten">Kurz und knapp</h2>
-    <dl class="fakten">
-      <div><dt>Kanton</dt><dd>Zürich</dd></div>
-      <div><dt>Einwohnerinnen und Einwohner</dt><dd>rund 440 000</dd></div>
-      <div><dt>Fluss</dt><dd>Limmat und Sihl</dd></div>
-      <div><dt>Hausberg</dt><dd>Uetliberg, 871 m</dd></div>
-      <div><dt>Stadtteile</dt><dd>12 Kreise</dd></div>
-      <div><dt>Wappenfarben</dt><dd>Blau und Weiss</dd></div>
-    </dl>
-  </section>
-
-  <footer>
-    Eine Seite über Zürich.
-  </footer>
 </main>
 
+<footer>
+  <p>Tipps für eine Woche Zürich Ende November. Öffnungszeiten und Daten der Weihnachtsmärkte vor dem Besuch kurz prüfen.</p>
+  <p id="credits" style="margin-top:.5rem"></p>
+</footer>
+
+<button id="themeBtn" type="button" aria-label="Hell oder dunkel umschalten">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+</button>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script>
+/* ===== Reisedaten: hier anpassen ===== */
+const START = '2026-11-23';   // erster Tag
+const ZRH = [47.3769, 8.5417];
+
+const IMG = name => 'https://commons.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent(name.replace(/ /g,'_')) + '?width=1600';
+const IMGPAGE = name => 'https://commons.wikimedia.org/wiki/File:' + encodeURIComponent(name.replace(/ /g,'_'));
+
+const SLOTS = { morgen:'Morgen', mittag:'Mittag', abend:'Abend' };
+
+const DAYS = [
+  { title:'Ankommen in der Altstadt', sub:'Lindenhof, Zunfthäuser und der erste Glühwein.',
+    img:'Zurich Christmas-market at the train station.jpg', imgAlt:'Christkindlimarkt in der Halle des Zürcher Hauptbahnhofs',
+    morgen:{ place:'Lindenhof', time:'ab 9 Uhr', ll:[47.3730,8.5410], q:'Lindenhof',
+      text:'Vom Hauptbahnhof zehn Minuten zu Fuss durch die Gassen hinauf. Der Platz unter den Linden zeigt die Altstadt, die Limmat und die Universität – der beste erste Blick auf die Stadt.' },
+    mittag:{ place:'Zeughauskeller', time:'11:30–14 Uhr', ll:[47.3711,8.5393], q:'Zeughauskeller',
+      text:'Altes Zeughaus aus dem 15. Jahrhundert, heute eine Bierhalle mit langen Holztischen. Hier das Zürcher Geschnetzeltes mit Rösti bestellen.' },
+    abend:{ place:'Bahnhofstrasse und Christkindlimarkt', time:'ab 17 Uhr', ll:[47.3779,8.5402], q:'Christkindlimarkt Hauptbahnhof',
+      text:'Wenn es dunkel wird, die Bahnhofstrasse unter der Weihnachtsbeleuchtung entlang bis zum Hauptbahnhof. In der Halle steht einer der grössten Indoor-Weihnachtsmärkte Europas. Danach ein Drink in der Widder Bar.' },
+    planb:'Shopville unter dem Hauptbahnhof – trocken bummeln, essen und einkaufen.' },
+
+  { title:'Rechts der Limmat', sub:'Kirchtürme, Kaffee und das erste Fondue.',
+    img:'Zürich view Quaibrücke 20200702.jpg', imgAlt:'Blick von der Quaibrücke auf die Limmat und die Altstadt',
+    morgen:{ place:'Grossmünster und Café Schober', time:'ab 10 Uhr', ll:[47.3700,8.5441], q:'Grossmünster',
+      text:'Die Kirche mit den zwei Türmen ist das Wahrzeichen der Stadt. Über knapp 190 Stufen auf den Karlsturm steigen – oben liegt die ganze Altstadt zu Füssen. Danach heisse Schokolade bei Péclard im Schober, drei Gassen weiter.' },
+    mittag:{ place:'Haus Hiltl', time:'11:30–14 Uhr', ll:[47.3734,8.5363], q:'Haus Hiltl',
+      text:'Das älteste vegetarische Restaurant der Welt, seit 1898. Am Buffet nimmt man so viel man will und zahlt nach Gewicht – schnell und gut.' },
+    abend:{ place:'Polyterrasse und Swiss Chuchi', time:'ab 17 Uhr', ll:[47.3726,8.5437], q:'Swiss Chuchi',
+      text:'Mit der kleinen Polybahn vom Central zur ETH hinauf und den Blick über die Lichter der Stadt geniessen. Dann zu Fuss hinunter ins Niederdorf zum Fondue in der Swiss Chuchi.' },
+    planb:'Länger im Café bleiben und den Karlsturm auslassen – die Polybahn fährt auch bei Regen.' },
+
+  { title:'Kunst und Klang', sub:'Kunsthaus, Chagall und ein Abend am Bellevue.',
+    img:'Bild Fraumuenster.jpg', imgAlt:'Das Fraumünster in Zürich',
+    morgen:{ place:'Kunsthaus Zürich', time:'ab 10 Uhr', ll:[47.3703,8.5483], q:'Kunsthaus Zürich',
+      text:'Eine der wichtigsten Kunstsammlungen der Schweiz: Munch, Giacometti, die Impressionisten. Der Neubau von David Chipperfield ist allein den Besuch wert. Montags geschlossen.' },
+    mittag:{ place:'Sprüngli und Fraumünster', time:'12–14 Uhr', ll:[47.3696,8.5392], q:'Confiserie Sprüngli Paradeplatz',
+      text:'Lunch im Café der Confiserie Sprüngli am Paradeplatz, Luxemburgerli zum Dessert. Danach ins Fraumünster zu den Glasfenstern von Marc Chagall.' },
+    abend:{ place:'Bellevue Noël und Opernhaus', time:'ab 18 Uhr', ll:[47.3662,8.5453], q:'Sechseläutenplatz',
+      text:'Auf dem Sechseläutenplatz steht ab 2026 der neue Weihnachtsmarkt «Bellevue Noël» mit einem begehbaren Adventskranz. Wer mag, schaut danach eine Vorstellung im Opernhaus nebenan oder ein Konzert in der Tonhalle.' },
+    planb:'Den ganzen Tag im Kunsthaus – mit Café, Shop und genug Kunst für Stunden.' },
+
+  { title:'Zürich West', sub:'Vom Landesmuseum bis zum Prime Tower.',
+    morgen:{ place:'Landesmuseum', time:'ab 10 Uhr', ll:[47.3793,8.5406], q:'Landesmuseum Zürich',
+      text:'Das Schloss gleich hinter dem Hauptbahnhof erzählt die Schweizer Geschichte – kompakt und gut gemacht. In einer Stunde hat man das Wichtigste gesehen. Montags geschlossen.' },
+    mittag:{ place:'Markthalle im Viadukt', time:'12–14 Uhr', ll:[47.3873,8.5280], q:'Markthalle im Viadukt',
+      text:'In den Bögen des alten Eisenbahnviadukts: Marktstände, Bäckereien und kleine Restaurants. Mit dem Tram wenige Stationen ab Hauptbahnhof.' },
+    abend:{ place:'Clouds und Langstrasse', time:'ab 18 Uhr', ll:[47.3861,8.5173], q:'Clouds Prime Tower',
+      text:'Apéro im Clouds zuoberst im Prime Tower, mit Blick über die ganze Stadt. Danach zurück Richtung Langstrasse, wo Zürich am lebendigsten ist: Bars, Clubs, Strassenküchen.' },
+    planb:'Landesmuseum und Markthalle sind beide drinnen – nur der Weg dazwischen ist nass.' },
+
+  { title:'Wasser und Wärme', sub:'Am See entlang, dann ins Thermalbad.',
+    morgen:{ place:'Seepromenade bis Zürichhorn', time:'ab 9:30 Uhr', ll:[47.3545,8.5512], q:'Zürichhorn',
+      text:'Vom Bellevue dem Utoquai entlang bis zum Zürichhorn, gut eine halbe Stunde. Bei Nebel ist der See ganz still, bei Föhn sieht man die Alpen.' },
+    mittag:{ place:'Rheinfelder Bierhalle', time:'11:30–14 Uhr', ll:[47.3746,8.5441], q:'Rheinfelder Bierhalle',
+      text:'Urchiges Lokal im Niederdorf, bekannt für das riesige «Jumbo-Jumbo-Cordon-bleu». Hungrig kommen oder eines zu zweit bestellen.' },
+    abend:{ place:'Thermalbad & Spa Zürich', time:'ab 17 Uhr', ll:[47.3640,8.5285], q:'Thermalbad & Spa Zürich',
+      text:'In den Gewölben der alten Hürlimann-Brauerei. Das Highlight ist das warme Becken auf dem Dach mit Blick über die Stadt – im Dunkeln am schönsten. Vorher reservieren.' },
+    planb:'Den Seespaziergang streichen und direkt ins Thermalbad – dort ist Regen egal.' },
+
+  { title:'Über dem Nebel', sub:'Hausberg, Panoramaweg und ein Abend in der Höhe.',
+    img:'Blick vom uetliberg uebers nebelmeer zu den alpen.jpg', imgAlt:'Blick vom Uetliberg über das Nebelmeer zu den Alpen',
+    morgen:{ place:'Uetliberg', time:'ab 9 Uhr', ll:[47.3496,8.4917], q:'Uto Kulm Uetliberg',
+      text:'Mit der S10 in knapp einer halben Stunde ab Hauptbahnhof auf den Hausberg. Im November liegt die Stadt oft unter einer Nebeldecke, oben scheint die Sonne. Vom Aussichtsturm sieht man bei klarer Sicht die Alpen.' },
+    mittag:{ place:'Planetenweg zur Felsenegg', time:'11–14 Uhr', ll:[47.3303,8.5009], q:'Felsenegg',
+      text:'Auf dem Planetenweg in rund eineinhalb Stunden über den Grat zur Felsenegg, mit Einkehr im Restaurant oben. Dann mit der Luftseilbahn hinunter nach Adliswil und mit der S-Bahn zurück.' },
+    abend:{ place:'Jules Verne Panoramabar und Zunfthaus zur Waag', time:'ab 18 Uhr', ll:[47.3742,8.5393], q:'Jules Verne Panoramabar',
+      text:'Apéro in der kleinen Bar im Turm der alten Sternwarte Urania, mit Rundumsicht. Zum Abendessen ins Zunfthaus zur Waag am Münsterhof – Zürcher Küche in historischen Räumen.' },
+    planb:'Bei Regen statt Uetliberg zur Lindt Home of Chocolate nach Kilchberg – vom Sonntag vorziehen.' },
+
+  { title:'Langsam ausklingen', sub:'Brunch, Schokolade und ein Abschied mit Stil.',
+    morgen:{ place:'Babu’s Bakery', time:'ab 9:30 Uhr', ll:[47.3754,8.5369], q:'Babu\'s Bakery Löwenstrasse',
+      text:'Beliebtes Brunch-Lokal nahe dem Hauptbahnhof, mit Bagels, Eiergerichten und frischem Gebäck. Am Sonntag wird es voll – früh kommen.' },
+    mittag:{ place:'Lindt Home of Chocolate', time:'ab 12 Uhr', ll:[47.3195,8.5468], q:'Lindt Home of Chocolate Kilchberg',
+      text:'Das Schokoladenmuseum in Kilchberg am See, mit einem riesigen Schokoladenbrunnen und Degustation. Mit der S-Bahn bis Kilchberg, dann wenige Minuten zu Fuss.' },
+    abend:{ place:'Kronenhalle', time:'ab 18:30 Uhr', ll:[47.3667,8.5464], q:'Kronenhalle',
+      text:'Das legendäre Restaurant am Bellevue: An den Wänden hängen echte Chagalls, Mirós und Picassos. Klassische Küche, weisse Tischtücher, unbedingt reservieren. Danach ein letzter Drink in der Bar nebenan.' },
+    planb:'Der Sonntag ist ohnehin für drinnen gemacht – alles hier geht auch bei Regen.' },
+];
+
+const PLACES = [
+  { group:'Kaffee und Frühstück', items:[
+    ['Péclard im Schober','Heisse Schokolade und Torten in einem verwinkelten Altstadthaus'],
+    ['Confiserie Sprüngli','Paradeplatz – Luxemburgerli, Café, Lunch'],
+    ['Café Henrici','Niederdorf, gleich beim Central'],
+    ['Babu’s Bakery','Brunch und Bagels beim Löwenplatz'] ]},
+  { group:'Mittag', items:[
+    ['Haus Hiltl','Vegetarisches Buffet, zahlen nach Gewicht'],
+    ['Zeughauskeller','Zürcher Geschnetzeltes in der alten Waffenhalle'],
+    ['Markthalle im Viadukt','Stände und kleine Restaurants im Kreis 5'],
+    ['Rheinfelder Bierhalle','Riesiges Cordon bleu im Niederdorf'] ]},
+  { group:'Abendessen', items:[
+    ['Swiss Chuchi','Fondue und Raclette im Niederdorf'],
+    ['Le Dézaley','Waadtländer Fondue in der Altstadt'],
+    ['Zunfthaus zur Waag','Zürcher Küche am Münsterhof'],
+    ['Kronenhalle','Klassiker mit Kunst an den Wänden'] ]},
+  { group:'Bars', items:[
+    ['Widder Bar','Grosse Whisky-Auswahl, ruhig und gediegen'],
+    ['Jules Verne Panoramabar','Rundumsicht im Turm der Urania'],
+    ['Clouds Prime Tower','Apéro hoch über der Stadt'],
+    ['Kronenhalle Bar','Cocktails unter Kunst'] ]},
+];
+
+/* ===== Hilfen ===== */
+const $ = s => document.querySelector(s);
+const startDate = new Date(START + 'T00:00:00');
+const dayDate = i => new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + i);
+const WD = ['So','Mo','Di','Mi','Do','Fr','Sa'];
+const MO = ['Jan','Feb','März','Apr','Mai','Juni','Juli','Aug','Sept','Okt','Nov','Dez'];
+const MOL = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+const fmtShort = d => WD[d.getDay()];
+const fmtLong = d => `${WD[d.getDay()]}, ${d.getDate()}. ${MO[d.getMonth()]}`;
+const gmaps = q => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q + ' Zürich');
+const route = ll => 'https://www.google.com/maps/dir/?api=1&travelmode=transit&destination=' + ll.join(',');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ICON = {
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+  nav:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg>',
+  share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>',
+};
+function todayIndex(){
+  const now = new Date(); const t = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const i = Math.round((t - startDate) / 864e5);
+  return (i >= 0 && i < DAYS.length) ? i : -1;
+}
+function imgTag(day){
+  return `<img src="${IMG(day.img)}" alt="${esc(day.imgAlt||'')}" loading="lazy" onerror="this.parentNode.classList.add('img-fallback');this.remove()">`;
+}
+function slotHTML(key, s){
+  return `<div class="slot ${key}">
+    <div class="slot-h"><span class="slot-name">${SLOTS[key]}</span><span class="slot-time">${s.time}</span></div>
+    <div class="slot-place">${esc(s.place)}</div>
+    <p>${esc(s.text)}</p>
+    <div class="slot-links">
+      <a class="btn" href="${gmaps(s.q)}" target="_blank" rel="noopener">${ICON.pin}Karte</a>
+      <a class="btn" href="${route(s.ll)}" target="_blank" rel="noopener">${ICON.nav}Route</a>
+    </div>
+  </div>`;
+}
+
+/* ===== Countdown ===== */
+function countdown(){
+  const now = new Date(), ti = todayIndex(), end = dayDate(DAYS.length);
+  if(ti >= 0){
+    $('#cdLabel').textContent = 'Willkommen in Zürich –';
+    $('#cdNums').innerHTML = `<div class="cd-unit"><span class="cd-num">Tag ${ti+1}</span><span class="cd-u">von ${DAYS.length}</span></div>`;
+    return;
+  }
+  if(now >= end){ $('#cdLabel').textContent = 'Schön, dass ihr da wart.'; $('#cdNums').innerHTML = ''; return; }
+  const ms = startDate - now;
+  const d = Math.floor(ms/864e5), h = Math.floor(ms%864e5/36e5), m = Math.floor(ms%36e5/6e4);
+  $('#cdLabel').textContent = `Ankunft in Zürich am ${fmtLong(startDate)} – noch`;
+  $('#cdNums').innerHTML = [[d,'Tage'],[h,'Std'],[m,'Min']].map(([n,u]) =>
+    `<div class="cd-unit"><span class="cd-num">${n}</span><span class="cd-u">${u}</span></div>`).join('');
+}
+
+/* ===== Heute ===== */
+let current = 0;
+function renderDayPick(){
+  const ti = todayIndex();
+  $('#dayPick').innerHTML = DAYS.map((d,i) => {
+    const dt = dayDate(i);
+    return `<button class="dp" type="button" data-i="${i}" aria-pressed="${i===current}" aria-label="${fmtLong(dt)}${i===ti?' (heute)':''}"><small>${fmtShort(dt)}</small><b>${dt.getDate()}.</b></button>`;
+  }).join('');
+}
+function renderDayCard(){
+  const d = DAYS[current], dt = dayDate(current), ti = todayIndex();
+  const tag = current === ti ? 'Heute' : (ti < 0 ? 'Vorschau' : '');
+  $('#dayCard').innerHTML = `
+    ${d.img ? `<div class="dc-img">${imgTag(d)}</div><div class="dc-credit"><a href="${IMGPAGE(d.img)}" target="_blank" rel="noopener">Foto: Wikimedia Commons</a></div>` : ''}
+    <div class="dc-head">
+      <div class="dc-date"><span>Tag ${current+1} · ${fmtLong(dt)}</span>${tag ? `<span class="dc-tag">${tag}</span>` : ''}</div>
+      <h3 class="dc-title">${esc(d.title)}</h3>
+      <p class="dc-sub">${esc(d.sub)}</p>
+    </div>
+    <div class="dc-body">
+      ${['morgen','mittag','abend'].map(k => slotHTML(k, d[k])).join('')}
+      <div class="planb"><strong>Plan B bei Regen:</strong> ${esc(d.planb)}</div>
+      <div class="slot-links">
+        <a class="btn pri" href="#tag-${current+1}" data-open="${current}">Zum Tag in der Woche</a>
+        <button class="btn" type="button" id="shareBtn">${ICON.share}<span>Teilen</span></button>
+      </div>
+    </div>`;
+  $('#shareBtn').onclick = async () => {
+    const text = `${fmtLong(dt)} in Zürich: ${d.morgen.place}, ${d.mittag.place}, ${d.abend.place}`;
+    const url = location.href.split('#')[0] + '#heute';
+    if(navigator.share){ try{ await navigator.share({title:'Zürich – ' + d.title, text, url}); }catch(e){} return; }
+    try{ await navigator.clipboard.writeText(text + '\n' + url); $('#shareBtn span').textContent = 'Kopiert'; }catch(e){}
+  };
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('.dp');
+  if(b){ current = +b.dataset.i; renderDayPick(); renderDayCard(); return; }
+  const o = e.target.closest('[data-open]');
+  if(o){ const btn = document.querySelector(`#tag-${+o.dataset.open+1} .day-btn`); if(btn && btn.getAttribute('aria-expanded') !== 'true') btn.click(); }
+});
+
+/* ===== Woche ===== */
+function renderWeek(){
+  const ti = todayIndex();
+  $('#ov').innerHTML = DAYS.map((d,i) => `<div class="ov${i===ti?' now':''}"></div>`).join('');
+  $('#ovL').innerHTML = DAYS.map((d,i) => `<span>${fmtShort(dayDate(i))} ${dayDate(i).getDate()}.</span>`).join('');
+  $('#timeline').innerHTML = DAYS.map((d,i) => {
+    const dt = dayDate(i), big = !!d.img;
+    return `<article class="day ${big?'big':'small'}${i===ti?' now':''}" id="tag-${i+1}">
+      <div class="day-row">
+        <div class="day-pic">${big ? imgTag(d) : `<div class="day-tile" aria-hidden="true">${dt.getDate()}.</div>`}</div>
+        <div>
+          <div class="day-meta">Tag ${i+1} · ${fmtLong(dt)}</div>
+          <h3><button class="day-btn" type="button" aria-expanded="false" aria-controls="det-${i}">${esc(d.title)}${ICON.chev}</button></h3>
+          <p class="day-sub">${esc(d.sub)}</p>
+          <p class="day-slots">${esc(d.morgen.place)} · ${esc(d.mittag.place)} · ${esc(d.abend.place)}</p>
+        </div>
+      </div>
+      <div class="day-detail" id="det-${i}" hidden>
+        ${['morgen','mittag','abend'].map(k => slotHTML(k, d[k])).join('')}
+        <div class="planb"><strong>Plan B bei Regen:</strong> ${esc(d.planb)}</div>
+      </div>
+    </article>`;
+  }).join('');
+  $('#timeline').addEventListener('click', e => {
+    const b = e.target.closest('.day-btn'); if(!b) return;
+    const open = b.getAttribute('aria-expanded') === 'true';
+    b.setAttribute('aria-expanded', String(!open));
+    document.getElementById(b.getAttribute('aria-controls')).hidden = open;
+  });
+}
+
+/* ===== Essen ===== */
+function renderPlaces(){
+  $('#places').innerHTML = PLACES.map(g => `<div class="pgroup"><h3>${g.group}</h3>
+    ${g.items.map(([n,t]) => `<div class="place"><div><b>${esc(n)}</b><span>${esc(t)}</span></div><a href="${gmaps(n)}" target="_blank" rel="noopener">Karte</a></div>`).join('')}
+  </div>`).join('');
+}
+
+/* ===== Karte ===== */
+let map; const layers = {};
+function renderMap(){
+  if(!window.L){ $('#map').innerHTML = '<p class="prose" style="padding:1rem">Die Karte braucht eine Internetverbindung.</p>'; return; }
+  map = L.map('map', { scrollWheelZoom:false }).setView(ZRH, 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+  const pts = [];
+  ['morgen','mittag','abend'].forEach(k => {
+    layers[k] = L.layerGroup().addTo(map);
+    DAYS.forEach((d,i) => {
+      const s = d[k];
+      const icon = L.divIcon({ className:'', html:`<div class="pin" style="--c:var(--${k})"></div>`, iconSize:[16,16], iconAnchor:[8,8] });
+      L.marker(s.ll, { icon, title:s.place }).addTo(layers[k]).bindPopup(
+        `<b>${esc(s.place)}</b>${SLOTS[k]} · Tag ${i+1}, ${fmtLong(dayDate(i))}<br><a href="${route(s.ll)}" target="_blank" rel="noopener">Route</a>`);
+      pts.push(s.ll);
+    });
+  });
+  map.fitBounds(pts, { padding:[24,24] });
+  $('#filters').onclick = e => {
+    const b = e.target.closest('.flt'); if(!b) return;
+    const on = b.getAttribute('aria-pressed') !== 'true';
+    b.setAttribute('aria-pressed', String(on));
+    on ? layers[b.dataset.slot].addTo(map) : map.removeLayer(layers[b.dataset.slot]);
+  };
+}
+
+/* ===== Wetter (Open-Meteo) ===== */
+const WMO = c => c===0?'klar':c<=2?'leicht bewölkt':c===3?'bedeckt':c<=48?'Nebel':c<=57?'Niesel':c<=67?'Regen':c<=77?'Schnee':c<=82?'Schauer':c<=86?'Schneeschauer':'Gewitter';
+async function weather(){
+  try{
+    const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${ZRH[0]}&longitude=${ZRH[1]}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FZurich&forecast_days=4`);
+    if(!r.ok) throw 0;
+    const w = await r.json();
+    $('#wxT').textContent = Math.round(w.current.temperature_2m) + '°';
+    const days = w.daily.time.slice(1).map((t,i) => {
+      const d = new Date(t + 'T12:00:00');
+      return `<span>${fmtShort(d)} ${Math.round(w.daily.temperature_2m_min[i+1])}–${Math.round(w.daily.temperature_2m_max[i+1])}°, ${WMO(w.daily.weather_code[i+1])}</span>`;
+    }).join('');
+    $('#wxD').innerHTML = `<b>Jetzt in Zürich: ${WMO(w.current.weather_code)}</b><div class="wx-days">${days}</div>`;
+  }catch(e){
+    $('#wxT').textContent = '2–7°';
+    $('#wxD').innerHTML = '<b>Ende November in Zürich</b>Meist kühl und grau, morgens oft Nebel. Warme Jacke und Schirm mitnehmen.';
+  }
+}
+
+/* ===== Navigation, Theme ===== */
+function navSpy(){
+  const links = [...document.querySelectorAll('nav a')];
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin:'-45% 0px -50% 0px' });
+  links.forEach(a => { const s = document.querySelector(a.getAttribute('href')); if(s) io.observe(s); });
+}
+function theme(){
+  const root = document.documentElement;
+  try{ const t = localStorage.getItem('zh-theme'); if(t) root.dataset.theme = t; }catch(e){}
+  $('#themeBtn').onclick = () => {
+    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try{ localStorage.setItem('zh-theme', root.dataset.theme); }catch(e){}
+  };
+}
+
+/* ===== Start ===== */
+(function init(){
+  const ti = todayIndex(); current = ti >= 0 ? ti : 0;
+  const end = dayDate(DAYS.length - 1);
+  const range = `${startDate.getDate()}.–${end.getDate()}. ${MOL[end.getMonth()]} ${end.getFullYear()}`;
+  $('#heroMeta').textContent = `Zürich · ${range} · Eine Woche`;
+  $('#statDates').textContent = range;
+  $('#heuteKicker').textContent = ti >= 0 ? `Heute ist Tag ${ti+1}` : 'Vorschau';
+  $('#credits').innerHTML = 'Fotos via Wikimedia Commons: ' + ['Uetliberg und Nebel über der Stadt Dez. 2020.jpg', ...DAYS.filter(d => d.img).map(d => d.img)]
+    .map(n => `<a href="${IMGPAGE(n)}" target="_blank" rel="noopener">${esc(n.replace(/\.jpg$/i,''))}</a>`).join(', ') + '. Karte © OpenStreetMap-Mitwirkende.';
+  theme(); countdown(); setInterval(countdown, 30000);
+  renderDayPick(); renderDayCard(); renderWeek(); renderPlaces(); renderMap(); weather(); navSpy();
+  if('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(()=>{});
+})();
+</script>
 </body>
 </html>
