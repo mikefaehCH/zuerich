@@ -89,7 +89,7 @@ const PLACES = [
     web:null, dur:'20–40 min', when:['noche'], rain:false, night:true, free:true, warm:false,
     ov:'Empieza delante de Zürich HB',
     hours:'Se encienden el 19 nov 2026 a las 18:00 y lucen hasta el 4 ene 2027.',
-    price:'Gratis.', status:'sec', src:'https://newinzurich.com/2026/09/best-christmas-markets-in-zurich-and-switzerland-2026/', img:null,
+    price:'Gratis.', status:'sec', src:'https://newinzurich.com/2026/09/best-christmas-markets-in-zurich-and-switzerland-2026/', img:'img/bahnhofstrasse-navidad', imgCap:'El tranvía bajo las luces «Lucy» de la Bahnhofstrasse', credit:'Ralph Hutter / Unsplash',
     open:['2026-11-19','2027-01-04'], closed:[] },
 
   { id:'winterzauber', name:'Winterzauber en el Uetliberg', cat:'navidad', prio:'muy', casco:false,
@@ -140,13 +140,13 @@ const PLACES = [
     desc:'El barrio más animado del casco antiguo: callejuelas empedradas, casas medievales, bares y restaurantes. En Adviento, con puestos navideños. Perfecto para pasear de noche.',
     addr:'Niederdorfstrasse, 8001 Zürich', ll:[47.3727,8.5440], q:'Niederdorf Zürich',
     web:null, dur:'45–90 min', when:['tarde','noche'], rain:false, night:true, free:true, warm:false,
-    ov:'10 minutos a pie desde Zürich HB', hours:'Barrio público, siempre accesible.', price:'Gratis.', status:'ok', src:null, img:null },
+    ov:'10 minutos a pie desde Zürich HB', hours:'Barrio público, siempre accesible.', price:'Gratis.', status:'ok', src:null, img:'img/altstadt-sterne', imgCap:'Callejuela del casco antiguo con estrellas navideñas', credit:'Ricardo Gomez Angel / Unsplash' },
 
   { id:'limmatquai', close:[24,24,24,24,24,24,24], name:'Limmatquai', cat:'ver', prio:'muy', casco:true,
     desc:'El paseo a orillas del río Limmat, con las casas gremiales, los puentes y las torres de las iglesias reflejadas en el agua. Precioso con las luces de la tarde.',
     addr:'Limmatquai, 8001 Zürich', ll:[47.3712,8.5430], q:'Limmatquai Zürich',
     web:null, dur:'30–45 min', when:['manana','tarde','noche'], rain:false, night:true, free:true, warm:false,
-    ov:'5 minutos a pie desde Zürich HB', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:null },
+    ov:'5 minutos a pie desde Zürich HB', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:'img/limmatquai-grossmuenster', imgCap:'El Grossmünster y el Limmatquai desde el río', credit:'Rico Reutimann / Unsplash' },
 
   { id:'augustinergasse', close:[24,24,24,24,24,24,24], name:'Augustinergasse', cat:'ver', prio:'muy', casco:true,
     desc:'Quizá la calle más fotogénica de Zúrich: fachadas de colores y miradores de madera pintados. Está entre la Bahnhofstrasse y el Lindenhof.',
@@ -158,7 +158,7 @@ const PLACES = [
     desc:'Donde la ciudad se abre al lago. Con el cielo despejado se ven los Alpes al fondo. El final natural de cualquier paseo por la Bahnhofstrasse.',
     addr:'Bürkliplatz, 8001 Zürich', ll:[47.3667,8.5408], q:'Bürkliplatz Zürich',
     web:null, dur:'30–60 min', when:['manana','tarde'], rain:false, night:true, free:true, warm:false, view:true,
-    ov:'Tranvía hasta Bürkliplatz o 15 min a pie por la Bahnhofstrasse', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:null },
+    ov:'Tranvía hasta Bürkliplatz o 15 min a pie por la Bahnhofstrasse', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:'img/buerkliplatz', imgCap:'El Limmat junto al Bürkliplatz, con el Fraumünster y San Pedro', credit:'aho / Unsplash' },
 
   { id:'polyterrasse', close:[24,24,24,24,24,24,24], name:'Polyterrasse (ETH)', cat:'ver', prio:'muy', casco:false,
     desc:'La terraza delante del edificio principal de la universidad ETH, una de las mejores vistas sobre los tejados y las torres. De noche, la ciudad iluminada.',
@@ -194,7 +194,7 @@ const PLACES = [
     addr:'Heimplatz 1, 8001 Zürich', ll:[47.3703,8.5483], q:'Kunsthaus Zürich',
     web:'https://www.kunsthaus.ch/', dur:'1,5–3 h', when:['manana','tarde','noche'], rain:true, night:true, free:false, warm:true,
     ov:'Tranvía hasta Kunsthaus',
-    hours:'Mar, mié, vie–dom 10–18 h; jueves 10–20 h; lunes cerrado.', price:'Precio pendiente de confirmación (tickets.kunsthaus.ch).', status:'ok', src:'https://www.kunsthaus.ch/', img:null },
+    hours:'Mar, mié, vie–dom 10–18 h; jueves 10–20 h; lunes cerrado.', price:'Precio pendiente de confirmación (tickets.kunsthaus.ch).', status:'ok', src:'https://www.kunsthaus.ch/', img:'img/kunsthaus', imgCap:'La ampliación de David Chipperfield', credit:'Ilia Bronskiy / Unsplash' },
 
   { id:'cabaretvoltaire', name:'Cabaret Voltaire', cat:'cultura', prio:'si', casco:true,
     desc:'En esta casa del casco antiguo nació el dadaísmo en 1916. Hoy es un pequeño espacio cultural con bar. Una parada curiosa en el paseo por el Niederdorf.',
@@ -339,7 +339,7 @@ const PLACES = [
     desc:'La ciudad más bonita de Suiza para muchos: el puente de madera Kapellbrücke, la ciudad vieja con fachadas pintadas y el lago con los Alpes detrás. La mejor excursión de un día.',
     addr:'Kapellbrücke, 6002 Luzern', ll:[47.0517,8.3075], q:'Kapellbrücke Luzern', to:'Luzern',
     web:'https://www.luzern.com/', dur:'5–7 h en total', when:['manana','tarde'], rain:false, night:false, free:true, warm:false, view:true,
-    ov:'Tren directo, aprox. 40–50 min', hours:'Ciudad, siempre accesible.', price:'Billete de tren aparte.', status:'ok', src:null, img:null,
+    ov:'Tren directo, aprox. 40–50 min', hours:'Ciudad, siempre accesible.', price:'Billete de tren aparte.', status:'ok', src:null, img:'img/luzern-kapellbruecke', imgCap:'El Kapellbrücke y la torre del agua, con el Pilatus al fondo', credit:'Geertje Caliguire / Unsplash',
     weather:'Con lluvia sigue mereciendo la pena; con niebla se pierden las montañas.' },
 
   { id:'rapperswil', name:'Rapperswil', cat:'excursion', prio:'muy', casco:false,
@@ -353,7 +353,7 @@ const PLACES = [
     desc:'Ciudad termal con un casco antiguo precioso sobre el río Limmat y un puente de madera cubierto. Ideal para una tarde corta.',
     addr:'Altstadt, 5400 Baden', ll:[47.4733,8.3080], q:'Altstadt Baden AG', to:'Baden',
     web:null, dur:'2–4 h', when:['manana','tarde'], rain:true, night:false, free:true, warm:false,
-    ov:'Tren directo, aprox. 15–20 min', hours:'Ciudad, siempre accesible.', price:'Billete de tren aparte.', status:'ok', src:null, img:null,
+    ov:'Tren directo, aprox. 15–20 min', hours:'Ciudad, siempre accesible.', price:'Billete de tren aparte.', status:'ok', src:null, img:'img/baden-noche', imgCap:'Baden de noche, desde las ruinas del castillo de Stein', credit:'julian / Unsplash',
     weather:'Con lluvia: combinar con los baños termales.' },
 
   { id:'zug', name:'Zug', cat:'excursion', prio:'muy', casco:false,

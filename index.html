@@ -11,11 +11,11 @@
 <meta property="og:title" content="Zúrich en Navidad">
 <meta property="og:description" content="Una semana para descubrir el encanto de Suiza · 20–27 de noviembre de 2026">
 <meta property="og:url" content="https://mikefaehch.github.io/zuerich/">
-<meta property="og:image" content="https://mikefaehch.github.io/zuerich/img/grossmuenster-alpen-1600.webp">
+<meta property="og:image" content="https://mikefaehch.github.io/zuerich/img/bahnhofstrasse-navidad-1600.webp">
 <meta name="theme-color" content="#f7f5ef">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="preload" as="image" href="img/grossmuenster-alpen-800.webp" imagesrcset="img/grossmuenster-alpen-800.webp 800w, img/grossmuenster-alpen-1600.webp 1600w" imagesizes="100vw">
+<link rel="preload" as="image" href="img/bahnhofstrasse-navidad-800.webp" imagesrcset="img/bahnhofstrasse-navidad-800.webp 800w, img/bahnhofstrasse-navidad-1600.webp 1600w" imagesizes="100vw">
 <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="vendor/markercluster/MarkerCluster.css">
 <style>
@@ -61,7 +61,7 @@ h3 .poc{margin-left:.35rem;position:relative;top:-.12em;}
 
 /* hero */
 #inicio{position:relative;min-height:84svh;display:flex;align-items:flex-end;padding:0 1.25rem;overflow:hidden;background:#1d2a33;}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 40%;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 50%;}
 .hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,16,22,.15) 0%,rgba(10,16,22,.3) 40%,rgba(10,16,22,.86) 100%);}
 .hero-content{position:relative;z-index:2;width:100%;max-width:760px;margin:0 auto;padding-bottom:2.8rem;color:#fff;}
 .hero-meta{font-size:.95rem;font-weight:500;color:rgba(255,255,255,.9);margin-bottom:1rem;}
@@ -133,6 +133,9 @@ h3{font-family:var(--serif);font-weight:500;font-size:1.3rem;line-height:1.25;}
 .pick .acts{grid-column:1/-1;display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.5rem;}
 .pick .cat{font-size:.75rem;color:var(--muted);padding-top:.25rem;white-space:nowrap;}
 .xmas{margin-top:2.2rem;}
+.banner{margin:0 0 1.2rem;}
+.banner img{width:100%;aspect-ratio:16/8;object-fit:cover;border-radius:8px;background:var(--bg2);}
+.banner figcaption{font-size:.72rem;color:var(--muted);margin-top:.35rem;}
 .xmas h3{margin-bottom:.6rem;}
 .cal-wrap{position:relative;overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--card);}
 .cal{width:100%;border-collapse:collapse;font-size:.85rem;}
@@ -257,8 +260,8 @@ footer p+p{margin-top:.5rem;}
 <a class="skip" href="#hoy">Saltar al contenido</a>
 
 <header id="inicio">
-  <img class="hero-img" alt="Las torres del Grossmünster sobre los tejados del casco antiguo, con los Alpes al fondo"
-       src="img/grossmuenster-alpen-800.webp" srcset="img/grossmuenster-alpen-800.webp 800w, img/grossmuenster-alpen-1600.webp 1600w" sizes="100vw" fetchpriority="high">
+  <img class="hero-img" alt="Un tranvía de Zúrich bajo las luces de Navidad de la Bahnhofstrasse, de noche"
+       src="img/bahnhofstrasse-navidad-800.webp" srcset="img/bahnhofstrasse-navidad-800.webp 800w, img/bahnhofstrasse-navidad-1600.webp 1600w" sizes="100vw" fetchpriority="high">
   <div class="hero-shade"></div>
   <div class="hero-content">
     <p class="hero-meta">20–27 de noviembre de 2026</p>
@@ -273,7 +276,7 @@ footer p+p{margin-top:.5rem;}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
-  <span class="hero-credit">Foto: Unsplash</span>
+  <span class="hero-credit">Foto: Ralph Hutter / Unsplash</span>
 </header>
 
 <div id="countdown" aria-live="polite"></div>
@@ -297,6 +300,7 @@ footer p+p{margin-top:.5rem;}
     <div class="picks" id="picks" aria-live="polite"></div>
     <p class="note" id="todayNote"></p>
     <div class="xmas">
+      <figure class="banner"><img src="img/mercado-atardecer-800.webp" srcset="img/mercado-atardecer-800.webp 800w, img/mercado-atardecer-1600.webp 1600w" sizes="(min-width:760px) 720px, 100vw" alt="Puestos de un mercado navideño al atardecer, con un abeto iluminado entre los árboles" loading="lazy" decoding="async"><figcaption>Mercado navideño al atardecer · Foto: Seraina Larissa / Unsplash</figcaption></figure>
       <h3>Navidad: qué está abierto</h3>
       <div class="cal-wrap"><table class="cal" id="cal"></table></div>
       <p class="note"><span class="st ok">●</span> abierto, con hora de cierre · <span class="st pend">?</span> pendiente de confirmación · — cerrado</p>
@@ -309,6 +313,7 @@ footer p+p{margin-top:.5rem;}
   <section class="sec" id="lugares" aria-labelledby="lugT">
     <p class="kicker">Lugares</p>
     <h2 id="lugT">Todo <em>en el mapa</em></h2>
+    <figure class="banner"><img src="img/zuerich-luftbild-800.webp" srcset="img/zuerich-luftbild-800.webp 800w, img/zuerich-luftbild-1600.webp 1600w" sizes="(min-width:760px) 720px, 100vw" alt="Vista aérea de Zúrich: el Limmat, el Grossmünster, el Fraumünster, San Pedro y el lago con los Alpes al fondo" loading="lazy" decoding="async"><figcaption>El Limmat, el casco antiguo y el lago · Foto: Henrique Ferreira / Unsplash</figcaption></figure>
     <p class="prose">Empezad por el TOP 10 o por la selección de Mike. El mapa y las fichas muestran siempre lo mismo.</p>
     <div class="fbar">
       <div class="frow" role="group" aria-label="Mostrar" id="fCat"></div>
@@ -385,7 +390,7 @@ footer p+p{margin-top:.5rem;}
 <footer>
   <p>Una guía de Mike para sus compañeros. <span id="checked"></span></p>
   <p>Los horarios marcados como «pendiente de confirmación» aún no estaban publicados; consultad la web oficial antes de ir. Los tiempos de viaje y a pie son aproximados.</p>
-  <p>Fotos: Unsplash. Mapa © colaboradores de OpenStreetMap. Fuentes Fraunces y DM Sans (OFL), Leaflet y Leaflet.markercluster.</p>
+  <p>Fotos: Unsplash (autores en cada imagen). Mapa © colaboradores de OpenStreetMap. Fuentes Fraunces y DM Sans (OFL), Leaflet y Leaflet.markercluster.</p>
 </footer>
 
 <button id="themeBtn" type="button" aria-label="Cambiar entre modo claro y oscuro">
