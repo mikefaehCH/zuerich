@@ -37,7 +37,9 @@ Rollback: `git revert <sha>`.
 - Without `img` the card shows no thumbnail (text uses full width; never placeholders). `img:'img/name'` requires `img/name-400.webp` + `img/name-800.webp`, `imgCap`, `credit`.
 - `IDEAS`: `id` (links `#idea-id`), `title`, `dur`, `days`, `text`, `note`, `stops` (place ids, in walking order), `walkOnly`/`transit`.
 - Front page «Lo mejor de Zúrich» = Mike's favourites: `CONFIG.favFirst` = photo picks in order (must have `img`, quote = 1st sentence of `tip`);
-  all other `poc` places appear automatically in «Más favoritos». `CONFIG.topIdeas` (3 visible ideas), `CONFIG.mapFar`.
+  all other `poc` places appear automatically in «Más favoritos».
+- «Según el momento del día» (4 tiles above the favourites) = `CONFIG.momentos`: `manana` uses its fixed `places` list (cafés open from 8 h),
+  `mediodia`/`tarde`/`finde` use rules in `inTab()` (`m-…` tabs) – lunch is sorted by distance to `OFFICE`. `CONFIG.topIdeas` (3 visible ideas), `CONFIG.mapFar`.
 - `tags` also `brunch`. Card label comes from `kindLabel()` (Café / Brunch y café / Bar / Restaurante) + barrio from the postcode in `addr`.
 
 ### Add a restaurant (example)

@@ -72,7 +72,8 @@ const TABS = [['destacados','Destacados'],['navidad','Navidad'],['favoritos','Fa
 const SUBS = [['cafe','Café'],['brunch','Brunch'],['almuerzo','Almuerzo'],['cena','Cena'],['bar','Copas']];
 const TAB_NOTE = { excursiones:'Tiempos de ida aproximados desde Zürich HB; comprobad la conexión del día.' };
 const state = { tab: store.get('zh-tab', 'destacados'), sub:null, near:null, nearFrom:null, plan: loadPlan(), incoming:null };
-if (!TABS.some(t => t[0] === state.tab)) state.tab = 'destacados';
+const MOM = Object.fromEntries(CONFIG.momentos.map(m => ['m-' + m.id, m]));
+if (!TABS.some(t => t[0] === state.tab) && !MOM[state.tab]) state.tab = 'destacados';
 const savePlan = () => { store.set('zh-plan3', state.plan); const c = $('#planCnt'); c.textContent = state.plan.length || ''; c.setAttribute('aria-label', state.plan.length ? `${state.plan.length} lugares` : ''); };
 const inPlan = id => state.plan.includes(id);
 const PRIO_ORDER = { top:0, muy:1, si:2 };
@@ -85,12 +86,21 @@ function inTab(p){
     case 'favoritos': return !!p.poc;
     case 'comer': return state.sub ? (p.tags || []).includes(state.sub) : p.cat === 'gastro';
     case 'excursiones': return p.cat === 'excursion';
+    case 'm-manana': return MOM['m-manana'].places.includes(p.id);
+    case 'm-mediodia': return (p.tags || []).includes('almuerzo');
+    case 'm-tarde': return (p.cat === 'navidad' && p.status !== 'pend') || ['cena','bar'].some(t => (p.tags || []).includes(t)) || p.id === 'langstrasse';
+    case 'm-finde': return p.cat === 'excursion' || p.cat === 'cultura' || (p.tags || []).includes('brunch') || ['uetliberg','lindt','hurlimann'].includes(p.id);
     default: return true;
   }
 }
 function visible(){
   const list = PLACES.filter(inTab);
   if (state.near) return list.sort((a, b) => km(state.near, a.ll) - km(state.near, b.ll));
+  if (state.tab === 'm-manana') return MOM['m-manana'].places.map(id => byId[id]).filter(Boolean);
+  if (state.tab === 'm-mediodia') return list.sort((a, b) => km(OFFICE.ll, a.ll) - km(OFFICE.ll, b.ll));
+  const mine = p => (p.poc ? 2 : p.rec ? 1 : 0);
+  if (state.tab === 'm-tarde') return list.sort((a, b) => (b.cat === 'navidad') - (a.cat === 'navidad') || mine(b) - mine(a) || PRIO_ORDER[a.prio] - PRIO_ORDER[b.prio]);
+  if (state.tab === 'm-finde') return list.sort((a, b) => mine(b) - mine(a) || PRIO_ORDER[a.prio] - PRIO_ORDER[b.prio]);
   const navFirst = state.tab === 'destacados' ? (a, b) => (b.cat === 'navidad') - (a.cat === 'navidad') : () => 0;
   return list.sort((a, b) => navFirst(a, b) || PRIO_ORDER[a.prio] - PRIO_ORDER[b.prio] || (b.poc?1:0) - (a.poc?1:0));
 }
@@ -161,10 +171,21 @@ function renderFavs(){
     </li>`).join('');
 }
 
+/* ================= 01b · según el momento del día ================= */
+function renderMoments(){
+  $('#momGrid').innerHTML = CONFIG.momentos.map(m => { const n = PLACES.filter(p => { const t = state.tab; state.tab = 'm-' + m.id; const r = inTab(p); state.tab = t; return r; }).length;
+    return `<button type="button" class="mo" data-goto="m-${m.id}">
+      ${m.img ? `<img src="${m.img}-400.webp" srcset="${m.img}-400.webp 400w, ${m.img}-800.webp 800w" sizes="(min-width:860px) 240px, 46vw" alt="" width="400" height="300" decoding="async">` : ''}
+      <span class="mo-t"><b>${esc(m.title)}</b><small>${esc(m.sub)} · ${n}</small></span>
+      ${m.credit ? `<span class="mo-cr" aria-hidden="true">${m.place ? `<span class="mo-pl">${esc(m.place)}</span> ` : ''}<span class="mo-au">${esc(m.credit)}</span></span>` : ''}
+    </button>`; }).join('');
+  $('#momCredits').textContent = 'Fotos de la portada: ' + CONFIG.momentos.filter(m => m.credit).map(m => m.credit.replace(' / Unsplash', '')).join(', ') + ' (Unsplash).';
+}
+
 /* ================= 04 · descubrir ================= */
 const chip = (g, v, l, on, extra = '') => `<button class="chip${extra}" type="button" data-${g}="${v}" aria-pressed="${on}">${l}</button>`;
 function renderTabs(){
-  $('#tabs').innerHTML = TABS.map(([v,l]) => chip('tab', v, v === 'favoritos' ? STAR_SVG + l : l, state.tab === v)).join('');
+  $('#tabs').innerHTML = (MOM[state.tab] ? chip('tab', state.tab, esc(MOM[state.tab].title), true) : '') + TABS.map(([v,l]) => chip('tab', v, v === 'favoritos' ? STAR_SVG + l : l, state.tab === v)).join('');
   const st = $('#subtabs'); st.hidden = state.tab !== 'comer';
   st.innerHTML = SUBS.map(([v,l]) => chip('sub', v, l, state.sub === v, ' sm')).join('');
 }
@@ -172,7 +193,7 @@ const GROUPS = [['navidad','Navidad'],['ver','Casco antiguo y vistas'],['cultura
 function renderList(){
   const list = visible();
   $('#count').textContent = (list.length === 1 ? '1 lugar' : `${list.length} lugares`) + (state.near ? (state.nearFrom === 'office' ? ' · cerca de la oficina' : ' · por distancia') : '');
-  const n = $('#tabNote'); n.hidden = !TAB_NOTE[state.tab]; n.textContent = TAB_NOTE[state.tab] || '';
+  const note = TAB_NOTE[state.tab] || MOM[state.tab]?.note; const n = $('#tabNote'); n.hidden = !note; n.textContent = note || '';
   if (state.tab === 'todo' && !state.near){
     $('#plist').innerHTML = GROUPS.map(([c, l]) => { const g = list.filter(p => p.cat === c); return g.length ? `<h3 class="group-h">${l}</h3>` + g.map(p => card(p, 4)).join('') : ''; }).join('');
   } else $('#plist').innerHTML = list.map(p => card(p)).join('');
@@ -401,7 +422,7 @@ async function weather(){
 function navSpy(){
   const links = [...document.querySelectorAll('nav.top a')];
   const set = id => links.forEach(a => { const on = a.getAttribute('href') === '#' + id; a.classList.toggle('on', on); on ? a.setAttribute('aria-current','true') : a.removeAttribute('aria-current'); });
-  const zones = [['lomejor','descubrir'],['lista','descubrir'],['ideas','ideas'],['plan','plan'],['info','plan']];
+  const zones = [['momentos','descubrir'],['lomejor','descubrir'],['lista','descubrir'],['ideas','ideas'],['plan','plan'],['info','plan']];
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) set(zones.find(z => z[0] === e.target.id)[1]); }), { rootMargin:'-40% 0px -55% 0px' });
   zones.forEach(([id]) => io.observe(document.getElementById(id)));
   set('descubrir');
@@ -462,7 +483,7 @@ function route(instant){
   $('#szuNote').textContent = SZU_NOTE;
   $('#checked').textContent = `Datos comprobados por última vez el ${TRIP.checked}.`;
   theme();
-  renderFavs(); refresh(); renderCal(); renderIdeas(); renderPlan(); renderIncoming();
+  renderMoments(); renderFavs(); refresh(); renderCal(); renderIdeas(); renderPlan(); renderIncoming();
   document.documentElement.classList.add('ready');
   window.addEventListener('hashchange', () => handleHash(false));
   if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});

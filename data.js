@@ -21,6 +21,17 @@ const CATS = {
 const CONFIG = {
   favFirst: ['lindenhof','niederdorf','lucy','kunsthaus','luzern','baden'],   // favoritos CON FOTO en la portada (en este orden); el resto de favoritos va en la lista «Más favoritos»
   topIdeas: ['bellevue','casco','arte'],                                                    // 3 ideas visibles; el resto, plegadas
+  /* Accesos por momento del día (portada). places = lista fija; sin places, app.js aplica la regla del momento */
+  momentos: [
+    { id:'manana',   title:'Antes del trabajo',   sub:'Café de especialidad desde las 8 h', img:'img/limmatquai-nieve', credit:'Claudio Schwarz / Unsplash',
+      places:['collective','spheres','oko','barbutter','brosbeans','miro','cafenoir'], note:'Cafés que abren temprano (casi todos a las 8 h): mirad el horario de cada uno.' },
+    { id:'mediodia', title:'A mediodía',          sub:'Para comer cerca de la oficina', img:'img/buerkliplatz', credit:'aho / Unsplash',
+      note:'Ordenado por distancia a la oficina (Pfingstweidstrasse).' },
+    { id:'tarde',    title:'Después del trabajo', sub:'Mercados, luces, cena y copas', img:'img/bahnhofstrasse-navidad', credit:'Ralph Hutter / Unsplash',
+      note:'Y en «Ideas», tres planes listos para una tarde.' },
+    { id:'finde',    title:'El fin de semana',    sub:'Brunch, museos y excursiones', img:'img/luzern-puente', credit:'Srini Somanchi / Unsplash', place:'Lucerna',
+      note:'Excursiones: tiempos de ida aproximados desde Zürich HB.' },
+  ],
   mapFar:   ['lindt','zauberpark','felsenegg','winterzauber','uetliberg'],                  // fuera del centro: no cuentan para el encuadre del mapa
 };
 const OFFICE = { ll:[47.3889,8.5155], q:'Pfingstweidstrasse 51, 8005 Zürich' };   // oficina de Mike (Zürich-West)
