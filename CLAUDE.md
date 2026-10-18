@@ -34,7 +34,7 @@ Rollback: `git revert <sha>`.
 - `tags`: `cafe`, `almuerzo`, `cena`, `bar` (sub-filters of «Comer y café»).
 - `poc:true` = **favourite of Mike (gold star)**. Mike decides the list (currently 13). `rec:true` = «Recomendado por Mike» (no star).
 - `tip` = «Consejo de Mike». **Only Mike's own words**, translated to Spanish. Never invent first-person text.
-- `img:'img/name'` requires `img/name-400.webp` + `img/name-800.webp`, `imgCap`, `credit`.
+- Without `img` the card shows no thumbnail (text uses full width; never placeholders). `img:'img/name'` requires `img/name-400.webp` + `img/name-800.webp`, `imgCap`, `credit`.
 - `IDEAS`: `id` (links `#idea-id`), `title`, `dur`, `days`, `text`, `note`, `stops` (place ids, in walking order), `walkOnly`/`transit`.
 - `CONFIG.favFirst` (6 tiles on the front page), `CONFIG.topIdeas` (3 visible ideas), `CONFIG.mapFar`.
 
