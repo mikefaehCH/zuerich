@@ -1,9 +1,13 @@
 {
-  "name": "Zürich im November",
-  "short_name": "Zürich",
+  "name": "Zúrich en Navidad",
+  "short_name": "Zúrich",
+  "lang": "es",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#F8F6F1",
   "theme_color": "#F8F6F1",
-  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
 }

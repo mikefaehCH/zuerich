@@ -1,6 +1,9 @@
-/* Zúrich en Navidad – caché sin conexión. Subir la versión con cada cambio. */
-const CACHE = 'zuerich-v17';
-const CORE = ['./', './index.html', './data.js', './manifest.webmanifest', './icon.svg',
+/* Zúrich en Navidad – caché sin conexión.
+   Red primero (contenido siempre actual); sin conexión, la copia guardada.
+   Solo se guardan archivos propios: nada de teselas del mapa ni datos del tiempo (crecerían sin límite).
+   Subir CACHE (zuerich-vN) solo si cambia la lista CORE. */
+const CACHE = 'zuerich-v18';
+const CORE = ['./', './index.html', './style.css', './app.js', './data.js', './manifest.webmanifest', './icon.svg',
   './img/hero-limmat-m.webp', './img/hero-limmat-d.webp',
   './vendor/leaflet/leaflet.js', './vendor/leaflet/leaflet.css',
   './vendor/markercluster/leaflet.markercluster.js', './vendor/markercluster/MarkerCluster.css',
@@ -11,8 +14,7 @@ self.addEventListener('install', e => e.waitUntil(caches.open(CACHE).then(c => c
 self.addEventListener('activate', e => e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())));
 self.addEventListener('fetch', e => {
   const req = e.request;
-  if (req.method !== 'GET') return;
-  const put = res => { if (res.ok || res.type === 'opaque') { const c = res.clone(); caches.open(CACHE).then(ca => ca.put(req, c)); } return res; };
-  // Red primero (contenido actual), si no hay conexión: caché
+  if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;   // terceros: directo a la red
+  const put = res => { if (res.ok) { const c = res.clone(); caches.open(CACHE).then(ca => ca.put(req, c)); } return res; };
   e.respondWith(fetch(req).then(put).catch(() => caches.match(req, { ignoreSearch: true }).then(r => r || (req.mode === 'navigate' ? caches.match('./index.html') : Response.error()))));
 });
