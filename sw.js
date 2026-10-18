@@ -1,5 +1,5 @@
 /* Zúrich en Navidad – caché sin conexión. Subir la versión con cada cambio. */
-const CACHE = 'zuerich-v16';
+const CACHE = 'zuerich-v17';
 const CORE = ['./', './index.html', './data.js', './manifest.webmanifest', './icon.svg',
   './img/hero-limmat-m.webp', './img/hero-limmat-d.webp',
   './vendor/leaflet/leaflet.js', './vendor/leaflet/leaflet.css',

@@ -13,6 +13,7 @@
 <meta property="og:url" content="https://mikefaehch.github.io/zuerich/">
 <meta property="og:image" content="https://mikefaehch.github.io/zuerich/img/hero-limmat-d.webp">
 <meta name="theme-color" content="#F8F6F1">
+<script>document.documentElement.classList.add('js')</script>
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preload" as="image" href="img/hero-limmat-m.webp" media="(max-width: 699px)" fetchpriority="high">
@@ -55,6 +56,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 img{display:block;max-width:100%;}
 button,input{font-family:inherit;}
 [hidden]{display:none !important;}
+/* sin saltos al cargar: lo que JS rellena aparece de una vez */
+.js:not(.ready) main > :not(#lomejor){display:none;}
 .sr{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;}
 .skip{position:absolute;left:1rem;top:-3rem;z-index:1000;background:var(--card);color:var(--acc-ink);padding:.6rem 1rem;border-radius:8px;font-weight:600;}
 .skip:focus{top:1rem;}
@@ -85,7 +88,7 @@ nav.top .cnt:empty{display:none;}
 /* secciones */
 .sec{padding-top:2.1rem;scroll-margin-top:46px;}
 .sec + .sec{margin-top:.6rem;}
-.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.85rem;}
+.sec-h{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.85rem;}
 h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.75rem,5.6vw,2.3rem);line-height:1.05;letter-spacing:-.005em;}
 h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.15;}
 .lead{color:var(--muted);font-size:.93rem;margin:-.45rem 0 .9rem;max-width:36rem;}
@@ -850,6 +853,7 @@ function handleHash(instant){
   $('#checked').textContent = `Datos comprobados por última vez el ${TRIP.checked}.`;
   theme();
   renderFavs(); refresh(); renderCal(); renderIdeas(); renderPlan(); renderIncoming();
+  document.documentElement.classList.add('ready');
   weather(); navSpy();
   handleHash(true);
   window.addEventListener('hashchange', () => handleHash(false));
