@@ -74,6 +74,13 @@ const PLACES = [
     price:'Entrada gratuita.', status:'sec', src:'https://newinzurich.com/2026/09/best-christmas-markets-in-zurich-and-switzerland-2026/', img:null,
     open:['2026-11-19','2026-12-23'], closed:[] },
 
+  { id:'weihnachtsallee', rec:true, close:[20,22,22,22,22,22,22], name:'Weihnachtsallee (Europaallee)', cat:'navidad', prio:'muy', casco:false,
+    desc:'Mercado navideño a lo largo de la Europaallee, junto a la estación: chalet de fondue, el bar «Glüehstube» para el aperitivo y puestos de dulces y regalos que cambian cada semana.',
+    addr:'Europaallee, 8004 Zürich', ll:[47.3772,8.5338], q:'Weihnachtsallee Europaallee Zürich',
+    web:'https://www.weihnachtsallee.ch/', dur:'45–90 min', when:['tarde','noche'], rain:false, night:true, free:true, warm:false,
+    ov:'3 minutos a pie desde Zürich HB',
+    hours:'19 nov – 23 dic 2026. Mercado: lun–sáb 11–22 h, dom 11–20 h. Chalet de fondue: todos los días 11–24 h (cocina hasta las 22 h; dom 21 h).', price:'Entrada gratuita. Casi todo se paga sin efectivo. Para el chalet de fondue conviene reservar.', status:'ok', src:'https://www.weihnachtsallee.ch/infos-kontakt', img:null,
+    open:['2026-11-19','2026-12-23'], closed:[] },
   { id:'lucy', tip:'Hay que verlas. El paseo de la estación al lago por la Bahnhofstrasse es un clásico, no tanto por las tiendas como por el ambiente.', close:[24,24,24,24,24,24,24], name:'Luces «Lucy» de la Bahnhofstrasse', cat:'navidad', prio:'muy', poc:true, casco:true,
     desc:'La calle comercial más famosa de Zúrich, iluminada de punta a punta con miles de luces. Recorredla al anochecer desde la estación hasta el lago.',
     addr:'Bahnhofstrasse, 8001 Zürich', ll:[47.3725,8.5389], q:'Bahnhofstrasse Zürich',
@@ -163,7 +170,7 @@ const PLACES = [
     web:null, dur:'10–20 min con las vistas', when:['manana','tarde','noche'], rain:true, night:true, free:false, warm:false,
     ov:'5 minutos a pie desde Zürich HB', hours:'Horario pendiente de confirmación.', price:'Con billete de transporte de la zona 110.', status:'pend', src:null, img:null },
 
-  { id:'uetliberg', tip:'Alternativa a la ciudad: subir en tren al Uetliberg. Bonitas vistas y un pequeño mercado navideño arriba; con nieve es precioso, aunque este año quizá aún no haya. Normalmente el tren sale directo de la estación central; durante vuestra visita no, por las obras.', name:'Uetliberg', cat:'ver', prio:'top', poc:true, casco:false,
+  { id:'uetliberg', tip:'Alternativa a la ciudad: subir en tren al Uetliberg. Bonitas vistas y un pequeño mercado navideño arriba; con nieve es precioso, aunque este año quizá aún no haya. Normalmente el tren sale directo de la estación central; durante vuestra visita no, por las obras.', name:'Uetliberg', cat:'ver', prio:'top', casco:false,
     desc:'La montaña de Zúrich, a 871 metros. Desde la torre mirador se ven la ciudad, el lago y, con suerte, la cadena de los Alpes. En noviembre la ciudad suele estar bajo la niebla y arriba luce el sol, pero no siempre.',
     addr:'Uto Kulm, 8143 Uetliberg', ll:[47.3490,8.4912], q:'Uetliberg Aussichtsturm',
     web:'https://utokulm.ch/', dur:'2–3 h en total', when:['manana','tarde'], rain:false, night:false, free:true, warm:false, view:true,
@@ -291,13 +298,12 @@ const PLACES = [
     ov:'10 minutos a pie desde Zürich HB',
     hours:'Según fuentes secundarias, aprox. 9–18 h; horario por día pendiente de confirmación.', price:'Precio medio.', status:'sec', src:'https://zuri.net/de/zurich/all-coffee-shops/cafe-noir-4126.htm', img:null },
 
-  { id:'piu', tip:'Si os apetece pizza, una buena opción para comer: a mí me parece buenísima.', close:[22,23,23,23,23,23,23], name:'Più Europaallee', cat:'gastro', prio:'muy', casco:false, tags:['almuerzo','cena'],
-    desc:'Cocina italiana de inspiración napolitana a dos minutos de la estación central. Pizzas con masa de 48 horas y «stuzzichini» para picar.',
-    addr:'Kasernenstrasse 95, 8004 Zürich', ll:[47.3770,8.5348], q:'Più Europaallee Zürich',
-    web:'https://bindella.ch/en/restaurants/piu-europaallee', dur:'45–90 min', when:['tarde','noche'], rain:true, night:true, free:false, warm:true,
-    ov:'2 minutos a pie desde Zürich HB',
-    hours:'Lun–sáb 11:30–23 h; dom 11:30–22 h. Se puede reservar online.', price:'Precio medio.', status:'ok', src:'https://www.zuerich.com/de/besuchen/restaurants/piu-europaallee', img:null },
-
+  { id:'piu', tip:'Cerca de la oficina. Si os apetece pizza, una buena opción para comer: a mí me parece buenísima.', close:[22,22.5,22.5,22.5,22.5,23,23], name:'Più Schiffbau', cat:'gastro', prio:'muy', casco:false, tags:['almuerzo','cena'],
+    desc:'Pizzería de inspiración napolitana con un ambiente algo más elegante, en Zürich-West, junto al teatro Schiffbau. Pizzas y especialidades italianas.',
+    addr:'Hardstrasse 259, 8005 Zürich', ll:[47.3858,8.5182], q:'Più Schiffbau Hardstrasse 259 Zürich',
+    web:'https://www.piu-ristorante.ch/piu-schiffbau', dur:'45–90 min', when:['tarde','noche'], rain:true, night:true, free:false, warm:true,
+    ov:'Unos minutos a pie desde la estación Zürich Hardbrücke',
+    hours:'Lun–jue 11:30–14 h y 17:30–22:30 h; vie 11:30–14 h y 17:30–23 h; sáb 11:30–23 h; dom 11:30–22 h.', price:'Precio medio.', status:'sec', src:'https://www.zuerich.com/de/besuchen/restaurants/piu-schiffbau', img:null },
   { id:'cinchona', tip:'Para unas copas: el bar del 25hours en la Langstrasse.', close:[24,24,24,24,24,24,24], name:'Cinchona Bar (25hours Langstrasse)', cat:'gastro', prio:'muy', poc:true, casco:false, tags:['bar'],
     desc:'El bar del hotel 25hours: tranquilo de día y muy animado al salir del trabajo. Su especialidad son los highballs.',
     addr:'Langstrasse 150, 8004 Zürich', ll:[47.3791,8.5296], q:'Cinchona Bar 25hours Langstrasse Zürich',
@@ -305,7 +311,13 @@ const PLACES = [
     ov:'10 minutos a pie desde Zürich HB',
     hours:'Lun–jue 8–1 h; vie 8–2 h; sáb 9–2 h; dom 9–1 h.', price:'Precio medio.', status:'sec', src:'https://www.timeout.com/switzerland/bars-and-pubs/cinchona-bar', img:null },
 
-  { id:'langstrasse', tip:'En la Langstrasse hay muchísimos bares y restaurantes, con un público joven y urbano. Ideal para cenar algo y tomar unas copas.', close:[24,24,24,24,24,24,24], name:'Langstrasse', cat:'experiencia', prio:'muy', poc:true, casco:false,
+  { id:'oleole', rec:true, tip:'Para unas copas en la Langstrasse: para mí, casi obligatorio.', close:[28,28,28,28,28,28,28], name:'Olé Olé Bar', cat:'gastro', prio:'muy', casco:false, tags:['bar'],
+    desc:'Uno de los bares más conocidos de la ciudad, en plena Langstrasse desde hace unos 50 años. Público de lo más variado: banqueros, estudiantes, turistas y gente del barrio.',
+    addr:'Langstrasse 138, 8004 Zürich', ll:[47.3783,8.5277], q:'Olé Olé Bar Langstrasse 138 Zürich',
+    web:null, dur:'1–2 h', when:['noche'], rain:true, night:true, free:false, warm:true,
+    ov:'Unos 10 minutos a pie desde Zürich HB',
+    hours:'Todos los días 17–4 h.', price:'Precio de bar.', status:'sec', src:'https://www.zuerich.com/de/besuchen/bars-lounges/ole-ole-bar', img:null },
+  { id:'langstrasse', tip:'En la Langstrasse hay muchísimos bares y restaurantes, con un público joven y urbano. Ideal para cenar algo y tomar unas copas, por ejemplo en el Olé Olé Bar: para mí, casi obligatorio.', close:[24,24,24,24,24,24,24], name:'Langstrasse', cat:'experiencia', prio:'muy', poc:true, casco:false,
     desc:'La calle más viva de Zúrich, en el Kreis 4: cocinas de medio mundo, bares, clubes y gente hasta tarde. Nada que ver con el casco antiguo.',
     addr:'Langstrasse, 8004 Zürich', ll:[47.3784,8.5288], q:'Langstrasse Zürich',
     web:null, dur:'1–3 h', when:['noche'], rain:false, night:true, free:true, warm:false,
@@ -319,7 +331,7 @@ const PLACES = [
     ov:'Tranvía hasta Bäckeranlage o 15 min a pie desde Zürich HB',
     hours:'Lun–vie 9–17 h. Horario del fin de semana pendiente de confirmación.', price:'Precio medio.', status:'sec', src:'https://www.myswitzerland.com/en-us/experiences/food-wine/restaurant/miro-roastery-cafe-shop', img:null },
 
-  { id:'neuetaverne', tip:'Vegetariano y de nivel estrella Michelin. Por la noche puede salir algo caro; a mediodía está bien.', rec:true, close:[null,23.5,23.5,23.5,23.5,23.5,23.5], name:'Neue Taverne', cat:'gastro', prio:'muy', casco:true, tags:['almuerzo','cena'],
+  { id:'neuetaverne', tip:'Vegetariano y con estrella Michelin, así que los precios son más bien altos (a mediodía está bien). Pero es un restaurante muy chulo.', rec:true, close:[null,23.5,23.5,23.5,23.5,23.5,23.5], name:'Neue Taverne', cat:'gastro', prio:'muy', casco:true, tags:['almuerzo','cena'],
     desc:'Cocina de temporada cien por cien vegetal, pensada para compartir, en una callejuela junto a la Bahnhofstrasse. Una estrella Michelin (guía 2025).',
     addr:'Glockengasse 8, 8001 Zürich', ll:[47.3714,8.5392], q:'Neue Taverne Glockengasse 8 Zürich',
     web:'https://www.neuetaverne.ch/de/', dur:'1,5–2,5 h', when:['tarde','noche'], rain:true, night:true, free:false, warm:true,
@@ -363,7 +375,7 @@ const PLACES = [
     hours:'Lunes cerrado; mar–vie 11–14:30 h y 18–23 h; sáb 10–24 h; dom 10–21 h.', price:'Precio medio.', status:'sec', src:'https://www.zuerich.com/de/besuchen/restaurants/co-chin-chin', img:null },
 
   /* ---------- EXCURSIONES ---------- */
-  { id:'luzern', tip:'Si queréis ver otra ciudad, Lucerna. Muy turística, sí, pero con el panorama de los Alpes, el lago y todo lo demás.', name:'Lucerna', cat:'excursion', prio:'muy', poc:true, casco:false, excTop:true,
+  { id:'luzern', tip:'Una excursión a Lucerna la haría sin duda. Es algo turística, pero es así: casi forma parte del viaje. Y el panorama de los Alpes, el lago y todo lo demás.', name:'Lucerna', cat:'excursion', prio:'muy', poc:true, casco:false, excTop:true,
     desc:'La ciudad más bonita de Suiza para muchos: el puente de madera Kapellbrücke, la ciudad vieja con fachadas pintadas y el lago con los Alpes detrás. La mejor excursión de un día.',
     addr:'Kapellbrücke, 6002 Luzern', ll:[47.0517,8.3075], q:'Kapellbrücke Luzern', to:'Luzern',
     web:'https://www.luzern.com/', dur:'5–7 h en total', when:['manana','tarde'], rain:false, night:false, free:true, warm:false, view:true,
@@ -377,7 +389,7 @@ const PLACES = [
     ov:'Tren directo, aprox. 35–45 min', hours:'Su mercado navideño empieza en diciembre: no estará abierto durante vuestra visita.', price:'Billete de tren aparte.', status:'ok', src:null, img:null,
     weather:'Mejor con buen tiempo, por el paseo junto al lago.' },
 
-  { id:'baden', tip:'Mi ciudad, a solo 15 minutos en tren de la estación central. Tiene un spa muy bonito junto al río: el FORTYSEVEN.', name:'Baden', cat:'excursion', prio:'muy', poc:true, casco:false,
+  { id:'baden', tip:'Mi ciudad, y de verdad una buena opción: está a solo 15 minutos en tren de la estación central y tiene una iluminación navideña muy bonita. Y el spa FORTYSEVEN, junto al río, es muy chulo.', name:'Baden', cat:'excursion', prio:'muy', poc:true, casco:false,
     desc:'Ciudad termal con un casco antiguo precioso sobre el río Limmat y un puente de madera cubierto. Ideal para una tarde corta.',
     addr:'Altstadt, 5400 Baden', ll:[47.4733,8.3080], q:'Altstadt Baden AG', to:'Baden',
     web:null, dur:'2–4 h', when:['manana','tarde'], rain:true, night:false, free:true, warm:false,
@@ -426,8 +438,8 @@ const PLACES = [
    note: información útil (p. ej. un día con horario largo), nunca una obligación */
 const IDEAS = [
   { id:'langstrasse-noche', title:'Copas en la Langstrasse', time:'2h', ctx:['trabajo','finde'], dur:'2–3 horas',
-    text:'La zona joven y urbana de Zúrich: cenar algo en cualquiera de sus locales y terminar con un highball en el bar del 25hours.',
-    stops:['langstrasse','cinchona'] },
+    text:'La zona joven y urbana de Zúrich: cenar algo en cualquiera de sus locales, unas copas en el Olé Olé Bar y, para terminar, un highball en el bar del 25hours.',
+    stops:['langstrasse','oleole','cinchona'] },
   { id:'r1h', title:'Una hora en el casco antiguo', time:'1h', ctx:['trabajo','finde'], dur:'1 hora',
     text:'Lo esencial a pie desde la estación, para cuando solo hay un rato. Funciona también de noche.',
     stops:['augustinergasse','lindenhof','munsterhof','limmatquai'] },
