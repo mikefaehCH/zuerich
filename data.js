@@ -10,7 +10,7 @@ const TRIP = { start: '2026-11-20', end: '2026-11-27', checked: '17 oct 2026' };
 
 const CATS = {
   navidad:     { label: 'Navidad',       color: '#b4483a' },
-  ver:         { label: 'Imprescindibles', color: '#2f4a63' },
+  ver:         { label: 'Paseos y vistas', color: '#2f4a63' },
   cultura:     { label: 'Cultura',       color: '#6b4f8a' },
   experiencia: { label: 'Experiencias',  color: '#4f7a5a' },
   gastro:      { label: 'Gastronomía',   color: '#b7792b' },
@@ -19,7 +19,7 @@ const CATS = {
 
 /* Configuración de la portada (antes estaba en el código) */
 const CONFIG = {
-  favFirst: ['illuminarium','bellevuenoel','lucy','niederdorf','kunsthaus','lindenhof'],   // 6 favoritos visibles en la portada
+  favFirst: ['lindenhof','niederdorf','lucy','kunsthaus','luzern','baden'],   // favoritos CON FOTO en la portada (en este orden); el resto de favoritos va en la lista «Más favoritos»
   topIdeas: ['bellevue','casco','arte'],                                                    // 3 ideas visibles; el resto, plegadas
   mapFar:   ['lindt','zauberpark','felsenegg','winterzauber','uetliberg'],                  // fuera del centro: no cuentan para el encuadre del mapa
 };
@@ -32,7 +32,7 @@ const SZU_NOTE = 'Hasta el 12 de diciembre de 2026 la S10 y la S4 no salen de Z�
    tip = consejo de Mike (solo sus palabras) · desc (1.ª frase visible, resto en «Más información»)
    addr · ll [lat, lon] · q (búsqueda en Google Maps) · gmap (enlace propio, opcional) · web · src (fuente)
    dur · ov (cómo llegar) · hours · price · status 'ok'|'sec'|'pend'
-   close [dom..sáb] hora de cierre (null = cerrado) · tags ['cafe','almuerzo','cena','bar']
+   close [dom..sáb] hora de cierre (null = cerrado) · tags ['cafe','brunch','almuerzo','cena','bar']
    img 'img/nombre' (+ nombre-400.webp y nombre-800.webp) · imgCap · credit
    open [inicio, fin] y closed [días 0=dom…6=sáb] para el calendario de Navidad */
 const PLACES = [
@@ -119,7 +119,7 @@ const PLACES = [
 
   /* ---------- IMPRESCINDIBLES / CASCO ANTIGUO ---------- */
   { id:'lindenhof', tip:'Imprescindible: subid al Lindenhof y luego pasead sin prisa por las callejuelas del casco antiguo.', close:[24,24,24,24,24,24,24], name:'Lindenhof', cat:'ver', prio:'top', poc:true,
-    desc:'Una colina tranquila bajo los tilos, donde estuvo el fuerte romano. Desde aquí se ven el río, el Grossmünster y los tejados del casco antiguo. Un buen lugar para empezar.',
+    desc:'Un mirador tranquilo bajo los tilos, con el río, el Grossmünster y los tejados del casco antiguo enfrente. Aquí estuvo el fuerte romano; buen sitio para empezar.',
     addr:'Lindenhof, 8001 Zürich', ll:[47.3730,8.5410], q:'Lindenhof Zürich',
     web:null, dur:'20–30 min',
     ov:'10 minutos a pie desde Zürich HB',
@@ -136,7 +136,7 @@ const PLACES = [
     img:'img/grossmuenster-alpen', imgCap:'Las torres del Grossmünster con los Alpes al fondo', credit:'Unsplash' },
 
   { id:'fraumunster', close:[17,17,17,17,17,17,17], name:'Fraumünster', cat:'ver', prio:'muy',
-    desc:'La iglesia de la torre verde y esbelta. Dentro, cinco vidrieras de Marc Chagall que llenan el coro de azul y verde. Impresiona aunque no seáis creyentes.',
+    desc:'Las cinco vidrieras de Marc Chagall llenan el coro de azul y verde: impresionan aunque no seáis creyentes. Es la iglesia de la torre verde y esbelta.',
     addr:'Münsterhof 2, 8001 Zürich', ll:[47.3698,8.5414], q:'Fraumünster Zürich',
     web:'https://www.fraumuenster.ch/', dur:'20–45 min',
     ov:'10 minutos a pie desde Zürich HB',
@@ -162,7 +162,7 @@ const PLACES = [
     ov:'8 minutos a pie desde Zürich HB', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:null },
 
   { id:'burkliplatz', close:[24,24,24,24,24,24,24], name:'Bürkliplatz y el lago', cat:'ver', prio:'top',
-    desc:'Donde la ciudad se abre al lago. Con el cielo despejado se ven los Alpes al fondo. El final natural de cualquier paseo por la Bahnhofstrasse.',
+    desc:'El final natural del paseo por la Bahnhofstrasse: aquí la ciudad se abre al lago. Con el cielo despejado, los Alpes al fondo.',
     addr:'Bürkliplatz, 8001 Zürich', ll:[47.3667,8.5408], q:'Bürkliplatz Zürich',
     web:null, dur:'30–60 min',
     ov:'Tranvía hasta Bürkliplatz o 15 min a pie por la Bahnhofstrasse', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:'img/buerkliplatz', imgCap:'El Limmat junto al Bürkliplatz, con el Fraumünster y San Pedro', credit:'aho / Unsplash' },
@@ -180,7 +180,7 @@ const PLACES = [
     ov:'5 minutos a pie desde Zürich HB', hours:'Horario pendiente de confirmación.', price:'Con billete de transporte de la zona 110.', status:'pend', src:null, img:null },
 
   { id:'uetliberg', tip:'Alternativa a la ciudad: subir en tren al Uetliberg. Bonitas vistas y un pequeño mercado navideño arriba; con nieve es precioso, aunque este año quizá aún no haya. Normalmente el tren sale directo de la estación central; durante vuestra visita no, por las obras.', name:'Uetliberg', cat:'ver', prio:'top',
-    desc:'La montaña de Zúrich, a 871 metros. Desde la torre mirador se ven la ciudad, el lago y, con suerte, la cadena de los Alpes. En noviembre la ciudad suele estar bajo la niebla y arriba luce el sol, pero no siempre.',
+    desc:'La montaña de la ciudad (871 m): en noviembre, muchas veces arriba luce el sol mientras Zúrich sigue bajo la niebla. Desde la torre se ven la ciudad, el lago y, con suerte, los Alpes.',
     addr:'Uto Kulm, 8143 Uetliberg', ll:[47.3490,8.4912], q:'Uetliberg Aussichtsturm',
     web:'https://utokulm.ch/', dur:'2–3 h en total',
     ov:SZU_NOTE,
@@ -210,7 +210,7 @@ const PLACES = [
     ov:'10 minutos a pie desde Zürich HB', hours:'Bar-café: lunes cerrado; mar–jue 17–24 h; vie–sáb 13:30–1:30 h; dom 13:30–18 h.', price:'Consumiciones a precio de bar.', status:'sec', src:'https://www.zuerich.com/de/besuchen/bars-lounges/barcafe-cabaret-voltaire', img:null },
 
   { id:'opernhaus', name:'Ópera de Zúrich', cat:'cultura', prio:'si',
-    desc:'El teatro de la ópera, justo al lado del Bellevue Noël. Si encontráis entradas para una función, es una noche muy especial.',
+    desc:'Si encontráis entradas, una noche en la Ópera es algo muy especial. Está justo al lado del Bellevue Noël.',
     addr:'Falkenstrasse 1, 8008 Zürich', ll:[47.3653,8.5466], q:'Opernhaus Zürich',
     web:'https://www.opernhaus.ch/', dur:'2–3 h',
     ov:'Tranvía hasta Opernhaus o Bellevue', hours:'Programa y horarios en opernhaus.ch.', price:'Según función.', status:'pend', src:null, img:null },
@@ -280,28 +280,28 @@ const PLACES = [
 
   /* ---------- MIS RECOMENDACIONES PERSONALES ---------- */
   { id:'spheres', tip:'También muy bien para comer: no es caro, está junto al río y cerca de la oficina.', close:[19.5,23,23,23,23,23,19.5], name:'sphères', cat:'gastro', prio:'muy', poc:true, tags:['cafe','almuerzo','bar'],
-    desc:'Un lugar con personalidad en Zürich-West, ideal para una pausa de café o un almuerzo tranquilo. Es bar, café y librería a la vez, con charlas y actos culturales.',
+    desc:'Bar, café y librería a la vez, en Zürich-West: para un café largo entre libros o un almuerzo tranquilo. Con charlas y actos culturales.',
     addr:'Hardturmstrasse 66, 8005 Zürich', ll:[47.3897,8.5226], q:'sphères Hardturmstrasse 66 Zürich', gmap:'https://maps.app.goo.gl/K9A4VhNEsKX3UGmV6',
     web:null, dur:'45–90 min',
     ov:'Tranvía hasta Escher-Wyss-Platz',
     hours:'Lun–vie 8–23 h; sáb 9–19:30 h; dom 10–19:30 h.', price:'Precio medio.', status:'ok', src:'https://www.zuerich.com/de/besuchen/bars-lounges/spheres', img:null },
 
   { id:'collective', tip:'Muy buen café, poco sitio. Y los cruasanes, claro.', close:[15,15,15,15,15,15,15], name:'Collective Bakery', cat:'gastro', prio:'muy', tags:['cafe'],
-    desc:'Una panadería moderna, perfecta para disfrutar de un buen café y repostería artesanal. Los cruasanes de doble horneado son famosos; café tostado en casa.',
+    desc:'Panadería moderna con café tostado en casa y unos cruasanes de doble horneado que se han hecho famosos. Poco sitio: mejor para un café rápido.',
     addr:'Förrlibuckstrasse 160, 8005 Zürich', ll:[47.3906,8.5137], q:'Collective Bakery Förrlibuckstrasse 160 Zürich', gmap:'https://maps.app.goo.gl/BaAafUa3NPo4ft8r8',
     web:null, dur:'30–60 min',
     ov:'Tranvía hasta Förrlibuckstrasse',
     hours:'Lun–vie 8–15 h; sáb y dom 9–15 h. Cierra a las 15 h: mejor el fin de semana. El horario puede variar según el local.', price:'Precio medio.', status:'sec', src:'https://www.zuerich.com/de/besuchen/restaurants/collective-bakery', img:null },
 
   { id:'nude', tip:'Junto al río y cerca de la oficina: no queda lejos y está muy bien. Con buen tiempo, perfecto para tomar un café después de comer.', close:[20,20,20,20,20,20,20], name:'Nude', cat:'gastro', prio:'muy', tags:['cafe'],
-    desc:'Un café con ambiente contemporáneo, una buena opción para descubrir otra faceta de Zúrich. Escondido junto al río Limmat, en Wipkingen, entre el Tanzhaus y la orilla.',
+    desc:'Un café escondido junto al Limmat, en Wipkingen, entre el Tanzhaus y la orilla. Tranquilo, moderno y a pocos minutos de la oficina.',
     addr:'Wasserwerkstrasse 127A, 8037 Zürich', ll:[47.3866,8.5341], q:'Nude Café Bar Wasserwerkstrasse 127A Zürich', gmap:'https://maps.app.goo.gl/hYKCwavysZFaE1rQ8',
     web:'https://nude-zurich.com/', dur:'45–60 min',
     ov:'Tranvía hasta Limmatplatz y 10 min a pie junto al río',
     hours:'Todos los días 9–20 h.', price:'Precio medio.', status:'ok', src:'https://www.zuerich.com/de/besuchen/bars-lounges/nude-cafe-bar', img:null },
 
   { id:'cafenoir', tip:'Mi café favorito. Diminuto, cerca de la estación central: merece la visita.', name:'Café Noir', cat:'gastro', prio:'muy', poc:true, tags:['cafe'],
-    desc:'Un café muy pequeño en el Kreis 5 con café tostado en casa y un espresso ecológico intenso. Poco sitio, mucho sabor.',
+    desc:'Un café diminuto cerca de la estación, con café tostado en casa y un espresso ecológico intenso. Poco sitio, mucho sabor.',
     addr:'Neugasse 33, 8005 Zürich', ll:[47.3812,8.5332], q:'Café Noir Neugasse 33 Zürich',
     web:null, dur:'20–45 min',
     ov:'10 minutos a pie desde Zürich HB',
@@ -326,6 +326,30 @@ const PLACES = [
     web:null, dur:'1–2 h',
     ov:'Unos 10 minutos a pie desde Zürich HB',
     hours:'Todos los días 17–4 h.', price:'Precio de bar.', status:'sec', src:'https://www.zuerich.com/de/besuchen/bars-lounges/ole-ole-bar', img:null },
+  { id:'bank', close:[22,23,24,24,24,24,24], name:'BANK', cat:'gastro', prio:'muy', tags:['brunch','cafe','cena','bar'],
+    desc:'Una antigua sucursal bancaria en la Helvetiaplatz convertida en café, panadería, restaurante y bar: platos mediterráneos para compartir y, el fin de semana, brunch hasta las 15 h.',
+    addr:'Molkenstrasse 15, 8004 Zürich', ll:[47.3765,8.5262], q:'BANK Molkenstrasse 15 Zürich',
+    web:'https://www.bankzuerich.ch/', dur:'1–2 h',
+    ov:'Tranvía hasta Stauffacher o 12 min a pie desde Zürich HB',
+    hours:'Lun 10–23 h; mar–sáb 9–24 h; dom 9–22 h. Brunch sáb y dom hasta las 15 h.', price:'Precio medio.', status:'sec', src:'https://www.zuerich.com/de/besuchen/bars-lounges/bank', img:null },
+  { id:'brosbeans', close:[18,19,19,19,19,19,18], name:'Bro\'s Beans & Beats', cat:'gastro', prio:'si', tags:['brunch','cafe'],
+    desc:'Café de especialidad con música: entre semana, bocadillos, bowls y tartas caseras; el fin de semana, un brunch generoso y animado.',
+    addr:'Gartenhofstrasse 24, 8004 Zürich', ll:[47.3733,8.5283], q:'Bros Beans & Beats Gartenhofstrasse 24 Zürich',
+    web:'https://brosbeansbeats.ch/', dur:'45–90 min',
+    ov:'Tranvía hasta Stauffacher',
+    hours:'Lun–vie 8–19 h; sáb y dom 10–18 h.', price:'Precio medio.', status:'sec', src:'https://www.zuerich.com/de/besuchen/restaurants/bros-beans-beats', img:null },
+  { id:'oko', close:[17,null,19,19,21.5,21.5,19], name:'OKO', cat:'gastro', prio:'si', tags:['cafe','almuerzo'],
+    desc:'Café de especialidad de barrio en el Kreis 4, con desayunos y almuerzos sencillos; los jueves y viernes abre hasta la noche.',
+    addr:'Werdstrasse 54, 8004 Zürich', ll:[47.3747,8.5268], q:'OKO Werdstrasse 54 Zürich',
+    web:null, dur:'30–60 min',
+    ov:'Tranvía hasta Stauffacher o Bezirksgebäude',
+    hours:'Lunes cerrado; mar–mié 8–19 h; jue–vie 8–21:30 h; sáb 9–19 h; dom 9–17 h.', price:'Precio medio.', status:'sec', src:'https://europeancoffeetrip.com/cafe/oko-zurich/', img:null },
+  { id:'barbutter', close:[17,null,null,21,21,21,17], name:'Bar Butter', cat:'gastro', prio:'si', tags:['cafe'],
+    desc:'Pequeño café de especialidad en el Kreis 4: espresso y café de filtro cuidados, desayunos y opciones veganas.',
+    addr:'Zwinglistrasse 38, 8004 Zürich', ll:[47.3768,8.5248], q:'Bar Butter Zwinglistrasse 38 Zürich',
+    web:null, dur:'30–60 min',
+    ov:'Tranvía hasta Bäckeranlage',
+    hours:'Lun y mar cerrado; mié–vie 8–21 h; sáb y dom 9–17 h.', price:'Precio medio.', status:'sec', src:'https://europeancoffeetrip.com/cafe/barbutter-zurich/', img:null },
   { id:'langstrasse', tip:'En la Langstrasse hay muchísimos bares y restaurantes, con un público joven y urbano. Ideal para cenar algo y tomar unas copas, por ejemplo en el Olé Olé Bar: para mí, casi obligatorio.', close:[24,24,24,24,24,24,24], name:'Langstrasse', cat:'experiencia', prio:'muy', poc:true,
     desc:'La calle más viva de Zúrich, en el Kreis 4: cocinas de medio mundo, bares, clubes y gente hasta tarde. Nada que ver con el casco antiguo.',
     addr:'Langstrasse, 8004 Zürich', ll:[47.3784,8.5288], q:'Langstrasse Zürich',
@@ -333,7 +357,7 @@ const PLACES = [
     ov:'10 minutos a pie desde Zürich HB',
     hours:'Barrio público; cada local tiene su horario.', price:'Según el local.', status:'ok', src:null, img:null },
 
-  { id:'miro', tip:'Muy buen sitio para un café.', close:[null,17,17,17,17,17,null], name:'miró', cat:'gastro', prio:'muy', tags:['cafe'],
+  { id:'miro', tip:'Muy buen sitio para un café.', close:[null,17,17,17,17,17,null], name:'miró', cat:'gastro', prio:'muy', tags:['cafe','brunch'],
     desc:'Tostadero y café de especialidad en el Kreis 4: cafés de origen único y brunch, en un local moderno.',
     addr:'Brauerstrasse 58, 8004 Zürich', ll:[47.3776,8.5236], q:'miró manufactura de café Brauerstrasse 58 Zürich',
     web:null, dur:'30–60 min',
@@ -353,7 +377,7 @@ const PLACES = [
     ov:'15 minutos a pie desde Zürich HB, cruzando el río',
     hours:'Lun desde las 18 h; mar–vie 11:30–14 h y desde las 18 h; sáb 12–15 h y desde las 18 h; domingo cerrado. Cocina hasta las 21:30 h.', price:'Conviene reservar (online o +41 44 262 41 30).', status:'ok', src:'https://www.bauernschaenke.ch', img:null },
   { id:'neumarkt', tip:'Muy buen restaurante, más bien algo caro. En verano es aún mejor por su precioso patio interior, pero ahora también está bien.', rec:true, close:[23,null,23,23,23,23,23], name:'Trattoria Neumarkt', cat:'gastro', prio:'muy', tags:['almuerzo','cena'],
-    desc:'Restaurante del casco antiguo, en la plaza del Neumarkt, con cocina de temporada y producto regional.',
+    desc:'Cocina de temporada y producto regional en pleno casco antiguo, junto a la plaza del Neumarkt.',
     addr:'Neumarkt 5, 8001 Zürich', ll:[47.3731,8.5459], q:'Trattoria Neumarkt Neumarkt 5 Zürich',
     web:'https://www.neumarkt-zuerich.ch', dur:'1,5–2 h',
     ov:'15 minutos a pie desde Zürich HB, cruzando el río',

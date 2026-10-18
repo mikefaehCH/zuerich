@@ -24,7 +24,7 @@
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="preload" as="image" href="img/hero-limmat-m.webp" media="(max-width: 699px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-nieve-m.webp" media="(max-width: 699px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/hero-limmat-d.webp" media="(min-width: 700px)" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/cormorant-garamond-latin-600-normal.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/cormorant-garamond-latin-500-italic.woff2" crossorigin>
@@ -39,16 +39,16 @@
 <header id="inicio">
   <picture>
     <source media="(min-width: 700px)" srcset="img/hero-limmat-d.webp" width="1600" height="900">
-    <img class="hero-img" src="img/hero-limmat-m.webp" width="900" height="1080" fetchpriority="high" decoding="async"
-      alt="El Limmat al atardecer, con el casco antiguo, las torres de San Pedro y del Fraumünster y las montañas al fondo">
+    <img class="hero-img" src="img/hero-nieve-m.webp" width="900" height="1080" fetchpriority="high" decoding="async"
+      alt="El casco antiguo de Zúrich junto al Limmat al anochecer">
   </picture>
   <div class="hero-shade"></div>
   <div class="hero-content wrap">
     <p class="hero-date">20–27 noviembre 2026</p>
     <h1 class="hero-h1">Zúrich en Navidad</h1>
-    <p class="hero-sub">Una selección personal de Mike</p>
+    <p class="hero-sub">Una guía personal para descubrir la ciudad</p>
   </div>
-  <span class="hero-credit">Foto: Tomi Blasic / Unsplash</span>
+  <span class="hero-credit"><span class="cr-m">Foto: Claudio Schwarz / Unsplash</span><span class="cr-d">Foto: Tomi Blasic / Unsplash</span></span>
 </header>
 
 <nav class="top" aria-label="Secciones">
@@ -60,33 +60,13 @@
 </nav>
 
 <main id="descubrir">
-  <!-- 02 · Lo mejor para vosotros -->
+  <!-- 02 · Lo mejor de Zúrich: los favoritos de Mike, con sus palabras -->
   <section class="sec wrap" id="lomejor" aria-labelledby="lmT">
-    <h2 id="lmT" class="sec-h">Lo mejor para vosotros</h2>
-    <div class="teasers">
-      <button type="button" class="tz" data-goto="navidad">
-        <img src="img/limmatquai-nieve-800.webp" srcset="img/limmatquai-nieve-400.webp 400w, img/limmatquai-nieve-800.webp 800w" sizes="(min-width:700px) 330px, 78vw" alt="" width="800" height="600" loading="eager" decoding="async">
-        <span><b>Navidad en Zúrich</b><small>Mercados, luces y fondue a pocos pasos de la estación.</small></span>
-        <span class="cr" aria-hidden="true">Claudio Schwarz / Unsplash</span>
-      </button>
-      <button type="button" class="tz" data-goto="ideas">
-        <img src="img/bahnhofstrasse-navidad-800.webp" srcset="img/bahnhofstrasse-navidad-400.webp 400w, img/bahnhofstrasse-navidad-800.webp 800w" sizes="(min-width:700px) 330px, 78vw" alt="" width="800" height="533" loading="lazy" decoding="async">
-        <span><b>Después del trabajo</b><small>Tres planes para una tarde, con ruta en Google Maps.</small></span>
-        <span class="cr" aria-hidden="true">Ralph Hutter / Unsplash</span>
-      </button>
-      <button type="button" class="tz" data-goto="excursiones">
-        <img src="img/luzern-puente-800.webp" srcset="img/luzern-puente-400.webp 400w, img/luzern-puente-800.webp 800w" sizes="(min-width:700px) 330px, 78vw" alt="" width="800" height="600" loading="lazy" decoding="async">
-        <span><b>El fin de semana</b><small>Lucerna, el Uetliberg o Baden: cerca y en tren.</small></span>
-        <span class="cr" aria-hidden="true">Lucerna · Srini Somanchi / Unsplash</span>
-      </button>
-    </div>
-  </section>
-
-  <!-- 03 · Favoritos de Mike -->
-  <section class="sec wrap" id="favs" aria-labelledby="fvT">
-    <div class="sec-h"><h2 id="fvT">Favoritos de Mike</h2><button type="button" class="link" data-goto="favoritos" id="favAll"></button></div>
+    <h2 id="lmT" class="sec-h">Lo mejor de Zúrich</h2>
     <p class="lead" id="favLegend"></p>
-    <div class="favs" id="favGrid"></div>
+    <div class="picks" id="favGrid"></div>
+    <h3 class="more-h" id="favMoreT">Más favoritos</h3>
+    <ul class="favlist" id="favList" aria-labelledby="favMoreT"></ul>
   </section>
 
   <!-- 04 · Descubrir Zúrich -->

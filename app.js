@@ -69,7 +69,7 @@ function loadPlan(){
   return out;
 }
 const TABS = [['destacados','Destacados'],['navidad','Navidad'],['favoritos','Favoritos'],['comer','Comer y café'],['excursiones','Excursiones'],['todo','Todo']];
-const SUBS = [['cafe','Café'],['almuerzo','Almuerzo'],['cena','Cena'],['bar','Copas']];
+const SUBS = [['cafe','Café'],['brunch','Brunch'],['almuerzo','Almuerzo'],['cena','Cena'],['bar','Copas']];
 const TAB_NOTE = { excursiones:'Tiempos de ida aproximados desde Zürich HB; comprobad la conexión del día.' };
 const state = { tab: store.get('zh-tab', 'destacados'), sub:null, near:null, nearFrom:null, plan: loadPlan(), incoming:null };
 if (!TABS.some(t => t[0] === state.tab)) state.tab = 'destacados';
@@ -103,6 +103,9 @@ const thumb = p => isLocal(p.img)
   ? `<div class="th"><img src="${p.img}-400.webp" alt="${esc(p.imgCap)}" width="400" height="300" loading="lazy" decoding="async"></div>`
   : '';   // sin foto: sin miniatura (el texto usa todo el ancho)
 /* barrio a partir del código postal de addr */
+/* tipo de lugar en una palabra; en «Comer y café» según las etiquetas */
+const kindLabel = p => { if (p.cat !== 'gastro') return CATS[p.cat].label; const t = p.tags || [];
+  return t[0] === 'brunch' ? 'Brunch y café' : t[0] === 'cafe' ? 'Café' : t.length === 1 && t[0] === 'bar' ? 'Bar' : 'Restaurante'; };
 const BARRIOS = { '8001':'Centro', '8002':'Enge', '8004':'Kreis 4', '8005':'Kreis 5', '8008':'Seefeld', '8037':'Wipkingen' };
 const barrio = p => { const m = p.cat !== 'excursion' && (p.addr || '').match(/\b(80\d\d)\b/); return m ? BARRIOS[m[1]] || '' : ''; };
 function card(p, lvl = 3){
@@ -111,7 +114,7 @@ function card(p, lvl = 3){
   return `<article class="pc" id="p-${p.id}" aria-labelledby="h-${p.id}">
     <div class="pc-main">${thumb(p)}
       <div class="pc-b">
-        <p class="pc-cat">${p.prio === 'top' ? '<span class="top">TOP 10</span> · ' : ''}${CATS[p.cat].label}${barrio(p) ? ' · ' + barrio(p) : ''}${dateRange(p)}${p.rec ? ' · <span class="rec">Recomendado por Mike</span>' : ''}${offMin(p) !== null && offMin(p) <= 20 ? ` · a ${offMin(p)} min de la oficina` : ''}</p>
+        <p class="pc-cat">${esc(kindLabel(p))}${barrio(p) ? ' · ' + barrio(p) : ''}${dateRange(p)}${p.rec ? ' · <span class="rec">Recomendado por Mike</span>' : ''}${offMin(p) !== null && offMin(p) <= 20 ? ` · a ${offMin(p)} min de la oficina` : ''}</p>
         <h${lvl} class="pc-t" id="h-${p.id}">${esc(p.name)}${p.poc ? STAR : ''}</h${lvl}>
         <p class="pc-desc">${esc(short(p.desc))}</p>
       </div>
@@ -135,19 +138,27 @@ function card(p, lvl = 3){
   </article>`;
 }
 
-/* ================= 03 · favoritos de Mike ================= */
+/* ================= 02 · lo mejor de Zúrich = los favoritos de Mike ================= */
+/* frase de Mike para la tarjeta: la primera frase de su consejo (o dos, si la primera es muy corta) */
+const quote = p => { if (!p.tip) return ''; const f = sentences(p.tip); return (f[0].length < 40 && f[1] ? f[0] + ' ' + f[1] : f[0]); };
 function renderFavs(){
-  const n = PLACES.filter(p => p.poc).length;
-  $('#favLegend').innerHTML = `${STAR_SVG}Sus recomendaciones personales, marcadas con una estrella en toda la guía.`;
-  $('#favAll').textContent = `Ver los ${n}`;
-  $('#favGrid').innerHTML = CONFIG.favFirst.map(id => byId[id]).filter(Boolean).map(p => `<div class="fv">
-      ${isLocal(p.img)
-        ? `<div class="im"><img src="${p.img}-800.webp" srcset="${p.img}-400.webp 400w, ${p.img}-800.webp 800w" sizes="(min-width:700px) 330px, 45vw" alt="${esc(p.imgCap)}" width="800" height="600" loading="lazy" decoding="async"></div>`
-        : `<div class="im ty" aria-hidden="true">${STAR_SVG}<small>${CATS[p.cat].label}</small><b>${p.open ? isoShort(p.open[0]) + ' – ' + isoShort(p.open[1]) : esc(shortName(p))}</b></div>`}
+  $('#favLegend').innerHTML = `${STAR_SVG}Los favoritos de Mike, contados por él mismo.`;
+  const picks = CONFIG.favFirst.map(id => byId[id]).filter(p => p && isLocal(p.img));
+  $('#favGrid').innerHTML = picks.map(p => `<article class="pick">
+      <button type="button" class="pk-img" data-card="${p.id}" aria-label="${esc(p.name)}: ver ficha">
+        <img src="${p.img}-800.webp" srcset="${p.img}-400.webp 400w, ${p.img}-800.webp 800w" sizes="(min-width:700px) 330px, 74vw" alt="${esc(p.imgCap)}" width="800" height="600" loading="lazy" decoding="async">
+        <span class="pk-t"><small>${esc(kindLabel(p))}${barrio(p) ? ' · ' + esc(barrio(p)) : ''}</small><b>${esc(shortName(p))}${STAR_SVG}</b></span>
+      </button>
+      <p class="pk-q">${esc(quote(p) || short(p.desc))}</p>
       ${addBtn(p)}
-      <button class="nm" type="button" data-card="${p.id}">${esc(shortName(p))}${STAR}</button>
-      <span class="ct">${isLocal(p.img) ? CATS[p.cat].label : esc(p.ov)}</span>
-    </div>`).join('');
+    </article>`).join('');
+  const more = PLACES.filter(p => p.poc && !picks.includes(p)).sort((a, b) => (b.cat === 'navidad') - (a.cat === 'navidad'));
+  $('#favList').innerHTML = more.map(p => `<li class="fl">
+      <div class="fl-t"><button type="button" class="nm" data-card="${p.id}">${esc(shortName(p))}${STAR}</button>
+        <span class="ct">${esc(kindLabel(p))}${barrio(p) ? ' · ' + esc(barrio(p)) : ''}${p.cat === 'navidad' && p.open ? ' · desde el ' + isoShort(p.open[0]) : ''}</span>
+        <p>${esc(quote(p) || short(p.desc))}</p></div>
+      ${addBtn(p)}
+    </li>`).join('');
 }
 
 /* ================= 04 · descubrir ================= */
@@ -390,7 +401,7 @@ async function weather(){
 function navSpy(){
   const links = [...document.querySelectorAll('nav.top a')];
   const set = id => links.forEach(a => { const on = a.getAttribute('href') === '#' + id; a.classList.toggle('on', on); on ? a.setAttribute('aria-current','true') : a.removeAttribute('aria-current'); });
-  const zones = [['lomejor','descubrir'],['favs','descubrir'],['lista','descubrir'],['ideas','ideas'],['plan','plan'],['info','plan']];
+  const zones = [['lomejor','descubrir'],['lista','descubrir'],['ideas','ideas'],['plan','plan'],['info','plan']];
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) set(zones.find(z => z[0] === e.target.id)[1]); }), { rootMargin:'-40% 0px -55% 0px' });
   zones.forEach(([id]) => io.observe(document.getElementById(id)));
   set('descubrir');
@@ -427,7 +438,7 @@ document.addEventListener('click', e => {
 });
 
 /* ================= enlaces profundos (incluidos los antiguos) ================= */
-const ALIAS = { '#hoy':'#descubrir', '#lugares':'#lista', '#mapa':'#lista', '#esencial':'#lomejor', '#seleccion':'#favs', '#favoritos':'#favs', '#navidad':'#calFold', '#rutas':'#ideas', '#semana':'#ideas', '#excursiones':'#lista', '#comer':'#lista', '#bienvenida':'#descubrir' };
+const ALIAS = { '#hoy':'#descubrir', '#lugares':'#lista', '#mapa':'#lista', '#esencial':'#lomejor', '#seleccion':'#lomejor', '#favoritos':'#lomejor', '#navidad':'#calFold', '#rutas':'#ideas', '#semana':'#ideas', '#excursiones':'#lista', '#comer':'#lista', '#bienvenida':'#descubrir' };
 function handleHash(instant){
   try { route(instant); } catch (e) { /* un enlace raro no debe romper la página */ }
 }

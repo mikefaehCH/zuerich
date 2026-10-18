@@ -43,13 +43,13 @@ VALIDATE = r"""(() => {
     if (p.close && (p.close.length !== 7 || p.close.some(x => x !== null && typeof x !== 'number'))) E.push(p.id + ': close must be 7 numbers/null');
     if (p.open && (!iso(p.open[0]) || !iso(p.open[1]) || !Array.isArray(p.closed))) E.push(p.id + ': open needs 2 ISO dates + closed[]');
     if (p.cat === 'navidad' && !p.open && p.status !== 'pend') E.push(p.id + ': Christmas item without open dates must be status pend');
-    if (p.tags && p.tags.some(t => !['cafe','almuerzo','cena','bar'].includes(t))) E.push(p.id + ': unknown tag');
+    if (p.tags && p.tags.some(t => !['cafe','brunch','almuerzo','cena','bar'].includes(t))) E.push(p.id + ': unknown tag');
     if (p.img && !/^img\/[a-z0-9-]+$/.test(p.img)) E.push(p.id + ': img must be img/name');
     if (p.img && !(p.imgCap && p.credit)) E.push(p.id + ': img needs imgCap + credit');
     if (/POC/.test(JSON.stringify(p))) E.push(p.id + ': visible text must not say POC');
   });
   IDEAS.forEach(i => i.stops.forEach(s => { if (!PLACES.some(p => p.id === s)) E.push('idea ' + i.id + ': unknown stop ' + s); }));
-  CONFIG.favFirst.forEach(id => { const p = PLACES.find(x => x.id === id); if (!p || !p.poc) E.push('CONFIG.favFirst: ' + id + ' missing or not a favourite'); });
+  CONFIG.favFirst.forEach(id => { const p = PLACES.find(x => x.id === id); if (!p || !p.poc || !p.img) E.push('CONFIG.favFirst: ' + id + ' missing, not a favourite or without photo'); });
   CONFIG.topIdeas.forEach(id => { if (!iids.includes(id)) E.push('CONFIG.topIdeas: unknown ' + id); });
   return { errors: E, images: PLACES.filter(p => p.img).map(p => p.img) };
 })()"""
@@ -84,7 +84,7 @@ def main():
             hero = m.evaluate("document.getElementById('inicio').offsetHeight")
             ok(f"{w}px no horizontal overflow", m.evaluate("document.documentElement.scrollWidth <= innerWidth"))
             ok(f"{w}px hero height", (300 <= hero <= 340) if w < 700 else (430 <= hero <= 520), hero)
-            ok(f"{w}px first recommendation on first screen", m.evaluate("document.querySelector('.tz').getBoundingClientRect().top") < h - 80)
+            ok(f"{w}px first recommendation on first screen", m.evaluate("document.querySelector('.pick').getBoundingClientRect().top") < h - 80)
             ok(f"{w}px no layout shift", m.evaluate(CLS) < 0.05, round(m.evaluate(CLS), 3))
             m.evaluate("window.scrollTo(0, document.getElementById('plist').getBoundingClientRect().top + scrollY + 300)"); m.wait_for_timeout(200)
             ok(f"{w}px nav + filters stay on top while scrolling", m.evaluate("Math.round(document.querySelector('nav.top').getBoundingClientRect().top)") == 0 and m.evaluate("Math.round(document.querySelector('.tabs').getBoundingClientRect().top)") == 46)
@@ -99,14 +99,16 @@ def main():
         m.evaluate("localStorage.clear()"); m.reload(); m.wait_for_timeout(900)
         body = m.inner_text("body")
         ok("3 nav items, no countdown, no 'POC'", m.locator("nav.top a").count() == 3 and "faltan" not in body and "POC" not in body)
-        ok("section order", m.evaluate("[...document.querySelectorAll('main > section')].map(s=>s.id)") == ['lomejor', 'favs', 'lista', 'ideas', 'plan', 'info'])
-        ok("'Favoritos de Mike' explained once, star gold", m.inner_text("main").count("Favoritos de Mike") == 1 and m.evaluate("getComputedStyle(document.querySelector('.star')).color") == "rgb(196, 154, 72)")
-        ok("6 favourites on the front page", m.locator("#favGrid .fv").count() == 6)
+        ok("section order", m.evaluate("[...document.querySelectorAll('main > section')].map(s=>s.id)") == ['lomejor', 'lista', 'ideas', 'plan', 'info'])
+        ok("'Favoritos de Mike' explained once, star gold", m.inner_text("main").lower().count("favoritos de mike") == 1 and m.evaluate("getComputedStyle(document.querySelector('.star')).color") == "rgb(196, 154, 72)")
+        ok("all favourites on the front page (photo picks + list), each once", m.locator("#favGrid .pick").count() + m.locator("#favList .fl").count() == m.evaluate("PLACES.filter(p=>p.poc).length") and m.locator("#favGrid .pick").count() >= 3)
+        ok("picks carry Mike's words", m.locator("#favGrid .pk-q").count() == m.locator("#favGrid .pick").count() and "«" not in m.evaluate("[...document.querySelectorAll('.pk-q')].map(q=>q.textContent).join('')")[:1])
+        ok("no «TOP 10» label", "TOP 10" not in m.inner_text("main"))
         nfav = m.evaluate("PLACES.filter(p=>p.poc).length")
-        m.click("#favAll"); ok("'Ver los N' shows all favourites", m.inner_text("#count").startswith(str(nfav)))
-        m.click("[data-goto=navidad]"); ok("teaser → Navidad filter", m.evaluate("state.tab") == "navidad")
+        m.click("[data-tab=favoritos]"); ok("Favoritos filter shows all favourites", m.inner_text("#count").startswith(str(nfav)))
+        m.click("#favGrid .pk-img"); m.wait_for_timeout(300); ok("tapping a pick opens its card", m.evaluate("location.hash").startswith("#p-"))
         m.click("[data-tab=comer]"); ok("sub-filters only in Comer", m.is_visible("#subtabs"))
-        for sub in ("cafe", "almuerzo", "cena", "bar"):
+        for sub in ("cafe", "brunch", "almuerzo", "cena", "bar"):
             m.click(f"[data-sub={sub}]"); n = m.evaluate(f"PLACES.filter(p=>(p.tags||[]).includes('{sub}')).length")
             ok(f"filter {sub}", m.inner_text("#count").startswith(str(n)), m.inner_text("#count"))
             m.click(f"[data-sub={sub}]")
@@ -158,7 +160,7 @@ def main():
         c, m, e = page(link[link.index('#'):]); ok("shared plan link shows banner", m.locator(".share-in").count() == 1)
         m.click("[data-inc=replace]"); ok("shared plan imported", m.inner_text("#planCnt").strip() == str(n)); c.close()
         c, m, e = page("#plan=kunsthaus.7~i-casco.7~lindenhof.0"); ok("old shared-link format works", "lugares" in m.inner_text("#shareIn")); c.close()
-        for h, sel in (("#p-nude", "p-nude"), ("#idea-chocolate", "idea-chocolate"), ("#lugares", "lista"), ("#favoritos", "favs"), ("#navidad", "calFold"), ("#hoy", "descubrir")):
+        for h, sel in (("#p-nude", "p-nude"), ("#idea-chocolate", "idea-chocolate"), ("#lugares", "lista"), ("#favoritos", "lomejor"), ("#navidad", "calFold"), ("#hoy", "descubrir")):
             c, m, e = page(h); t = m.evaluate(f"document.getElementById('{sel}').getBoundingClientRect().top")
             ok(f"deep link {h}", -10 <= t < 340, round(t)); c.close()
         for h in ("#123", '#a"b', "#p-%3Cimg%20src=x%20onerror=alert(1)%3E", "#%E0%A4%A", "#plan=%3Cscript%3E~lindenhof"):

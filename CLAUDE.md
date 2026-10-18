@@ -7,7 +7,7 @@ Mike writes to you in German; everything visitors see is **Spanish (Spain, «vos
 ## Files (static site, no build, no framework)
 | File | What | Read it when… |
 |---|---|---|
-| `data.js` | ALL content: `TRIP`, `CATS`, `CONFIG`, `OFFICE`, `SZU_NOTE`, `PLACES` (56), `IDEAS` (13) | adding/editing places, tips, hours, ideas, favourites |
+| `data.js` | ALL content: `TRIP`, `CATS`, `CONFIG`, `OFFICE`, `SZU_NOTE`, `PLACES` (60), `IDEAS` (13) | adding/editing places, tips, hours, ideas, favourites |
 | `app.js` | all logic (render, filters, map, plan, deep links) | changing behaviour |
 | `style.css` | design tokens in `:root` (+ dark mode) and components | changing looks |
 | `index.html` | markup, meta/OG tags, CSP | changing page structure or static FAQ text |
@@ -36,7 +36,9 @@ Rollback: `git revert <sha>`.
 - `tip` = «Consejo de Mike». **Only Mike's own words**, translated to Spanish. Never invent first-person text.
 - Without `img` the card shows no thumbnail (text uses full width; never placeholders). `img:'img/name'` requires `img/name-400.webp` + `img/name-800.webp`, `imgCap`, `credit`.
 - `IDEAS`: `id` (links `#idea-id`), `title`, `dur`, `days`, `text`, `note`, `stops` (place ids, in walking order), `walkOnly`/`transit`.
-- `CONFIG.favFirst` (6 tiles on the front page), `CONFIG.topIdeas` (3 visible ideas), `CONFIG.mapFar`.
+- Front page «Lo mejor de Zúrich» = Mike's favourites: `CONFIG.favFirst` = photo picks in order (must have `img`, quote = 1st sentence of `tip`);
+  all other `poc` places appear automatically in «Más favoritos». `CONFIG.topIdeas` (3 visible ideas), `CONFIG.mapFar`.
+- `tags` also `brunch`. Card label comes from `kindLabel()` (Café / Brunch y café / Bar / Restaurante) + barrio from the postcode in `addr`.
 
 ### Add a restaurant (example)
 Copy a `gastro` record in `data.js`, new unique `id`, verified hours + `src`, `tags`, `close`, `rec:true` if Mike
@@ -62,7 +64,7 @@ shared plan links `#plan=id~id` (also old `id.N` / `i-idea`) · deep links `#p-i
 - Do **not** put `overflow-x:hidden` on `body` – it breaks the sticky nav (html already has `overflow-x:clip`).
 - Never pass `location.hash` to `querySelector`; use `getElementById` (odd links used to crash the page).
 - `.more` uses the `hidden` attribute; any `display:` rule needs `[hidden]{display:none}` (exists globally).
-- JS-filled sections are hidden until `html.ready` to avoid layout shift – keep `classList.add('ready')` after rendering.
+- All of `<main>` is hidden until `html.ready` (no layout shift) – keep `classList.add('ready')` after rendering.
 - CSP is a `<meta>` in index.html: new external hosts (images, fetch) must be added there; the inline
   `<script>` in `<head>` is allowed by its sha256 hash – if you change that line, update the hash.
 - `sw.js`: bump `CACHE` only when the `CORE` list changes (network-first serves fresh files anyway).

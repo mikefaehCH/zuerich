@@ -2,9 +2,9 @@
    Red primero (contenido siempre actual); sin conexión, la copia guardada.
    Solo se guardan archivos propios: nada de teselas del mapa ni datos del tiempo (crecerían sin límite).
    Subir CACHE (zuerich-vN) solo si cambia la lista CORE. */
-const CACHE = 'zuerich-v18';
+const CACHE = 'zuerich-v19';
 const CORE = ['./', './index.html', './style.css', './app.js', './data.js', './manifest.webmanifest', './icon.svg',
-  './img/hero-limmat-m.webp', './img/hero-limmat-d.webp',
+  './img/hero-nieve-m.webp', './img/hero-limmat-d.webp',
   './vendor/leaflet/leaflet.js', './vendor/leaflet/leaflet.css',
   './vendor/markercluster/leaflet.markercluster.js', './vendor/markercluster/MarkerCluster.css',
   './vendor/fonts/cormorant-garamond-latin-500-normal.woff2', './vendor/fonts/cormorant-garamond-latin-600-normal.woff2',
