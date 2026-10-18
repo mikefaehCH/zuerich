@@ -101,14 +101,27 @@ const dateRange = p => p.cat !== 'navidad' ? '' : p.open ? ` · ${isoShort(p.ope
 const addBtn = p => `<button class="add" type="button" data-plan="${p.id}" aria-pressed="${inPlan(p.id)}" aria-label="${inPlan(p.id) ? 'Quitar de mi plan' : 'Añadir a mi plan'}: ${esc(p.name)}">${inPlan(p.id) ? ICON.check : ICON.plus}</button>`;
 const thumb = p => isLocal(p.img)
   ? `<div class="th"><img src="${p.img}-400.webp" alt="${esc(p.imgCap)}" width="400" height="300" loading="lazy" decoding="async"></div>`
-  : `<div class="th ph" style="--c:${CATS[p.cat].color}" aria-hidden="true">${esc(p.name.replace(/^[^A-Za-zÁÉÍÓÚÑáéíóúñ]+/, '')[0])}</div>`;
+  : `<div class="th ph" style="--c:${CATS[p.cat].color}" aria-hidden="true">${CAT_ICON[iconKey(p)]}</div>`;
+/* sin foto: símbolo sencillo por tipo de lugar (nunca una imagen que parezca el sitio real) */
+const iconKey = p => p.cat !== 'gastro' ? p.cat : (p.tags || []).includes('bar') && !(p.tags || []).includes('almuerzo') ? 'bar' : (p.tags || [])[0] === 'cafe' ? 'cafe' : 'gastro';
+const svgI = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+const CAT_ICON = {
+  navidad: svgI('<path d="M12 3l1.6 3.4 3.7.4-2.8 2.5.8 3.7L12 11.2 8.7 13l.8-3.7-2.8-2.5 3.7-.4z"/><path d="M12 15v6M8.5 21h7"/>'),
+  ver: svgI('<path d="M3 20h18M5 20V10l3-3 3 3v10M13 20V6l3-3 3 3v14"/><path d="M8 13v2M16 10v2"/>'),
+  cultura: svgI('<path d="M3 9l9-5 9 5M5 9v9M9.5 9v9M14.5 9v9M19 9v9M3 20h18"/>'),
+  experiencia: svgI('<path d="M4 7h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"/><path d="M14 7v2M14 11v2M14 15v2"/>'),
+  gastro: svgI('<path d="M7 3v7a2 2 0 0 0 2 2v9M11 3v7a2 2 0 0 1-2 2M9 3v6M16.5 21V3c-2 1.5-3 4-3 7h3"/>'),
+  cafe: svgI('<path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16M8 3.5c-.6.8-.6 1.7 0 2.5M12 3.5c-.6.8-.6 1.7 0 2.5"/>'),
+  bar: svgI('<path d="M5 4h14l-7 8zM12 12v8M8 20h8"/><path d="M15.5 4l2-2"/>'),
+  excursion: svgI('<rect x="5" y="3" width="14" height="13" rx="3"/><path d="M5 10h14M9 20l-2 2M15 20l2 2M8.5 13h.01M15.5 13h.01"/>'),
+};
 function card(p, lvl = 3){
   const more = rest(p.desc);
   const share = `${p.name}${p.poc ? ' (favorito de Mike)' : ''}\n${gSearch(p)}\n\nGuía: ${SITE}#p-${p.id}`;
   return `<article class="pc" id="p-${p.id}" aria-labelledby="h-${p.id}">
     <div class="pc-main">${thumb(p)}
       <div class="pc-b">
-        <p class="pc-cat">${p.prio === 'top' ? '<span class="top">TOP 10</span> · ' : ''}${CATS[p.cat].label}${dateRange(p)}${p.rec ? ' · <span class="rec">Recomendado por Mike</span>' : ''}${offMin(p) <= 20 ? ` · a ${offMin(p)} min de la oficina` : ''}</p>
+        <p class="pc-cat">${p.prio === 'top' ? '<span class="top">TOP 10</span> · ' : ''}${CATS[p.cat].label}${dateRange(p)}${p.rec ? ' · <span class="rec">Recomendado por Mike</span>' : ''}${offMin(p) !== null && offMin(p) <= 20 ? ` · a ${offMin(p)} min de la oficina` : ''}</p>
         <h${lvl} class="pc-t" id="h-${p.id}">${esc(p.name)}${p.poc ? STAR : ''}</h${lvl}>
         <p class="pc-desc">${esc(short(p.desc))}</p>
       </div>
