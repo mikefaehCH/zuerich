@@ -7,7 +7,7 @@ Mike writes to you in German; everything visitors see is **Spanish (Spain, «vos
 ## Files (static site, no build, no framework)
 | File | What | Read it when… |
 |---|---|---|
-| `data.js` | ALL content: `TRIP`, `CATS`, `CONFIG`, `OFFICE`, `SZU_NOTE`, `PLACES` (57), `IDEAS` (13) | adding/editing places, tips, hours, ideas, favourites |
+| `data.js` | ALL content: `TRIP`, `CATS`, `CONFIG`, `OFFICE`, `SZU_NOTE`, `PLACES` (56), `IDEAS` (13) | adding/editing places, tips, hours, ideas, favourites |
 | `app.js` | all logic (render, filters, map, plan, deep links) | changing behaviour |
 | `style.css` | design tokens in `:root` (+ dark mode) and components | changing looks |
 | `index.html` | markup, meta/OG tags, CSP | changing page structure or static FAQ text |

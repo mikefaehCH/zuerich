@@ -84,7 +84,7 @@ function inTab(p){
     case 'destacados': return p.prio === 'top' || isXmasHighlight(p);
     case 'navidad': return p.cat === 'navidad';
     case 'favoritos': return !!p.poc;
-    case 'comer': return state.sub ? (p.tags || []).includes(state.sub) : p.cat === 'gastro';
+    case 'comer': return state.sub ? (p.tags || []).includes(state.sub) : p.cat === 'gastro' || (p.tags || []).includes('bar');   // bares de otras categorías (Cabaret Voltaire) también aquí
     case 'excursiones': return p.cat === 'excursion';
     case 'm-manana': return MOM['m-manana'].places.includes(p.id);
     case 'm-mediodia': return (p.tags || []).includes('almuerzo');
@@ -112,7 +112,7 @@ const addBtn = p => `<button class="add" type="button" data-plan="${p.id}" aria-
 /* listas: solo texto (las fotos se usan en portada, momentos y favoritos) */
 /* barrio a partir del código postal de addr */
 /* tipo de lugar en una palabra; en «Comer y café» según las etiquetas */
-const kindLabel = p => { if (p.cat !== 'gastro') return CATS[p.cat].label; const t = p.tags || [];
+const kindLabel = p => { if (p.cat !== 'gastro') return (p.tags || []).includes('bar') ? 'Bar y ' + CATS[p.cat].label.toLowerCase() : CATS[p.cat].label; const t = p.tags || [];
   return t[0] === 'brunch' ? 'Brunch y café' : t[0] === 'cafe' ? 'Café' : t.length === 1 && t[0] === 'bar' ? 'Bar' : 'Restaurante'; };
 const BARRIOS = { '8001':'Centro', '8002':'Enge', '8004':'Kreis 4', '8005':'Kreis 5', '8008':'Seefeld', '8037':'Wipkingen' };
 const barrio = p => { const m = p.cat !== 'excursion' && (p.addr || '').match(/\b(80\d\d)\b/); return m ? BARRIOS[m[1]] || '' : ''; };
