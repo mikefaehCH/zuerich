@@ -32,7 +32,7 @@ const CONFIG = {
     { id:'finde',    title:'El fin de semana',    sub:'Brunch, museos y excursiones', img:'img/luzern-puente', credit:'Srini Somanchi / Unsplash', place:'Lucerna',
       note:'Excursiones: tiempos de ida aproximados desde Zürich HB.' },
   ],
-  mapFar:   ['lindt','zauberpark','felsenegg','winterzauber','uetliberg'],                  // fuera del centro: no cuentan para el encuadre del mapa
+  mapFar:   ['lindt','felsenegg','winterzauber','uetliberg'],                  // fuera del centro: no cuentan para el encuadre del mapa
 };
 const OFFICE = { ll:[47.3889,8.5155], q:'Pfingstweidstrasse 51, 8005 Zürich' };   // oficina de Mike (Zürich-West)
 const SZU_NOTE = 'Hasta el 12 de diciembre de 2026 la S10 y la S4 no salen de Zürich HB por obras. Para el Uetliberg: tranvía 14 hasta Triemli y allí la S10. Para Adliswil: tranvía hasta Stauffacher y a pie a Selnau, donde sale la S4. Calculad más tiempo y consultad la conexión.';
@@ -119,16 +119,6 @@ const PLACES = [
     price:'Acceso libre; consumiciones aparte.', status:'pend', src:'https://utokulm.ch/winterzauber', img:null,
     open:null, closed:[] },
 
-  { id:'zauberpark', close:[21.5,null,22.5,22.5,22.5,22.5,22.5], name:'Zauberpark – aeropuerto', cat:'navidad', prio:'si',
-    desc:'Festival de arte con luz, música y un pueblo gastronómico en el parque detrás de The Circle, en el aeropuerto. Merece la pena si os apetece algo distinto a los mercados.',
-    addr:'Flughafenpark, detrás de The Circle, 8058 Zürich-Flughafen', ll:[47.4502,8.5625], q:'Zauberpark Flughafen Zürich',
-    web:'https://zauberpark.ch/', dur:'1–2 h',
-    ov:'Tren a Zürich Flughafen (aprox. 10–15 min) y unos minutos a pie',
-    hours:'18 nov – 6 dic 2026, cerrado los lunes. Normalmente 17:00–22:30. Domingo 22 nov: «Special Sunday», hasta las 21:30.',
-    price:'De pago; Light Art desde CHF 21.20. Entradas en zauberpark.ch.', status:'ok', src:'https://zauberpark.ch/info/', img:null,
-    open:['2026-11-18','2026-12-06'], closed:[1] },
-
-  /* ---------- IMPRESCINDIBLES / CASCO ANTIGUO ---------- */
   { id:'lindenhof', tip:'Imprescindible: subid al Lindenhof y luego pasead sin prisa por las callejuelas del casco antiguo.', close:[24,24,24,24,24,24,24], name:'Lindenhof', cat:'ver', prio:'top', poc:true,
     desc:'Un mirador tranquilo bajo los tilos, con el río, el Grossmünster y los tejados del casco antiguo enfrente. Aquí estuvo el fuerte romano; buen sitio para empezar.',
     addr:'Lindenhof, 8001 Zürich', ll:[47.3730,8.5410], q:'Lindenhof Zürich',
@@ -271,12 +261,6 @@ const PLACES = [
     hours:'Horario del teleférico y posibles revisiones en noviembre pendientes de confirmación.', price:'Teleférico de pago.', status:'pend', src:'https://www.zvv.ch/de/freizeit-und-events/freizeittipps/entdecken-und-erleben/mit-der-luftseilbahn-auf-die-felsenegg.html', img:null },
 
   /* ---------- GASTRONOMÍA ---------- */
-  { id:'zeughauskeller', name:'Zeughauskeller', cat:'gastro', prio:'muy',
-    desc:'Una antigua armería del siglo XV convertida en cervecería con mesas largas de madera. Aquí se pide el «Zürcher Geschnetzeltes» con rösti.',
-    addr:'Bahnhofstrasse 28a, 8001 Zürich', ll:[47.3711,8.5393], q:'Zeughauskeller Zürich',
-    web:null, dur:'1–1,5 h',
-    ov:'8 minutos a pie desde Zürich HB', hours:'Horario y reservas pendientes de confirmación.', price:'Precio medio.', status:'pend', src:null, img:null },
-
   { id:'zunfthauswaag', name:'Zunfthaus zur Waag', cat:'gastro', prio:'si',
     desc:'Cocina zuriquesa tradicional en una casa gremial histórica del Münsterhof. Para una cena especial; algo por encima del precio medio.',
     addr:'Münsterhof 8, 8001 Zürich', ll:[47.3699,8.5409], q:'Zunfthaus zur Waag Zürich',
@@ -337,12 +321,6 @@ const PLACES = [
     web:null, dur:'1–2 h',
     ov:'Unos 10 minutos a pie desde Zürich HB',
     hours:'Todos los días 17–4 h.', price:'Precio de bar.', status:'sec', src:'https://www.zuerich.com/de/besuchen/bars-lounges/ole-ole-bar', img:null },
-  { id:'bank', close:[22,23,24,24,24,24,24], name:'BANK', cat:'gastro', prio:'muy', tags:['brunch','cafe','cena','bar'],
-    desc:'Una antigua sucursal bancaria en la Helvetiaplatz convertida en café, panadería, restaurante y bar: platos mediterráneos para compartir y, el fin de semana, brunch hasta las 15 h.',
-    addr:'Molkenstrasse 15, 8004 Zürich', ll:[47.3765,8.5262], q:'BANK Molkenstrasse 15 Zürich',
-    web:'https://www.bankzuerich.ch/', dur:'1–2 h',
-    ov:'Tranvía hasta Stauffacher o 12 min a pie desde Zürich HB',
-    hours:'Lun 10–23 h; mar–sáb 9–24 h; dom 9–22 h. Brunch sáb y dom hasta las 15 h.', price:'Precio medio.', status:'sec', src:'https://www.zuerich.com/de/besuchen/bars-lounges/bank', img:null },
   { id:'brosbeans', close:[18,19,19,19,19,19,18], name:'Bro\'s Beans & Beats', cat:'gastro', prio:'si', tags:['brunch','cafe'],
     desc:'Café de especialidad con música: entre semana, bocadillos, bowls y tartas caseras; el fin de semana, un brunch generoso y animado.',
     addr:'Gartenhofstrasse 24, 8004 Zürich', ll:[47.3733,8.5283], q:'Bros Beans & Beats Gartenhofstrasse 24 Zürich',

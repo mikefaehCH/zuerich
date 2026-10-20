@@ -109,9 +109,7 @@ function visible(){
 const statusLabel = p => p.status === 'ok' ? '<span class="st ok">Confirmado</span>' : p.status === 'sec' ? '<span class="st sec">Confirmar antes de ir</span>' : '<span class="st pend">Horario por confirmar</span>';
 const dateRange = p => p.cat !== 'navidad' ? '' : p.open ? ` · ${isoShort(p.open[0])} – ${isoShort(p.open[1])}` : ' · fechas por confirmar';
 const addBtn = p => `<button class="add" type="button" data-plan="${p.id}" aria-pressed="${inPlan(p.id)}" aria-label="${inPlan(p.id) ? 'Quitar de mi plan' : 'Añadir a mi plan'}: ${esc(p.name)}">${inPlan(p.id) ? ICON.check : ICON.plus}</button>`;
-const thumb = p => isLocal(p.img)
-  ? `<div class="th"><img src="${p.img}-400.webp" alt="${esc(p.imgCap)}" width="400" height="300" loading="lazy" decoding="async"></div>`
-  : '';   // sin foto: sin miniatura (el texto usa todo el ancho)
+/* listas: solo texto (las fotos se usan en portada, momentos y favoritos) */
 /* barrio a partir del código postal de addr */
 /* tipo de lugar en una palabra; en «Comer y café» según las etiquetas */
 const kindLabel = p => { if (p.cat !== 'gastro') return CATS[p.cat].label; const t = p.tags || [];
@@ -122,7 +120,7 @@ function card(p, lvl = 3){
   const more = rest(p.desc);
   const share = `${p.name}${p.poc ? ' (favorito de Mike)' : ''}\n${gSearch(p)}\n\nGuía: ${SITE}#p-${p.id}`;
   return `<article class="pc" id="p-${p.id}" aria-labelledby="h-${p.id}">
-    <div class="pc-main">${thumb(p)}
+    <div class="pc-main">
       <div class="pc-b">
         <p class="pc-cat">${esc(kindLabel(p))}${barrio(p) ? ' · ' + barrio(p) : ''}${dateRange(p)}${p.rec ? ' · <span class="rec">Recomendado por Mike</span>' : ''}${offMin(p) !== null && offMin(p) <= 20 ? ` · a ${offMin(p)} min de la oficina` : ''}</p>
         <h${lvl} class="pc-t" id="h-${p.id}">${esc(p.name)}${p.poc ? STAR : ''}</h${lvl}>
@@ -143,7 +141,6 @@ function card(p, lvl = 3){
       <p><strong>Cómo llegar:</strong> ${esc(p.ov)}</p>
       ${p.cat !== 'excursion' ? `<p><strong>Desde la oficina:</strong> ${offMin(p) <= 25 ? `≈ ${offMin(p)} min a pie` : 'mejor en tranvía o tren'}</p>` : ''}
       <p class="links">${p.cat !== 'excursion' ? `<a href="${gOffice(p)}" target="_blank" rel="noopener">Ruta desde la oficina</a>` : ''}<a href="${gDir(p)}" target="_blank" rel="noopener">Cómo llegar en transporte</a><button type="button" data-showmap="${p.id}">Ver en el mapa</button><a href="${wa(share)}" target="_blank" rel="noopener">Compartir por WhatsApp</a>${p.web ? `<a href="${p.web}" target="_blank" rel="noopener">Web oficial</a>` : ''}${p.src ? `<a href="${p.src}" target="_blank" rel="noopener">Fuente (${TRIP.checked})</a>` : ''}</p>
-      ${isLocal(p.img) ? `<p style="font-size:.72rem">Foto: ${esc(p.credit)}</p>` : ''}
     </div>
   </article>`;
 }
@@ -301,6 +298,8 @@ function renderCal(){
 
 /* ================= 05 · ideas ================= */
 const TOP_IDEAS = CONFIG.topIdeas;
+/* el estrella nunca queda sola en una línea: va pegada a la última palabra */
+const nameWithStar = p => { const w = esc(shortName(p)).split(' '), last = w.pop(); return (w.length ? w.join(' ') + ' ' : '') + `<span class="nw">${last}${p.poc ? STAR : ''}</span>`; };
 const CTXL = { trabajo:'Después del trabajo', finde:'Fin de semana', lluvia:'Con lluvia' };
 function ideaHTML(i){
   const all = i.stops.every(inPlan);
@@ -308,7 +307,7 @@ function ideaHTML(i){
   return `<article class="idea" id="idea-${i.id}"><h3>${esc(i.title)}</h3>
     <p class="meta">${esc(i.dur)} · <b>${esc(i.days || i.ctx.map(c => CTXL[c]).join(' · '))}</b></p>
     <p class="tx">${esc(short(i.text, 2))}</p>
-    <ol class="route">${i.stops.map(id => `<li><button type="button" data-card="${id}">${esc(shortName(byId[id]))}</button>${byId[id].poc ? STAR : ''}</li>`).join('')}</ol>
+    <ol class="route">${i.stops.map(id => `<li><span class="rn"><button type="button" data-card="${id}">${nameWithStar(byId[id])}</button></span></li>`).join('')}</ol>
     ${i.note ? `<p class="inote">${esc(i.note)}</p>` : ''}
     <div class="acts"><a class="btn pri" href="${walk}" target="_blank" rel="noopener">${ICON.nav}${i.transit ? 'Conexión' : i.walkOnly ? 'Cómo llegar' : 'Ruta en Google Maps'}</a>
       <button class="btn ghost" type="button" data-addidea="${i.id}" aria-pressed="${all}">${all ? ICON.check + 'En mi plan' : ICON.plus + 'Añadir al plan'}</button></div></article>`;

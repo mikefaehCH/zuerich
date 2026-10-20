@@ -7,7 +7,7 @@ Mike writes to you in German; everything visitors see is **Spanish (Spain, «vos
 ## Files (static site, no build, no framework)
 | File | What | Read it when… |
 |---|---|---|
-| `data.js` | ALL content: `TRIP`, `CATS`, `CONFIG`, `OFFICE`, `SZU_NOTE`, `PLACES` (60), `IDEAS` (13) | adding/editing places, tips, hours, ideas, favourites |
+| `data.js` | ALL content: `TRIP`, `CATS`, `CONFIG`, `OFFICE`, `SZU_NOTE`, `PLACES` (57), `IDEAS` (13) | adding/editing places, tips, hours, ideas, favourites |
 | `app.js` | all logic (render, filters, map, plan, deep links) | changing behaviour |
 | `style.css` | design tokens in `:root` (+ dark mode) and components | changing looks |
 | `index.html` | markup, meta/OG tags, CSP | changing page structure or static FAQ text |
@@ -34,7 +34,7 @@ Rollback: `git revert <sha>`.
 - `tags`: `cafe`, `almuerzo`, `cena`, `bar` (sub-filters of «Comer y café»).
 - `poc:true` = **favourite of Mike (gold star)**. Mike decides the list (currently 13). `rec:true` = «Recomendado por Mike» (no star).
 - `tip` = «Consejo de Mike». **Only Mike's own words**, translated to Spanish. Never invent first-person text.
-- Without `img` the card shows no thumbnail (text uses full width; never placeholders). `img:'img/name'` requires `img/name-400.webp` + `img/name-800.webp`, `imgCap`, `credit`.
+- List cards never show images (text only); photos appear in hero, momentos tiles and favourite picks. `img:'img/name'` requires `img/name-400.webp` + `img/name-800.webp`, `imgCap`, `credit`.
 - `IDEAS`: `id` (links `#idea-id`), `title`, `dur`, `days`, `text`, `note`, `stops` (place ids, in walking order), `walkOnly`/`transit`.
 - Front page «Lo mejor de Zúrich» = Mike's favourites: `CONFIG.favFirst` = photo picks in order (must have `img`, quote = 1st sentence of `tip`);
   all other `poc` places appear automatically in «Más favoritos».

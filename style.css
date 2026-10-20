@@ -207,13 +207,19 @@ h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.15;}
 .idea{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:14px;padding:1rem 1rem .6rem;scroll-margin-top:60px;display:flex;flex-direction:column;}
 .idea .meta{font-size:.76rem;color:var(--muted);margin:.2rem 0 .45rem;}
 .idea .meta b{color:var(--acc-ink);font-weight:600;}
-.idea p.tx{color:var(--muted);font-size:.9rem;flex:1;}
+.idea p.tx{color:var(--muted);font-size:.9rem;}
 .idea .route{list-style:none;margin:.6rem 0 0;display:grid;gap:.15rem;counter-reset:s;}
-.idea .route li{counter-increment:s;display:flex;align-items:center;gap:.55rem;font-size:.9rem;}
+.idea .route li{counter-increment:s;display:flex;align-items:flex-start;gap:.55rem;font-size:.9rem;}
+.idea .route .rn{flex:1;min-width:0;padding-top:.05rem;}
+.idea .route .rn .star{margin-left:.3rem;}
+.idea .route + .inote,.idea .route + .acts{margin-top:auto;padding-top:.7rem;}
+.idea .route .rn button{display:inline;}
+.nw{white-space:nowrap;}
 .idea .route li::before{content:counter(s);width:1.35rem;height:1.35rem;flex:none;border-radius:50%;border:1px solid var(--line);font-size:.7rem;font-weight:600;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;}
 .idea .route button{background:none;border:0;padding:.15rem 0;font:500 .9rem var(--sans);color:var(--ink);cursor:pointer;text-align:left;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;}
 .idea .inote{font-size:.78rem;color:var(--warn);margin-top:.45rem;}
-.idea .acts{display:flex;gap:.3rem;flex-wrap:wrap;align-items:center;margin-top:.7rem;}
+.idea .acts{display:flex;gap:.3rem;flex-wrap:wrap;align-items:center;}
+.idea .inote + .acts{margin-top:.6rem;}
 
 /* 06 · mi plan */
 .plan-list{list-style:none;border-top:1px solid var(--line);}
