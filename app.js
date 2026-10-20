@@ -133,6 +133,7 @@ function card(p, lvl = 3){
       ${addBtn(p)}
     </div>
     <div class="more" id="m-${p.id}" hidden>
+      ${isLocal(p.img) ? `<figure class="more-img"><img src="${p.img}-800.webp" srcset="${p.img}-400.webp 400w, ${p.img}-800.webp 800w" sizes="(min-width:760px) 480px, 92vw" alt="${esc(p.imgCap)}" width="800" height="480" loading="lazy" decoding="async"${p.imgPos ? ` style="object-position:${p.imgPos}"` : ''}><figcaption>Foto: ${esc(p.credit)}</figcaption></figure>` : ''}
       ${p.tip ? `<p class="mtip"><b>Consejo de Mike:</b> ${esc(p.tip)}</p>` : ''}
       ${more ? `<p>${esc(more)}</p>` : ''}
       <p><strong>Horario:</strong> ${esc(p.hours)} ${statusLabel(p)}</p>

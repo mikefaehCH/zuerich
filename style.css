@@ -153,6 +153,8 @@ h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.15;}
 .pc-foot [data-more][aria-expanded="true"]::after{content:"–";}
 .more{font-size:.86rem;color:var(--muted);display:grid;gap:.5rem;padding:.6rem 0 .8rem;border-top:1px solid var(--line);margin-top:.3rem;}
 .more[hidden]{display:none;}
+.more-img img{width:100%;height:auto;aspect-ratio:5/3;object-fit:cover;border-radius:10px;background:var(--bg2);}
+.more-img figcaption{font-size:.7rem;color:var(--muted);margin-top:.25rem;}
 .more p strong{color:var(--ink);font-weight:600;}
 .mtip{border-left:2px solid var(--star);padding:.05rem 0 .05rem .7rem;font-style:italic;color:var(--ink);}
 .mtip b{font-style:normal;color:var(--star);font-weight:600;}

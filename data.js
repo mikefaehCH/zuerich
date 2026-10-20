@@ -154,13 +154,13 @@ const PLACES = [
     desc:'El paseo a orillas del río Limmat, con las casas gremiales, los puentes y las torres de las iglesias reflejadas en el agua. Precioso con las luces de la tarde.',
     addr:'Limmatquai, 8001 Zürich', ll:[47.3712,8.5430], q:'Limmatquai Zürich',
     web:null, dur:'30–45 min',
-    ov:'5 minutos a pie desde Zürich HB', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:'img/limmatquai-grossmuenster', imgCap:'El Grossmünster y el Limmatquai desde el río', credit:'Rico Reutimann / Unsplash' },
+    ov:'5 minutos a pie desde Zürich HB', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:'img/limmat-barcas', imgCap:'El Limmat con barcas de madera y las torres del Grossmünster al fondo', credit:'cortesía de Mike', imgPos:'50% 60%' },
 
   { id:'augustinergasse', close:[24,24,24,24,24,24,24], name:'Augustinergasse', cat:'ver', prio:'muy',
     desc:'Quizá la calle más fotogénica de Zúrich: fachadas de colores y miradores de madera pintados. Está entre la Bahnhofstrasse y el Lindenhof.',
     addr:'Augustinergasse, 8001 Zürich', ll:[47.3716,8.5395], q:'Augustinergasse Zürich',
     web:null, dur:'10–20 min',
-    ov:'8 minutos a pie desde Zürich HB', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:null },
+    ov:'8 minutos a pie desde Zürich HB', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:'img/augustinergasse', imgCap:'La Augustinergasse: tiendas, fachadas históricas y miradores de madera', credit:'cortesía de Mike', imgPos:'50% 45%' },
 
   { id:'burkliplatz', close:[24,24,24,24,24,24,24], name:'Bürkliplatz y el lago', cat:'ver', prio:'top',
     desc:'El final natural del paseo por la Bahnhofstrasse: aquí la ciudad se abre al lago. Con el cielo despejado, los Alpes al fondo.',
@@ -172,13 +172,13 @@ const PLACES = [
     desc:'La terraza delante del edificio principal de la universidad ETH, una de las mejores vistas sobre los tejados y las torres. De noche, la ciudad iluminada.',
     addr:'Rämistrasse 101, 8092 Zürich', ll:[47.3765,8.5478], q:'Polyterrasse ETH Zürich',
     web:null, dur:'15–30 min',
-    ov:'Polybahn desde Central (5 min a pie de Zürich HB)', hours:'Terraza de acceso libre.', price:'Gratis.', status:'ok', src:null, img:null },
+    ov:'Polybahn desde Central (5 min a pie de Zürich HB)', hours:'Terraza de acceso libre.', price:'Gratis.', status:'ok', src:null, img:'img/zuerich-nieve', imgCap:'Los tejados nevados de Zúrich y la torre del Fraumünster, con las montañas al fondo', credit:'cortesía de Mike', imgPos:'50% 70%' },
 
   { id:'polybahn', name:'Polybahn', cat:'ver', prio:'muy',
     desc:'Un pequeño funicular rojo de 1889 que sube en dos minutos desde Central hasta la ETH. Un trayecto cortísimo, pero encantador.',
     addr:'Limmatquai 57 (Central), 8001 Zürich', ll:[47.3768,8.5445], q:'Polybahn Zürich',
     web:null, dur:'10–20 min con las vistas',
-    ov:'5 minutos a pie desde Zürich HB', hours:'Horario pendiente de confirmación.', price:'Con billete de transporte de la zona 110.', status:'pend', src:null, img:null },
+    ov:'5 minutos a pie desde Zürich HB', hours:'Horario pendiente de confirmación.', price:'Con billete de transporte de la zona 110.', status:'pend', src:null, img:'img/polybahn-ciudad', imgCap:'La ciudad desde lo alto, con el vagón rojo de la Polybahn', credit:'cortesía de Mike', imgPos:'62% 78%' },
 
   { id:'uetliberg', tip:'Alternativa a la ciudad: subir en tren al Uetliberg. Bonitas vistas y un pequeño mercado navideño arriba; con nieve es precioso, aunque este año quizá aún no haya. Normalmente el tren sale directo de la estación central; durante vuestra visita no, por las obras.', name:'Uetliberg', cat:'ver', prio:'top',
     desc:'La montaña de la ciudad (871 m): en noviembre, muchas veces arriba luce el sol mientras Zúrich sigue bajo la niebla. Desde la torre se ven la ciudad, el lago y, con suerte, los Alpes.',
