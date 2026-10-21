@@ -45,11 +45,14 @@ VALIDATE = r"""(() => {
     if (p.cat === 'navidad' && !p.open && p.status !== 'pend') E.push(p.id + ': Christmas item without open dates must be status pend');
     if (p.tags && p.tags.some(t => !['cafe','brunch','almuerzo','cena','bar'].includes(t))) E.push(p.id + ': unknown tag');
     if (p.img && !/^img\/[a-z0-9-]+$/.test(p.img)) E.push(p.id + ': img must be img/name');
-    if (p.img && !(p.imgCap && p.credit)) E.push(p.id + ': img needs imgCap + credit');
+    if (p.img && !(p.imgCap && PHOTOS[p.img])) E.push(p.id + ': img needs imgCap + a PHOTOS entry (author + source)');
     if (/POC/.test(JSON.stringify(p))) E.push(p.id + ': visible text must not say POC');
   });
   IDEAS.forEach(i => i.stops.forEach(s => { if (!PLACES.some(p => p.id === s)) E.push('idea ' + i.id + ': unknown stop ' + s); }));
   CONFIG.favFirst.forEach(id => { const p = PLACES.find(x => x.id === id); if (!p || !p.poc || !p.img) E.push('CONFIG.favFirst: ' + id + ' missing, not a favourite or without photo'); });
+  CONFIG.momentos.forEach(m => { if (m.img && !PHOTOS[m.img]) E.push('CONFIG.momentos: ' + m.id + ' photo without PHOTOS entry'); });
+  Object.entries(PHOTOS).forEach(([n, f]) => { if (!(f.by && f.what && /^https:\/\/unsplash\.com\/photos\//.test(f.src))) E.push('PHOTOS ' + n + ': needs by, what and an unsplash.com/photos/ link'); });
+  if (/cortes[ií]a de Mike/i.test(JSON.stringify(PLACES))) E.push('credit «cortesía de Mike» is not a valid source');
   CONFIG.topIdeas.forEach(id => { if (!iids.includes(id)) E.push('CONFIG.topIdeas: unknown ' + id); });
   return { errors: E, images: PLACES.filter(p => p.img).map(p => p.img) };
 })()"""
@@ -73,6 +76,9 @@ def main():
         sw = open(os.path.join(ROOT, "sw.js"), encoding="utf-8").read()
         missing += [f for f in re.findall(r"'\./([^']+)'", sw) if not os.path.exists(os.path.join(ROOT, f))]
         ok("all referenced files exist (images, vendor, sw CORE)", not missing, missing[:6])
+        photos = m.evaluate("Object.keys(PHOTOS)")
+        orphans = sorted({re.sub(r"-(400|800|m|d)\.webp$", "", f) for f in os.listdir(os.path.join(ROOT, "img")) if f.endswith(".webp")} - {p[4:] for p in photos})
+        ok("every photo in img/ has author + source in PHOTOS", not orphans, orphans)
         m.close()
 
         # ---------- 2. layout per viewport ----------

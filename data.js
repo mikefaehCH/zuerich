@@ -23,13 +23,13 @@ const CONFIG = {
   topIdeas: ['bellevue','casco','arte'],                                                    // 3 ideas visibles; el resto, plegadas
   /* Accesos por momento del día (portada). places = lista fija; sin places, app.js aplica la regla del momento */
   momentos: [
-    { id:'manana',   title:'Antes del trabajo',   sub:'Café de especialidad desde las 8 h', img:'img/limmatquai-nieve', credit:'Claudio Schwarz / Unsplash',
+    { id:'manana',   title:'Antes del trabajo',   sub:'Café de especialidad desde las 8 h', img:'img/limmatquai-nieve',
       places:['collective','spheres','oko','barbutter','brosbeans','miro','cafenoir'], note:'Cafés que abren temprano (casi todos a las 8 h): mirad el horario de cada uno.' },
-    { id:'mediodia', title:'A mediodía',          sub:'Para comer cerca de la oficina', img:'img/buerkliplatz', credit:'aho / Unsplash',
+    { id:'mediodia', title:'A mediodía',          sub:'Para comer cerca de la oficina', img:'img/buerkliplatz',
       note:'Ordenado por distancia a la oficina (Pfingstweidstrasse).' },
-    { id:'tarde',    title:'Después del trabajo', sub:'Mercados, luces, cena y copas', img:'img/bahnhofstrasse-navidad', credit:'Ralph Hutter / Unsplash',
+    { id:'tarde',    title:'Después del trabajo', sub:'Mercados, luces, cena y copas', img:'img/bahnhofstrasse-navidad',
       note:'Y en «Ideas», tres planes listos para una tarde.' },
-    { id:'finde',    title:'El fin de semana',    sub:'Brunch, museos y excursiones', img:'img/luzern-puente', credit:'Srini Somanchi / Unsplash', place:'Lucerna',
+    { id:'finde',    title:'El fin de semana',    sub:'Brunch, museos y excursiones', img:'img/luzern-puente', place:'Lucerna',
       note:'Excursiones: tiempos de ida aproximados desde Zürich HB.' },
   ],
   mapFar:   ['lindt','felsenegg','winterzauber','uetliberg'],                  // fuera del centro: no cuentan para el encuadre del mapa
@@ -44,8 +44,26 @@ const SZU_NOTE = 'Hasta el 12 de diciembre de 2026 la S10 y la S4 no salen de Z�
    addr · ll [lat, lon] · q (búsqueda en Google Maps) · gmap (enlace propio, opcional) · web · src (fuente)
    dur · ov (cómo llegar) · hours · price · status 'ok'|'sec'|'pend'
    close [dom..sáb] hora de cierre (null = cerrado) · tags ['cafe','brunch','almuerzo','cena','bar']
-   img 'img/nombre' (+ nombre-400.webp y nombre-800.webp) · imgCap · credit
+   img 'img/nombre' (+ nombre-400.webp y nombre-800.webp) · imgCap · autor y enlace en PHOTOS
    open [inicio, fin] y closed [días 0=dom…6=sáb] para el calendario de Navidad */
+/* Créditos de las fotos: cada imagen de img/ con su autor y su página original (Unsplash, licencia de Unsplash).
+   Comprobado el 21.10.2026 (ver CREDITS.md). Una foto sin entrada aquí no se puede usar (tests/check.py). */
+const PHOTOS = {
+  'img/hero-limmat': { by:'Claudio Schwarz', src:'https://unsplash.com/photos/city-buildings-near-body-of-water-during-night-time-IA9ywYR8ibw', what:'El Limmat al atardecer (portada)' },
+  'img/limmatquai-nieve': { by:'Tomi Blasic', src:'https://unsplash.com/photos/person-walks-past-buildings-on-a-snowy-night-HqYVbT_rJ5k', what:'El Grossmünster al anochecer («Antes del trabajo»)' },
+  'img/buerkliplatz': { by:'Aho', src:'https://unsplash.com/photos/a-body-of-water-with-boats-and-buildings-in-the-background-xv6G6cmvOSE', what:'El Limmat junto al Bürkliplatz' },
+  'img/bahnhofstrasse-navidad': { by:'Ralph Hutter', src:'https://unsplash.com/photos/white-and-blue-train-at-night-nwkyfoD6G4I', what:'Tranvía bajo las luces de la Bahnhofstrasse' },
+  'img/luzern-puente': { by:'Srini Somanchi', src:'https://unsplash.com/photos/covered-wooden-bridge-over-a-calm-river-with-buildings-WpssMsAylDA', what:'El Kapellbrücke de Lucerna («El fin de semana»)' },
+  'img/bahnhofstrasse-lucy': { by:'Claudio Schwarz', src:'https://unsplash.com/photos/aerial-view-photography-of-highrise-building-6eTyGFnUe8Y', what:'La Bahnhofstrasse con las luces «Lucy»' },
+  'img/lindenhof-blick': { by:'Tomek Baginski', src:'https://unsplash.com/photos/people-sitting-on-concrete-bench-near-body-of-water-during-daytime-lGvpsZDyDLI', what:'Desde el muro del Lindenhof' },
+  'img/fraumuenster-limmat': { by:'Henrique Ferreira', src:'https://unsplash.com/photos/aerial-view-of-city-buildings-during-daytime-6p-I-X-sPUY', what:'San Pedro, el Fraumünster y el Limmat' },
+  'img/altstadt-sterne': { by:'Ricardo Gomez Angel', src:'https://unsplash.com/photos/brown-and-white-concrete-buildings-gtAnjw9GoOg', what:'Callejuela del casco antiguo con estrellas' },
+  'img/uetliberg-niebla': { by:'Patrick Federi', src:'https://unsplash.com/photos/a-tower-on-top-of-a-mountain-surrounded-by-fog-Jch_0k7S2WY', what:'El Uetliberg sobre el mar de niebla' },
+  'img/kunsthaus': { by:'Ilia Bronskiy', src:'https://unsplash.com/photos/woman-entering-a-modern-building-with-stone-facade-C6W529c_b0I', what:'La ampliación del Kunsthaus' },
+  'img/luzern-kapellbruecke': { by:'Geertje Caliguire', src:'https://unsplash.com/photos/white-and-brown-lighthouse-on-water-6D9fpCXb20E', what:'El Kapellbrücke y la torre del agua, Lucerna' },
+  'img/baden-noche': { by:'Julian', src:'https://unsplash.com/photos/city-with-high-rise-buildings-during-night-time-JEiSX5Lw0ls', what:'Baden de noche' },
+};
+
 const PLACES = [
   /* ---------- NAVIDAD ---------- */
   { id:'illuminarium', tip:'«The place to be», de verdad: hay que ir. Mejor directamente al salir del trabajo, cuando aún no hay tanta gente; el momento en que se encienden las luces es precioso. Un mercado navideño moderno, con food trucks y público joven. Dentro hay una cabaña de fondue que está muy bien, pero hay que reservar.', close:[23,23,23,23,23,23,23], name:'Illuminarium', cat:'navidad', prio:'top', poc:true,
@@ -107,7 +125,7 @@ const PLACES = [
     web:null, dur:'20–40 min',
     ov:'Empieza delante de Zürich HB',
     hours:'Se encienden el 19 nov 2026 a las 18:00 y lucen hasta el 4 ene 2027.',
-    price:'Gratis.', status:'sec', src:'https://newinzurich.com/2026/09/best-christmas-markets-in-zurich-and-switzerland-2026/', img:'img/bahnhofstrasse-lucy', imgCap:'La Bahnhofstrasse desde lo alto, con las luces «Lucy» y un tranvía', credit:'Claudio Schwarz / Unsplash',
+    price:'Gratis.', status:'sec', src:'https://newinzurich.com/2026/09/best-christmas-markets-in-zurich-and-switzerland-2026/', img:'img/bahnhofstrasse-lucy', imgCap:'La Bahnhofstrasse desde lo alto, con las luces «Lucy» y un tranvía',
     open:['2026-11-19','2027-01-04'], closed:[] },
 
   { id:'winterzauber', name:'Winterzauber en el Uetliberg', cat:'navidad', prio:'muy',
@@ -125,7 +143,7 @@ const PLACES = [
     web:null, dur:'20–30 min',
     ov:'10 minutos a pie desde Zürich HB',
     hours:'Plaza pública, siempre abierta. Lo más bonito: de día o al atardecer.', price:'Gratis.', status:'ok', src:null,
-    img:'img/lindenhof-blick', imgCap:'Desde el muro del Lindenhof: el Limmat y las torres del Grossmünster', credit:'Unsplash' },
+    img:'img/lindenhof-blick', imgCap:'Desde el muro del Lindenhof: el Limmat y las torres del Grossmünster' },
 
   { id:'grossmunster', close:[17,17,17,17,17,17,17], name:'Grossmünster', cat:'ver', prio:'top',
     desc:'Las dos torres son el símbolo de Zúrich. Aquí empezó la Reforma protestante suiza con Zwinglio. Subid los casi 190 escalones de la torre Karlsturm y tendréis la ciudad entera a vuestros pies.',
@@ -133,8 +151,7 @@ const PLACES = [
     web:'https://www.grossmuenster.ch/', dur:'30–60 min',
     ov:'Tranvía hasta Helmhaus o 15 min a pie desde Zürich HB',
     hours:'Nov–feb: lun–sáb 10–17 h; domingo, después del oficio. Entre semana cierra antes de que salgáis del trabajo: mejor el fin de semana.',
-    price:'Iglesia gratis. Torre Karlsturm: CHF 5.', status:'ok', src:'https://www.zuerich.com/de/besuchen/sehenswuerdigkeiten/grossmuenster',
-    img:'img/grossmuenster-alpen', imgCap:'Las torres del Grossmünster con los Alpes al fondo', credit:'Unsplash' },
+    price:'Iglesia gratis. Torre Karlsturm: CHF 5.', status:'ok', src:'https://www.zuerich.com/de/besuchen/sehenswuerdigkeiten/grossmuenster', img:null },
 
   { id:'fraumunster', close:[17,17,17,17,17,17,17], name:'Fraumünster', cat:'ver', prio:'muy',
     desc:'Las cinco vidrieras de Marc Chagall llenan el coro de azul y verde: impresionan aunque no seáis creyentes. Es la iglesia de la torre verde y esbelta.',
@@ -142,43 +159,43 @@ const PLACES = [
     web:'https://www.fraumuenster.ch/', dur:'20–45 min',
     ov:'10 minutos a pie desde Zürich HB',
     hours:'Nov–feb: lun–sáb 10–17 h; domingo, después del oficio.', price:'Adultos CHF 5.', status:'ok', src:'https://www.zuerich.com/de/besuchen/sehenswuerdigkeiten/fraumuenster',
-    img:'img/fraumuenster-limmat', imgCap:'San Pedro, el Fraumünster y el Limmat desde el aire', credit:'Henrique Ferreira / Unsplash' },
+    img:'img/fraumuenster-limmat', imgCap:'San Pedro, el Fraumünster y el Limmat desde el aire' },
 
   { id:'niederdorf', tip:'Imprescindible también: un paseo por el «Niederdörfli», sobre todo si es vuestra primera vez en Zúrich. Importante: meteos también por las callejuelas laterales, no os quedéis solo en la calle principal.', close:[24,24,24,24,24,24,24], name:'Niederdorf', cat:'ver', prio:'top', poc:true,
     desc:'El barrio más animado del casco antiguo: callejuelas empedradas, casas medievales, bares y restaurantes. En Adviento, con puestos navideños. Perfecto para pasear de noche.',
     addr:'Niederdorfstrasse, 8001 Zürich', ll:[47.3727,8.5440], q:'Niederdorf Zürich',
     web:null, dur:'45–90 min',
-    ov:'10 minutos a pie desde Zürich HB', hours:'Barrio público, siempre accesible.', price:'Gratis.', status:'ok', src:null, img:'img/altstadt-sterne', imgCap:'Callejuela del casco antiguo con estrellas navideñas', credit:'Ricardo Gomez Angel / Unsplash' },
+    ov:'10 minutos a pie desde Zürich HB', hours:'Barrio público, siempre accesible.', price:'Gratis.', status:'ok', src:null, img:'img/altstadt-sterne', imgCap:'Callejuela del casco antiguo con estrellas navideñas' },
 
   { id:'limmatquai', close:[24,24,24,24,24,24,24], name:'Limmatquai', cat:'ver', prio:'muy',
     desc:'El paseo a orillas del río Limmat, con las casas gremiales, los puentes y las torres de las iglesias reflejadas en el agua. Precioso con las luces de la tarde.',
     addr:'Limmatquai, 8001 Zürich', ll:[47.3712,8.5430], q:'Limmatquai Zürich',
     web:null, dur:'30–45 min',
-    ov:'5 minutos a pie desde Zürich HB', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:'img/limmat-barcas', imgCap:'El Limmat con barcas de madera y las torres del Grossmünster al fondo', credit:'cortesía de Mike', imgPos:'50% 60%' },
+    ov:'5 minutos a pie desde Zürich HB', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:null },
 
   { id:'augustinergasse', close:[24,24,24,24,24,24,24], name:'Augustinergasse', cat:'ver', prio:'muy',
     desc:'Quizá la calle más fotogénica de Zúrich: fachadas de colores y miradores de madera pintados. Está entre la Bahnhofstrasse y el Lindenhof.',
     addr:'Augustinergasse, 8001 Zürich', ll:[47.3716,8.5395], q:'Augustinergasse Zürich',
     web:null, dur:'10–20 min',
-    ov:'8 minutos a pie desde Zürich HB', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:'img/augustinergasse', imgCap:'La Augustinergasse: tiendas, fachadas históricas y miradores de madera', credit:'cortesía de Mike', imgPos:'50% 45%' },
+    ov:'8 minutos a pie desde Zürich HB', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:null },
 
   { id:'burkliplatz', close:[24,24,24,24,24,24,24], name:'Bürkliplatz y el lago', cat:'ver', prio:'top',
     desc:'El final natural del paseo por la Bahnhofstrasse: aquí la ciudad se abre al lago. Con el cielo despejado, los Alpes al fondo.',
     addr:'Bürkliplatz, 8001 Zürich', ll:[47.3667,8.5408], q:'Bürkliplatz Zürich',
     web:null, dur:'30–60 min',
-    ov:'Tranvía hasta Bürkliplatz o 15 min a pie por la Bahnhofstrasse', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:'img/buerkliplatz', imgCap:'El Limmat junto al Bürkliplatz, con el Fraumünster y San Pedro', credit:'aho / Unsplash' },
+    ov:'Tranvía hasta Bürkliplatz o 15 min a pie por la Bahnhofstrasse', hours:'Siempre accesible.', price:'Gratis.', status:'ok', src:null, img:'img/buerkliplatz', imgCap:'El Limmat junto al Bürkliplatz, con el Fraumünster y San Pedro' },
 
   { id:'polyterrasse', close:[24,24,24,24,24,24,24], name:'Polyterrasse (ETH)', cat:'ver', prio:'muy',
     desc:'La terraza delante del edificio principal de la universidad ETH, una de las mejores vistas sobre los tejados y las torres. De noche, la ciudad iluminada.',
     addr:'Rämistrasse 101, 8092 Zürich', ll:[47.3765,8.5478], q:'Polyterrasse ETH Zürich',
     web:null, dur:'15–30 min',
-    ov:'Polybahn desde Central (5 min a pie de Zürich HB)', hours:'Terraza de acceso libre.', price:'Gratis.', status:'ok', src:null, img:'img/zuerich-nieve', imgCap:'Los tejados nevados de Zúrich y la torre del Fraumünster, con las montañas al fondo', credit:'cortesía de Mike', imgPos:'50% 70%' },
+    ov:'Polybahn desde Central (5 min a pie de Zürich HB)', hours:'Terraza de acceso libre.', price:'Gratis.', status:'ok', src:null, img:null },
 
   { id:'polybahn', name:'Polybahn', cat:'ver', prio:'muy',
     desc:'Un pequeño funicular rojo de 1889 que sube en dos minutos desde Central hasta la ETH. Un trayecto cortísimo, pero encantador.',
     addr:'Limmatquai 57 (Central), 8001 Zürich', ll:[47.3768,8.5445], q:'Polybahn Zürich',
     web:null, dur:'10–20 min con las vistas',
-    ov:'5 minutos a pie desde Zürich HB', hours:'Horario pendiente de confirmación.', price:'Con billete de transporte de la zona 110.', status:'pend', src:null, img:'img/polybahn-ciudad', imgCap:'La ciudad desde lo alto, con el vagón rojo de la Polybahn', credit:'cortesía de Mike', imgPos:'62% 78%' },
+    ov:'5 minutos a pie desde Zürich HB', hours:'Horario pendiente de confirmación.', price:'Con billete de transporte de la zona 110.', status:'pend', src:null, img:null },
 
   { id:'uetliberg', tip:'Alternativa a la ciudad: subir en tren al Uetliberg. Bonitas vistas y un pequeño mercado navideño arriba; con nieve es precioso, aunque este año quizá aún no haya. Normalmente el tren sale directo de la estación central; durante vuestra visita no, por las obras.', name:'Uetliberg', cat:'ver', prio:'top',
     desc:'La montaña de la ciudad (871 m): en noviembre, muchas veces arriba luce el sol mientras Zúrich sigue bajo la niebla. Desde la torre se ven la ciudad, el lago y, con suerte, los Alpes.',
@@ -186,7 +203,7 @@ const PLACES = [
     web:'https://utokulm.ch/', dur:'2–3 h en total',
     ov:SZU_NOTE,
     hours:'Montaña de acceso libre. Desde la estación, unos 10 minutos de subida a pie hasta la cima.', price:'Gratis; solo el billete de tren.', status:'ok', src:'https://www.szu.ch/de/hb/fahrgaeste-s10/',
-    img:'img/uetliberg-niebla', imgCap:'Uto Kulm y la torre del Uetliberg sobre el mar de niebla', credit:'Patrick Federi / Unsplash' },
+    img:'img/uetliberg-niebla', imgCap:'Uto Kulm y la torre del Uetliberg sobre el mar de niebla' },
 
   /* ---------- CULTURA ---------- */
   { id:'landesmuseum', close:[17,null,17,17,17,17,17], name:'Museo Nacional Suizo (Landesmuseum)', cat:'cultura', prio:'top',
@@ -202,7 +219,7 @@ const PLACES = [
     addr:'Heimplatz 1, 8001 Zürich', ll:[47.3703,8.5483], q:'Kunsthaus Zürich',
     web:'https://www.kunsthaus.ch/', dur:'1,5–3 h',
     ov:'Tranvía hasta Kunsthaus',
-    hours:'Mar, mié, vie–dom 10–18 h; jueves 10–20 h; lunes cerrado.', price:'Precio pendiente de confirmación (tickets.kunsthaus.ch).', status:'ok', src:'https://www.kunsthaus.ch/', img:'img/kunsthaus', imgCap:'La ampliación de David Chipperfield', credit:'Ilia Bronskiy / Unsplash' },
+    hours:'Mar, mié, vie–dom 10–18 h; jueves 10–20 h; lunes cerrado.', price:'Precio pendiente de confirmación (tickets.kunsthaus.ch).', status:'ok', src:'https://www.kunsthaus.ch/', img:'img/kunsthaus', imgCap:'La ampliación de David Chipperfield' },
 
   { id:'cabaretvoltaire', tip:'Un bar muy especial. Por el ambiente y todo lo que lo rodea, me parece una recomendación estupenda.', rec:true, close:[18,null,24,24,24,25.5,25.5], name:'Cabaret Voltaire', cat:'cultura', prio:'si', tags:['bar'],
     desc:'En esta casa del casco antiguo nació el dadaísmo en 1916. Hoy es un pequeño espacio cultural con bar-café: cerveza, vino y, cómo no, absenta.',
@@ -401,7 +418,7 @@ const PLACES = [
     desc:'La ciudad más bonita de Suiza para muchos: el puente de madera Kapellbrücke, la ciudad vieja con fachadas pintadas y el lago con los Alpes detrás. La mejor excursión de un día.',
     addr:'Kapellbrücke, 6002 Luzern', ll:[47.0517,8.3075], q:'Kapellbrücke Luzern',
     web:'https://www.luzern.com/', dur:'5–7 h en total',
-    ov:'Tren directo, aprox. 40–50 min', hours:'Ciudad, siempre accesible.', price:'Billete de tren aparte.', status:'ok', src:null, img:'img/luzern-kapellbruecke', imgCap:'El Kapellbrücke y la torre del agua, con el Pilatus al fondo', credit:'Geertje Caliguire / Unsplash' },
+    ov:'Tren directo, aprox. 40–50 min', hours:'Ciudad, siempre accesible.', price:'Billete de tren aparte.', status:'ok', src:null, img:'img/luzern-kapellbruecke', imgCap:'El Kapellbrücke y la torre del agua, con el Pilatus al fondo' },
 
   { id:'rapperswil', name:'Rapperswil', cat:'excursion', prio:'muy',
     desc:'La «ciudad de las rosas» al otro extremo del lago: un castillo sobre la colina, un casco antiguo pequeño y un largo paseo de madera sobre el agua.',
@@ -413,7 +430,7 @@ const PLACES = [
     desc:'Ciudad termal con un casco antiguo precioso sobre el río Limmat y un puente de madera cubierto. Ideal para una tarde corta.',
     addr:'Altstadt, 5400 Baden', ll:[47.4733,8.3080], q:'Altstadt Baden AG',
     web:null, dur:'2–4 h',
-    ov:'Tren directo desde Zürich HB, unos 15 min', hours:'Ciudad, siempre accesible. Spa FORTYSEVEN (aguas termales a 47 °C, obra de Mario Botta): todos los días 8–22 h.', price:'Ciudad gratis; el spa es de pago (precios en fortyseven.ch).', status:'sec', src:'https://www.zuerich.com/de/besuchen/wellness/wellness-therme-fortyseven', img:'img/baden-noche', imgCap:'Baden de noche, desde las ruinas del castillo de Stein', credit:'julian / Unsplash' },
+    ov:'Tren directo desde Zürich HB, unos 15 min', hours:'Ciudad, siempre accesible. Spa FORTYSEVEN (aguas termales a 47 °C, obra de Mario Botta): todos los días 8–22 h.', price:'Ciudad gratis; el spa es de pago (precios en fortyseven.ch).', status:'sec', src:'https://www.zuerich.com/de/besuchen/wellness/wellness-therme-fortyseven', img:'img/baden-noche', imgCap:'Baden de noche, desde las ruinas del castillo de Stein' },
 
   { id:'zug', name:'Zug', cat:'excursion', prio:'muy',
     desc:'Un casco antiguo de cuento junto al lago, famoso por sus puestas de sol. Tranquilo y bonito para medio día sin prisas.',

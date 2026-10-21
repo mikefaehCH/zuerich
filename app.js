@@ -16,6 +16,8 @@ const isoShort = s => { const [y,m,d] = s.split('-').map(Number); return `${d} $
 const hh = h => `${Math.floor(h)}:${String(Math.round((h % 1) * 60)).padStart(2,'0')}`;
 const SITE = 'https://mikefaehch.github.io/zuerich/';
 const isLocal = n => !!n && n.startsWith('img/');
+/* crédito de una foto (PHOTOS en data.js): «Nombre · Unsplash», enlazado a la foto original */
+const credit = (n, cls = '') => { const f = PHOTOS[n]; return f ? `<a${cls ? ` class="${cls}"` : ''} href="${f.src}" target="_blank" rel="noopener">${esc(f.by)} · Unsplash</a>` : ''; };
 const gSearch = p => p.gmap || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p.q));
 const gDir = p => 'https://www.google.com/maps/dir/?api=1&travelmode=transit&' + (p.cat === 'excursion' ? 'origin=' + encodeURIComponent('Zürich HB') + '&' : '') + 'destination=' + encodeURIComponent(p.q);
 const MAXSTOPS = 10;   // límite de Google Maps: origen + 8 paradas + destino
@@ -133,7 +135,7 @@ function card(p, lvl = 3){
       ${addBtn(p)}
     </div>
     <div class="more" id="m-${p.id}" hidden>
-      ${isLocal(p.img) ? `<figure class="more-img"><img src="${p.img}-800.webp" srcset="${p.img}-400.webp 400w, ${p.img}-800.webp 800w" sizes="(min-width:760px) 480px, 92vw" alt="${esc(p.imgCap)}" width="800" height="480" loading="lazy" decoding="async"${p.imgPos ? ` style="object-position:${p.imgPos}"` : ''}><figcaption>Foto: ${esc(p.credit)}</figcaption></figure>` : ''}
+      ${isLocal(p.img) ? `<figure class="more-img"><img src="${p.img}-800.webp" srcset="${p.img}-400.webp 400w, ${p.img}-800.webp 800w" sizes="(min-width:760px) 480px, 92vw" alt="${esc(p.imgCap)}" width="800" height="480" loading="lazy" decoding="async"${p.imgPos ? ` style="object-position:${p.imgPos}"` : ''}><figcaption>Foto: ${credit(p.img)}</figcaption></figure>` : ''}
       ${p.tip ? `<p class="mtip"><b>Consejo de Mike:</b> ${esc(p.tip)}</p>` : ''}
       ${more ? `<p>${esc(more)}</p>` : ''}
       <p><strong>Horario:</strong> ${esc(p.hours)} ${statusLabel(p)}</p>
@@ -157,6 +159,7 @@ function renderFavs(){
         <img src="${p.img}-800.webp" srcset="${p.img}-400.webp 400w, ${p.img}-800.webp 800w" sizes="(min-width:700px) 330px, 74vw" alt="${esc(p.imgCap)}" width="800" height="600" loading="lazy" decoding="async">
         <span class="pk-t"><small>${esc(kindLabel(p))}${barrio(p) ? ' · ' + esc(barrio(p)) : ''}</small><b>${esc(shortName(p))}${STAR_SVG}</b></span>
       </button>
+      <span class="pk-cr">${credit(p.img)}</span>
       <p class="pk-q">${esc(quote(p) || short(p.desc))}</p>
       ${addBtn(p)}
     </article>`).join('');
@@ -175,9 +178,9 @@ function renderMoments(){
     return `<button type="button" class="mo" data-goto="m-${m.id}">
       ${m.img ? `<img src="${m.img}-400.webp" srcset="${m.img}-400.webp 400w, ${m.img}-800.webp 800w" sizes="(min-width:860px) 240px, 46vw" alt="" width="400" height="300" decoding="async">` : ''}
       <span class="mo-t"><b>${esc(m.title)}</b><small>${esc(m.sub)} · ${n}</small></span>
-      ${m.credit ? `<span class="mo-cr" aria-hidden="true">${m.place ? `<span class="mo-pl">${esc(m.place)}</span> ` : ''}<span class="mo-au">${esc(m.credit)}</span></span>` : ''}
+      ${PHOTOS[m.img] ? `<span class="mo-cr" aria-hidden="true">${m.place ? `<span class="mo-pl">${esc(m.place)}</span> ` : ''}<span class="mo-au">${esc(PHOTOS[m.img].by)}</span></span>` : ''}
     </button>`; }).join('');
-  $('#momCredits').textContent = 'Fotos de la portada: ' + CONFIG.momentos.filter(m => m.credit).map(m => m.credit.replace(' / Unsplash', '')).join(', ') + ' (Unsplash).';
+  $('#photoCredits').innerHTML = Object.entries(PHOTOS).map(([n, f]) => `<li>${esc(f.what)} — ${credit(n)}</li>`).join('');
 }
 
 /* ================= 04 · descubrir ================= */

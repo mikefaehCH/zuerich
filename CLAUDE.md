@@ -34,7 +34,7 @@ Rollback: `git revert <sha>`.
 - `tags`: `cafe`, `almuerzo`, `cena`, `bar` (sub-filters of «Comer y café»).
 - `poc:true` = **favourite of Mike (gold star)**. Mike decides the list (currently 13). `rec:true` = «Recomendado por Mike» (no star).
 - `tip` = «Consejo de Mike». **Only Mike's own words**, translated to Spanish. Never invent first-person text.
-- List cards never show images (text only); photos appear in hero, momentos tiles and favourite picks. `img:'img/name'` requires `img/name-400.webp` + `img/name-800.webp`, `imgCap`, `credit`.
+- List cards never show images (text only); photos appear in hero, momentos tiles and favourite picks. `img:'img/name'` requires `img/name-400.webp` + `img/name-800.webp`, `imgCap` and an entry in `PHOTOS` (author `by`, Unsplash photo URL `src`, motif `what`) – credits are rendered from there (hero link is static in index.html). See `CREDITS.md`.
 - `IDEAS`: `id` (links `#idea-id`), `title`, `dur`, `days`, `text`, `note`, `stops` (place ids, in walking order), `walkOnly`/`transit`.
 - Front page «Lo mejor de Zúrich» = Mike's favourites: `CONFIG.favFirst` = photo picks in order (must have `img`, quote = 1st sentence of `tip`);
   all other `poc` places appear automatically in «Más favoritos».
@@ -53,6 +53,8 @@ recommended it, `tip` only if Mike said why. Run the tests. Nothing else to touc
 - Never the word «POC» in visible text. Star colour `#C49A48`.
 - Photos: only if the location is certain (several Unsplash photos show Lucerne/Kraków/Tallinn/Warsaw – never as Zürich).
   Keep photographer credit. Grade: restrained, natural; WebP ~q76–78.
+- Photo rights: only photos with a verified source + licence (in practice Unsplash, original photo page linked in `PHOTOS`).
+  Never «cortesía de Mike» or «© Zürich Tourismus» without written permission; zuerich.com images are not licensed for this site (CREDITS.md).
 - Ask Mike before removing larger content blocks.
 
 ## Core features that must keep working (all covered by tests/check.py)
