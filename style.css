@@ -270,3 +270,23 @@ footer p+p{margin-top:.35rem;}
 #toast{position:fixed;left:50%;bottom:calc(1.2rem + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:900;background:var(--ink);color:var(--bg);padding:.55rem 1rem;border-radius:99px;font-size:.86rem;opacity:0;pointer-events:none;transition:opacity .2s;white-space:nowrap;}
 #toast.show{opacity:1;}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.pc,#toast{transition:none;}}
+
+/* 08 · Touch-Ziele ≥ 44 px und Kontrast (Bildnachweise ≥ 24 px) */
+.add,#themeBtn{width:44px;height:44px;}
+.pl .rm{width:44px;}
+.link{min-height:44px;}
+.chip{min-height:44px;}
+nav.top a{min-width:44px;justify-content:center;}
+.fl .nm,.pl .nm,.cal tbody th button,.idea .route .rn button{display:inline-block;box-sizing:border-box;min-height:44px;min-width:44px;padding:11px 0;}
+.idea .route .rn{padding-top:0;}
+footer .credits summary{min-height:44px;display:flex;align-items:center;}
+.hero-credit{padding:.35rem .3rem;bottom:0;right:.4rem;color:rgba(255,255,255,.82);}
+.pk-cr{opacity:1;}
+.pk-cr a,footer .credits a,.more-img figcaption a{display:inline-block;min-height:24px;line-height:24px;}
+.more .links a,.more .links button{min-height:44px;}
+.mtip b{color:var(--warn);}
+.pl .handle{width:44px;}
+.leaflet-popup-content .pa a,.leaflet-popup-content .pa button{min-height:44px;}
+#map .leaflet-bar a{width:44px;height:44px;line-height:44px;}
+#map a.leaflet-popup-close-button{width:44px;height:44px;font:20px/44px var(--sans);top:0;right:0;}
+#map .leaflet-control-attribution a{display:inline-block;min-height:24px;line-height:24px;}
