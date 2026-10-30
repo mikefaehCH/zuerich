@@ -149,6 +149,14 @@ def main():
         ok("plan: reorder with arrow keys", plan(m)[:2] == ['niederdorf', 'lindenhof'])
         href = m.get_attribute("#planActs a.pri", "href"); ok("plan: Google Maps route in order", "origin=Niederdorf" in href and "travelmode=walking" in href)
         wa = up.unquote(m.get_attribute("#planActs a[href^='https://wa.me']", "href")); ok("plan: WhatsApp text (Spanish, list, link)", "Nuestro plan para Zúrich" in wa and "1. Niederdorf" in wa and "#plan=" in wa)
+        small = m.evaluate("""(()=>{const hid=[...document.querySelectorAll('.more[hidden],details:not([open])')];
+          hid.forEach(e=>e.tagName==='DETAILS'?e.open=true:e.hidden=false);
+          const out=[...document.querySelectorAll('a,button,summary,input,select')].filter(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);
+            if(!r.width||s.visibility==='hidden'||(s.display==='inline'&&e.closest('p'))||e.classList.contains('skip'))return false;
+            const credit=e.closest('.pk-cr,.credits,figcaption,.leaflet-control-attribution')||e.classList.contains('hero-credit');
+            return credit?r.height<24:(r.width<43.5||r.height<43.5)}).map(e=>(e.className||e.tagName)+' '+Math.round(e.getBoundingClientRect().width)+'x'+Math.round(e.getBoundingClientRect().height));
+          hid.forEach(e=>e.tagName==='DETAILS'?e.open=false:e.hidden=true);return out})()""")
+        ok("touch targets >= 44 px (photo credits >= 24 px) at 390 px", not small, small[:4])
         link = m.evaluate("planLink()"); n = len(plan(m))
         m.click("#planList .pl >> nth=0 >> .rm"); ok("plan: remove", len(plan(m)) == n - 1)
         m.reload(); m.wait_for_timeout(800); ok("plan: survives reload", len(plan(m)) == n - 1)
