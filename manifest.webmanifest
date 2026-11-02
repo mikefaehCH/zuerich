@@ -2,7 +2,7 @@
   "name": "Zúrich en Navidad",
   "short_name": "Zúrich",
   "lang": "es",
-  "start_url": "https://mikefaehch.github.io/zuerich/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#F8F6F1",
   "theme_color": "#F8F6F1",
