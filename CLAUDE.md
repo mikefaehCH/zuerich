@@ -21,8 +21,8 @@ Mike writes to you in German; everything visitors see is **Spanish (Spain, «vos
 2. Change: content → `data.js` only. Keep diffs small.
 3. Test: `python3 tests/check.py` (≈1–2 min, needs Playwright/Chromium; `-v` lists all checks). Must end with `N/N checks passed`.
 4. Look: for visual changes take a 390×844 screenshot (Playwright) and look at it.
-5. Commit with a German message saying what changed for the visitor; push to `main` (= live in ~1 min).
-Rollback: `git revert <sha>`.
+5. Commit mit deutscher Beschreibung auf einem Aufgabenbranch und erstelle einen PR. **Kein direkter Push auf `main`**, kein Force-Push. Ein vom Product Owner freigegebener Auftrag umfasst nach erfolgreicher CI und unabhängiger Review auch selbstständiges Merge und Deployment; siehe [RELEASE_POLICY.md](RELEASE_POLICY.md).
+Rollback: Revert über neuen Branch und PR mit vollständigen Checks; kein direkter Main-Push.
 
 ## Data model (`PLACES`, one record = one place; see comment block in data.js)
 - Required: `id` (`[a-z0-9-]`, used in links `#p-id` – never rename), `name`, `cat` (key of `CATS`),
