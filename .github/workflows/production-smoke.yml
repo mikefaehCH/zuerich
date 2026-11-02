@@ -1,0 +1,30 @@
+name: Production smoke
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify published version of static assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://mikefaehch.github.io/zuerich'
+          for attempt in $(seq 1 18); do
+            current=0
+            for path in index.html app.js sw.js manifest.webmanifest; do
+              expected=$(sha256sum "$path" | cut -d' ' -f1)
+              actual=$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "$base/$path?release=${GITHUB_SHA}" | sha256sum | cut -d' ' -f1) || { current=1; break; }
+              if [[ "$expected" != "$actual" ]]; then current=1; break; fi
+            done
+            if [[ "$current" -eq 0 ]]; then echo 'Live files exactly match the release commit'; exit 0; fi
+            sleep 25
+          done
+          echo 'Production differs from latest main commit' >&2
+          exit 1
