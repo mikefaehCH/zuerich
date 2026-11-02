@@ -5,7 +5,7 @@
 3. Vor jedem Merge `Zuerich quality` vollständig grün: Cache-Isolation und `tests/check.py` auf Chromium, einschliesslich 390-px-Darstellung.
 4. Für automatischen Merge benötigt der PR-Text die eigenständige Zeile `Autonomy-Release: true` und eine vom tatsächlichen PR-Autor unterschiedliche GitHub-Approval auf dem aktuellen HEAD. Keine `CHANGES_REQUESTED`-Reviews.
 5. Der `Autonomous merge`-Runner wird nur durch erfolgreiche CI gestartet, prüft Branch/HEAD/Review/Opt-in erneut und merged mit serverseitiger SHA-Sperre. GitHub-Branchschutz wird nicht übergangen.
-6. Die bestehende GitHub-Pages-Veröffentlichung aus `main` bleibt unverändert. `Production smoke` vergleicht die veröffentlichten HTML-, JS-, Service-Worker- und Manifest-Bytes mit dem ausgecheckten Commit.
+6. Die bestehende GitHub-Pages-Veröffentlichung aus `main` bleibt unverändert. Bei einem Merge durch `GITHUB_TOKEN` erfolgt kein automatischer Pages-Push-Build: Der Runner fordert ihn daher über die GitHub-Pages-Build-API mit `pages:write` an und startet die Produktionskontrolle explizit via `workflow_dispatch`. `Production smoke` vergleicht die veröffentlichten HTML-, JS-, Service-Worker- und Manifest-Bytes mit dem ausgecheckten Commit.
 7. Fehlerhafte Veröffentlichungen: unabhängige Korrektur- oder Revert-PR erstellen; Pflichtprüfungen erneut ausführen. Kein destruktiver Auto-Rollback.
 8. Änderungen an persönlichen Favoriten, Inhalten ohne Quellen, kostenpflichtigen Integrationen oder Daten mit erheblichen Datenschutzrisiken nur nach zusätzlicher Produktentscheidung.
 9. PR-Dokumentation: Agent, Basis-/HEAD-SHA, Ergebnis, Prüfungen, Risiko und nächster Schritt.
