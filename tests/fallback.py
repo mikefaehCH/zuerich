@@ -23,7 +23,7 @@ with sync_playwright() as p:
         assert page.locator('#szuNote').inner_text() == expected
         assert page.locator('#szuNote').is_visible()
         assert page.evaluate('document.documentElement.scrollWidth') == 390
-        # Bring the notice into the screenshot while retaining the noscript instruction above it.
+        # Capture the initial mobile view, including the noscript instruction when present.
         page.screenshot(path=str(out / ('zuerich-js.png' if enabled else 'zuerich-no-js.png')))
         context.close()
     browser.close()

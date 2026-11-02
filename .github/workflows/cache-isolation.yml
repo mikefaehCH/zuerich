@@ -16,7 +16,7 @@ jobs:
         run: node tests/cache-isolation.mjs
       - name: Install browser checks
         run: |
-          python3 -m pip install playwright==1.55.1
+          python3 -m pip install playwright==1.63.0
           python3 -m playwright install --with-deps chromium
       - name: Full regression and fallback screenshots
         run: |
