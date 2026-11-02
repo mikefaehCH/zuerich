@@ -20,10 +20,12 @@ with sync_playwright() as p:
             note = page.locator('.noscript-note')
             assert note.inner_text() == 'Para consultar los lugares, los horarios y vuestro plan, activad JavaScript en el navegador.'
             assert note.evaluate('(e)=>getComputedStyle(e).padding') == '12px 16px'
+        page.screenshot(path=str(out / ('zuerich-js-top.png' if enabled else 'zuerich-no-js-top.png')))
+        page.locator('#info details').first.locator('summary').click()
         assert page.locator('#szuNote').inner_text() == expected
         assert page.locator('#szuNote').is_visible()
         assert page.evaluate('document.documentElement.scrollWidth') == 390
-        # Capture the initial mobile view, including the noscript instruction when present.
+        # Capture the expanded transport notice at the same mobile size.
         page.screenshot(path=str(out / ('zuerich-js.png' if enabled else 'zuerich-no-js.png')))
         context.close()
     browser.close()
