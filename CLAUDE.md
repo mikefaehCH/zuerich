@@ -21,7 +21,7 @@ Mike writes to you in German; everything visitors see is **Spanish (Spain, «vos
 2. Change: content → `data.js` only. Keep diffs small.
 3. Test: `python3 tests/check.py` (≈1–2 min, needs Playwright/Chromium; `-v` lists all checks). Must end with `N/N checks passed`.
 4. Look: for visual changes take a 390×844 screenshot (Playwright) and look at it.
-5. Commit mit deutscher Beschreibung auf einem Aufgabenbranch und erstelle einen PR. **Kein direkter Push auf `main`**, kein Force-Push. Ein vom Product Owner freigegebener Auftrag umfasst nach erfolgreicher CI und unabhängiger Review auch selbstständiges Merge und Deployment; siehe [RELEASE_POLICY.md](RELEASE_POLICY.md).
+5. Commit mit deutscher Beschreibung auf einem Aufgabenbranch und erstelle einen PR. **Kein direkter Push auf `main`**, kein Force-Push. Ein vom Product Owner freigegebener Auftrag umfasst nach erfolgreicher CI im Routineumfang auch selbstständiges Merge und Deployment (Claude-Review zusätzlich, nicht blockierend); siehe [RELEASE_POLICY.md](RELEASE_POLICY.md).
 Rollback: Revert über neuen Branch und PR mit vollständigen Checks; kein direkter Main-Push.
 
 ## Data model (`PLACES`, one record = one place; see comment block in data.js)
