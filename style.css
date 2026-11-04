@@ -129,6 +129,8 @@ h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.15;}
 .chip .star{margin:0;}
 .chip.sm{min-height:34px;font-size:.8rem;padding:.2rem .7rem;}
 .tabs{position:sticky;top:46px;z-index:600;background:var(--navbg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);margin:0 calc(-1 * var(--pad));padding:.45rem var(--pad);}
+.places-entry{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;margin-top:.55rem;color:var(--ink);font-weight:600;text-underline-offset:.2em;}
+.places-entry:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
 .toolbar{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin:.35rem 0 .1rem;font-size:.82rem;color:var(--muted);}
 .toolbar .acts{display:flex;gap:.8rem;}
 .toolbar .link[aria-pressed="true"]{text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--star);text-decoration-thickness:2px;}
